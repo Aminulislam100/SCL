@@ -1,0 +1,1731 @@
+
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Curriculum | Udayon School</title>
+
+
+    <!-- Tailwind + DaisyUI -->
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/daisyui@5"
+        rel="stylesheet"
+        type="text/css">
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+
+    <!-- Google Fonts -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap"
+        rel="stylesheet">
+
+
+    <style>
+
+        * {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+        }
+
+        .heading-font {
+            font-family: "Playfair Display", serif;
+        }
+
+        .hero-pattern {
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(15, 23, 42, .97),
+                    rgba(30, 64, 175, .92)
+                ),
+                radial-gradient(
+                    circle at 15% 20%,
+                    rgba(255,255,255,.12),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 85% 80%,
+                    rgba(255,255,255,.08),
+                    transparent 30%
+                );
+        }
+
+        .section-label {
+            letter-spacing: .15em;
+        }
+
+        .nav-link {
+            transition:
+                color .2s ease,
+                background-color .2s ease;
+        }
+
+        .nav-link:hover {
+            color: #2563eb;
+            background: #eff6ff;
+        }
+
+        .program-card {
+            transition:
+                transform .25s ease,
+                box-shadow .25s ease;
+        }
+
+        .program-card:hover {
+            transform: translateY(-7px);
+            box-shadow:
+                0 24px 45px rgba(15, 23, 42, .11);
+        }
+
+        .program-icon {
+            transition: transform .25s ease;
+        }
+
+        .program-card:hover .program-icon {
+            transform: scale(1.08);
+        }
+
+        .feature-card {
+            transition:
+                transform .25s ease,
+                box-shadow .25s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow:
+                0 18px 35px rgba(15, 23, 42, .08);
+        }
+
+    </style>
+
+</head>
+
+
+<body class="bg-slate-50 text-slate-800">
+
+
+<!-- ========================================================= -->
+<!-- NAVBAR -->
+<!-- ========================================================= -->
+
+<header
+    class="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur-md">
+
+
+    <div
+        class="navbar max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+
+        <!-- Mobile Menu -->
+
+        <div class="navbar-start">
+
+
+            <div class="dropdown">
+
+
+                <button
+                    tabindex="0"
+                    class="btn btn-ghost lg:hidden"
+                    aria-label="Open navigation menu">
+
+
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-6 w-6"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor">
+
+
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+
+
+                    </svg>
+
+
+                </button>
+
+
+                <ul
+                    tabindex="0"
+                    class="menu menu-sm dropdown-content mt-3 z-[1] p-3 shadow-xl bg-white rounded-2xl w-64 border border-slate-100">
+
+
+                    <li>
+                        <a href="index.html">
+                            Home
+                        </a>
+                    </li>
+
+
+                    <li>
+                        <a href="about.html">
+                            About
+                        </a>
+                    </li>
+
+
+                    <li>
+                        <a href="notice.html">
+                            Notice
+                        </a>
+                    </li>
+
+
+                    <li>
+                        <a href="announcement.html">
+                            Announcement
+                        </a>
+                    </li>
+
+
+                    <li>
+                        <a
+                            href="curriculum.html"
+                            class="text-blue-600 font-semibold">
+                            Curriculum
+                        </a>
+                    </li>
+
+
+                    <li>
+                        <a href="admission.html">
+                            Admission
+                        </a>
+                    </li>
+
+
+                    <li>
+                        <a href="events.html">
+                            Events
+                        </a>
+                    </li>
+
+
+
+
+                </ul>
+
+
+            </div>
+
+
+            <!-- Logo -->
+
+            <a
+                href="index.html"
+                class="btn btn-ghost normal-case text-lg sm:text-xl font-bold gap-2">
+
+
+                <span
+                    class="flex items-center justify-center w-10 h-10 rounded-xl bg-blue-600 text-white font-bold">
+
+                    U
+
+                </span>
+
+
+                <span class="hidden sm:inline">
+                    Udayon School
+                </span>
+
+
+            </a>
+
+
+        </div>
+
+
+        <!-- Desktop Navigation -->
+
+        <nav class="navbar-center hidden lg:flex">
+
+
+            <ul class="menu menu-horizontal gap-1">
+
+
+                <li>
+                    <a
+                        href="index.html"
+                        class="nav-link rounded-lg font-medium">
+                        Home
+                    </a>
+                </li>
+
+
+                <li>
+                    <a
+                        href="about.html"
+                        class="nav-link rounded-lg font-medium">
+                        About
+                    </a>
+                </li>
+
+
+                <li>
+                    <a
+                        href="notice.html"
+                        class="nav-link rounded-lg font-medium">
+                        Notice
+                    </a>
+                </li>
+
+
+                <li>
+                    <a
+                        href="announcement.html"
+                        class="nav-link rounded-lg font-medium">
+                        Announcement
+                    </a>
+                </li>
+
+
+                <li>
+                    <a
+                        href="curriculum.html"
+                        class="rounded-lg font-semibold text-blue-600 bg-blue-50">
+                        Curriculum
+                    </a>
+                </li>
+
+
+                <li>
+                    <a
+                        href="admission.html"
+                        class="nav-link rounded-lg font-medium">
+                        Admission
+                    </a>
+                </li>
+
+
+                <li>
+                    <a
+                        href="events.html"
+                        class="nav-link rounded-lg font-medium">
+                        Events
+                    </a>
+                </li>
+
+
+
+            </ul>
+
+
+        </nav>
+
+
+        <!-- Admin -->
+
+        <div class="navbar-end">
+
+
+            <a
+                href="admin.html"
+                class="btn btn-primary rounded-xl px-5 shadow-md shadow-blue-600/20">
+
+                Admin Portal
+
+            </a>
+
+
+        </div>
+
+
+    </div>
+
+
+</header>
+
+
+
+<!-- ========================================================= -->
+<!-- HERO -->
+<!-- ========================================================= -->
+
+<section
+    class="hero-pattern text-white relative overflow-hidden">
+
+
+    <div
+        class="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-blue-400/10">
+    </div>
+
+
+    <div
+        class="absolute -bottom-40 -left-32 w-[500px] h-[500px] rounded-full bg-indigo-400/10">
+    </div>
+
+
+    <div
+        class="relative max-w-7xl mx-auto px-5">
+
+
+        <div class="py-28 text-center">
+
+
+            <p
+                class="section-label text-sm font-bold uppercase text-blue-200">
+
+                Learning & Development
+
+            </p>
+
+
+            <h1
+                class="heading-font text-5xl sm:text-6xl lg:text-7xl font-bold mt-4">
+
+                Our Curriculum
+
+            </h1>
+
+
+            <p
+                class="max-w-3xl mx-auto mt-6 text-lg sm:text-xl text-slate-200 leading-relaxed">
+
+                A balanced educational journey designed to develop
+                knowledge, creativity, critical thinking, character,
+                and practical skills.
+
+            </p>
+
+
+            <div
+                class="flex justify-center flex-wrap gap-4 mt-8">
+
+
+                <a
+                    href="#programs"
+                    class="btn btn-lg bg-white text-blue-700 border-0 hover:bg-slate-100 rounded-xl">
+
+                    Explore Programs
+
+                </a>
+
+
+                <a
+                    href="admission.html"
+                    class="btn btn-lg btn-outline border-white text-white hover:bg-white hover:text-blue-700 rounded-xl">
+
+                    Admissions
+
+                </a>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- ========================================================= -->
+<!-- INTRO -->
+<!-- ========================================================= -->
+
+<section class="py-20 bg-white">
+
+
+    <div
+        class="max-w-4xl mx-auto px-5 text-center">
+
+
+        <p
+            class="section-label text-sm font-bold uppercase text-blue-600">
+
+            Our Educational Philosophy
+
+        </p>
+
+
+        <h2
+            class="heading-font text-4xl sm:text-5xl font-bold text-slate-900 mt-3">
+
+            Learning Beyond the Classroom
+
+        </h2>
+
+
+        <p
+            class="text-lg text-slate-500 leading-8 mt-6">
+
+            At Udayon School, our curriculum is designed to provide
+            students with a strong academic foundation while
+            encouraging curiosity, creativity, collaboration,
+            problem-solving, and personal growth.
+
+        </p>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- ========================================================= -->
+<!-- ACADEMIC PROGRAMS -->
+<!-- ========================================================= -->
+
+<section
+    id="programs"
+    class="py-24 bg-slate-50">
+
+
+    <div class="max-w-7xl mx-auto px-5">
+
+
+        <!-- Heading -->
+
+        <div
+            class="text-center max-w-3xl mx-auto mb-14">
+
+
+            <p
+                class="section-label text-sm font-bold uppercase text-blue-600">
+
+                Academic Programs
+
+            </p>
+
+
+            <h2
+                class="heading-font text-4xl sm:text-5xl font-bold text-slate-900 mt-3">
+
+                Programs for Every Stage
+
+            </h2>
+
+
+            <p
+                class="text-slate-500 text-lg mt-5 leading-7">
+
+                A structured learning pathway that supports students
+                as they progress through different stages of education.
+
+            </p>
+
+
+        </div>
+
+
+
+        <!-- Cards -->
+
+        <div
+            class="grid md:grid-cols-2 lg:grid-cols-3 gap-7">
+
+
+            <!-- Primary -->
+
+            <article
+                class="program-card bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden">
+
+
+                <div class="h-2 bg-blue-600"></div>
+
+
+                <div class="p-8">
+
+
+                    <div
+                        class="flex items-center justify-between">
+
+
+                        <div
+                            class="program-icon w-16 h-16 rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center text-3xl">
+
+                            📖
+
+                        </div>
+
+
+                        <span
+                            class="badge badge-primary badge-outline">
+
+                            Classes 1–5
+
+                        </span>
+
+
+                    </div>
+
+
+                    <h3
+                        class="heading-font text-2xl font-bold text-slate-900 mt-7">
+
+                        Primary Section
+
+                    </h3>
+
+
+                    <p
+                        class="text-slate-500 mt-3 leading-7">
+
+                        Building strong foundations through engaging
+                        and age-appropriate learning experiences.
+
+                    </p>
+
+
+                    <div
+                        class="divider">
+                    </div>
+
+
+                    <h4
+                        class="font-semibold text-slate-900 mb-4">
+
+                        Core Subjects
+
+                    </h4>
+
+
+                    <ul class="space-y-3">
+
+
+                        <li class="flex gap-3 items-center">
+
+                            <span
+                                class="w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-xs">
+
+                                ✓
+
+                            </span>
+
+                            English
+
+                        </li>
+
+
+                        <li class="flex gap-3 items-center">
+
+                            <span
+                                class="w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-xs">
+
+                                ✓
+
+                            </span>
+
+                            Mathematics
+
+                        </li>
+
+
+                        <li class="flex gap-3 items-center">
+
+                            <span
+                                class="w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-xs">
+
+                                ✓
+
+                            </span>
+
+                            Science
+
+                        </li>
+
+
+                        <li class="flex gap-3 items-center">
+
+                            <span
+                                class="w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-xs">
+
+                                ✓
+
+                            </span>
+
+                            Social Studies
+
+                        </li>
+
+
+                        <li class="flex gap-3 items-center">
+
+                            <span
+                                class="w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-xs">
+
+                                ✓
+
+                            </span>
+
+                            Bangla
+
+                        </li>
+                        <li class="flex gap-3 items-center">
+
+                            <span
+                                class="w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-xs">
+
+                                ✓
+
+                            </span>
+
+                            Science
+
+                        </li>
+
+
+                    </ul>
+
+
+                </div>
+
+
+            </article>
+
+
+
+            <!-- Secondary -->
+
+            <article
+                class="program-card bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden">
+
+
+                <div class="h-2 bg-indigo-600"></div>
+
+
+                <div class="p-8">
+
+
+                    <div
+                        class="flex items-center justify-between">
+
+
+                        <div
+                            class="program-icon w-16 h-16 rounded-2xl bg-indigo-100 text-indigo-600 flex items-center justify-center text-3xl">
+
+                            📚
+
+                        </div>
+
+
+                        <span
+                            class="badge badge-secondary badge-outline">
+
+                            Classes 6–10
+
+                        </span>
+
+
+                    </div>
+
+
+                    <h3
+                        class="heading-font text-2xl font-bold text-slate-900 mt-7">
+
+                        High Section
+
+                    </h3>
+
+
+                    <p
+                        class="text-slate-500 mt-3 leading-7">
+
+                        Developing deeper understanding, analytical
+                        thinking, and subject-specific knowledge.
+
+                    </p>
+
+
+                    <div class="divider"></div>
+
+
+                    <h4
+                        class="font-semibold text-slate-900 mb-4">
+
+                        Core Subjects
+
+                    </h4>
+
+
+                    <ul class="space-y-3">
+
+
+                        <li class="flex gap-3 items-center">
+
+                            <span
+                                class="w-6 h-6 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-xs">
+
+                                ✓
+
+                            </span>
+
+                            English
+
+                        </li>
+                        <li class="flex gap-3 items-center">
+
+                            <span
+                                class="w-6 h-6 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-xs">
+
+                                ✓
+
+                            </span>
+
+                            English Gramer
+
+                        </li>
+
+
+                        <li class="flex gap-3 items-center">
+
+                            <span
+                                class="w-6 h-6 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-xs">
+
+                                ✓
+
+                            </span>
+
+                            Mathematics
+
+                        </li>
+
+
+                        <li class="flex gap-3 items-center">
+
+                            <span
+                                class="w-6 h-6 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-xs">
+
+                                ✓
+
+                            </span>
+
+                            Science
+
+                        </li>
+
+
+                        <li class="flex gap-3 items-center">
+
+                            <span
+                                class="w-6 h-6 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-xs">
+
+                                ✓
+
+                            </span>
+
+                            Global Science
+
+                        </li>
+
+
+                        <li class="flex gap-3 items-center">
+
+                            <span
+                                class="w-6 h-6 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-xs">
+
+                                ✓
+
+                            </span>
+
+                            ICT
+
+                        </li>
+                        <li class="flex gap-3 items-center">
+
+                            <span
+                                class="w-6 h-6 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-xs">
+
+                                ✓
+
+                            </span>
+
+                            Bangla 1st
+
+                        </li>
+                        <li class="flex gap-3 items-center">
+
+                            <span
+                                class="w-6 h-6 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-xs">
+
+                                ✓
+
+                            </span>
+
+                            Bangla 2nd
+
+                        </li>
+
+
+                    </ul>
+                        <li class="flex gap-3 items-center">
+
+                            <span
+                                class="w-6 h-6 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-xs">
+
+                                ✓
+
+                            </span>
+
+                           Islam
+
+                        </li>
+
+
+                    </ul>
+
+
+                </div>
+
+
+            </article>
+
+
+
+            <!-- Higher Secondary -->
+
+            
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- ========================================================= -->
+<!-- LEARNING APPROACH -->
+<!-- ========================================================= -->
+
+<section class="py-24 bg-white">
+
+
+    <div class="max-w-7xl mx-auto px-5">
+
+
+        <div
+            class="text-center max-w-3xl mx-auto mb-14">
+
+
+            <p
+                class="section-label text-sm font-bold uppercase text-blue-600">
+
+                How We Teach
+
+            </p>
+
+
+            <h2
+                class="heading-font text-4xl sm:text-5xl font-bold text-slate-900 mt-3">
+
+                Our Learning Approach
+
+            </h2>
+
+
+            <p
+                class="text-slate-500 text-lg mt-5">
+
+                We combine academic learning with practical
+                experiences and essential life skills.
+
+            </p>
+
+
+        </div>
+
+
+
+        <div
+            class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+
+            <!-- Smart Learning -->
+
+            <div
+                class="feature-card bg-slate-50 rounded-2xl p-7 border border-slate-100">
+
+
+                <div
+                    class="w-14 h-14 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center text-2xl">
+
+                    💻
+
+                </div>
+
+
+                <h3
+                    class="text-xl font-bold text-slate-900 mt-6">
+
+                    Smart Learning
+
+                </h3>
+
+
+                <p
+                    class="text-slate-500 mt-3 leading-7">
+
+                    Technology-supported classroom learning
+                    that makes lessons engaging and interactive.
+
+                </p>
+
+
+            </div>
+
+
+
+            <!-- Practical Classes -->
+
+            <div
+                class="feature-card bg-slate-50 rounded-2xl p-7 border border-slate-100">
+
+
+                <div
+                    class="w-14 h-14 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center text-2xl">
+
+                    🔬
+
+                </div>
+
+
+                <h3
+                    class="text-xl font-bold text-slate-900 mt-6">
+
+                    Practical Classes
+
+                </h3>
+
+
+                <p
+                    class="text-slate-500 mt-3 leading-7">
+
+                    Laboratory work and hands-on activities
+                    that connect classroom concepts to practice.
+
+                </p>
+
+
+            </div>
+
+
+
+            <!-- Skill Development -->
+
+            <div
+                class="feature-card bg-slate-50 rounded-2xl p-7 border border-slate-100">
+
+
+                <div
+                    class="w-14 h-14 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center text-2xl">
+
+                    🏆
+
+                </div>
+
+
+                <h3
+                    class="text-xl font-bold text-slate-900 mt-6">
+
+                    Skill Development
+
+                </h3>
+
+
+                <p
+                    class="text-slate-500 mt-3 leading-7">
+
+                    Activities that encourage creativity,
+                    communication, teamwork, and leadership.
+
+                </p>
+
+
+            </div>
+
+
+
+            <!-- Modern Education -->
+
+            <div
+                class="feature-card bg-slate-50 rounded-2xl p-7 border border-slate-100">
+
+
+                <div
+                    class="w-14 h-14 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-2xl">
+
+                    🌎
+
+                </div>
+
+
+                <h3
+                    class="text-xl font-bold text-slate-900 mt-6">
+
+                    Modern Education
+
+                </h3>
+
+
+                <p
+                    class="text-slate-500 mt-3 leading-7">
+
+                    Preparing students with knowledge and
+                    skills for an evolving world.
+
+                </p>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- ========================================================= -->
+<!-- EDUCATION PILLARS -->
+<!-- ========================================================= -->
+
+<section class="py-24 bg-slate-50">
+
+
+    <div class="max-w-7xl mx-auto px-5">
+
+
+        <div
+            class="grid lg:grid-cols-2 gap-12 items-center">
+
+
+            <!-- Text -->
+
+            <div>
+
+
+                <p
+                    class="section-label text-sm font-bold uppercase text-blue-600">
+
+                    Student Development
+
+                </p>
+
+
+                <h2
+                    class="heading-font text-4xl sm:text-5xl font-bold text-slate-900 mt-3">
+
+                    Building More Than Academic Knowledge
+
+                </h2>
+
+
+                <p
+                    class="text-slate-500 text-lg leading-8 mt-6">
+
+                    Education should help students become confident,
+                    responsible, curious, and capable individuals.
+                    Our approach therefore combines academic
+                    development with personal and social growth.
+
+                </p>
+
+
+                <div class="mt-8 space-y-5">
+
+
+                    <div class="flex gap-4">
+
+
+                        <div
+                            class="w-10 h-10 shrink-0 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center font-bold">
+
+                            01
+
+                        </div>
+
+
+                        <div>
+
+                            <h3
+                                class="font-bold text-slate-900">
+
+                                Strong Academic Foundation
+
+                            </h3>
+
+
+                            <p
+                                class="text-slate-500 mt-1">
+
+                                Clear understanding of core subjects
+                                and essential concepts.
+
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <div class="flex gap-4">
+
+
+                        <div
+                            class="w-10 h-10 shrink-0 rounded-lg bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold">
+
+                            02
+
+                        </div>
+
+
+                        <div>
+
+                            <h3
+                                class="font-bold text-slate-900">
+
+                                Critical Thinking
+
+                            </h3>
+
+
+                            <p
+                                class="text-slate-500 mt-1">
+
+                                Encouraging students to ask questions,
+                                analyze ideas, and solve problems.
+
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <div class="flex gap-4">
+
+
+                        <div
+                            class="w-10 h-10 shrink-0 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold">
+
+                            03
+
+                        </div>
+
+
+                        <div>
+
+                            <h3
+                                class="font-bold text-slate-900">
+
+                                Character & Leadership
+
+                            </h3>
+
+
+                            <p
+                                class="text-slate-500 mt-1">
+
+                                Developing responsibility, confidence,
+                                teamwork, and leadership qualities.
+
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- Visual Card -->
+
+            <div
+                class="relative">
+
+
+                <div
+                    class="rounded-3xl bg-gradient-to-br from-blue-700 to-indigo-800 p-8 sm:p-12 text-white shadow-2xl">
+
+
+                    <div
+                        class="text-6xl mb-8">
+
+                        🎓
+
+                    </div>
+
+
+                    <h3
+                        class="heading-font text-3xl sm:text-4xl font-bold">
+
+                        Education for the Future
+
+                    </h3>
+
+
+                    <p
+                        class="text-blue-100 leading-8 mt-5">
+
+                        We aim to create learning experiences
+                        that prepare students not only for
+                        examinations, but also for the challenges
+                        and opportunities of tomorrow.
+
+                    </p>
+
+
+                    <div
+                        class="grid grid-cols-2 gap-4 mt-10">
+
+
+                        <div
+                            class="bg-white/10 rounded-xl p-5">
+
+                            <div class="text-2xl font-bold">
+                                Learn
+                            </div>
+
+                            <div class="text-sm text-blue-200 mt-1">
+                                Knowledge
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="bg-white/10 rounded-xl p-5">
+
+                            <div class="text-2xl font-bold">
+                                Create
+                            </div>
+
+                            <div class="text-sm text-blue-200 mt-1">
+                                Creativity
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="bg-white/10 rounded-xl p-5">
+
+                            <div class="text-2xl font-bold">
+                                Lead
+                            </div>
+
+                            <div class="text-sm text-blue-200 mt-1">
+                                Leadership
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="bg-white/10 rounded-xl p-5">
+
+                            <div class="text-2xl font-bold">
+                                Grow
+                            </div>
+
+                            <div class="text-sm text-blue-200 mt-1">
+                                Character
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- ========================================================= -->
+<!-- CTA -->
+<!-- ========================================================= -->
+
+<section class="py-24 bg-white px-5">
+
+
+    <div class="max-w-7xl mx-auto">
+
+
+        <div
+            class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-700 to-indigo-800 text-white">
+
+
+            <div
+                class="absolute -right-20 -top-20 w-72 h-72 rounded-full bg-white/10">
+            </div>
+
+
+            <div
+                class="absolute -left-20 -bottom-24 w-80 h-80 rounded-full bg-white/5">
+            </div>
+
+
+            <div
+                class="relative px-7 sm:px-12 lg:px-20 py-14 text-center">
+
+
+                <p
+                    class="section-label text-sm font-bold uppercase text-blue-200">
+
+                    Begin Your Journey
+
+                </p>
+
+
+                <h2
+                    class="heading-font text-4xl sm:text-5xl font-bold mt-3">
+
+                    Ready to Learn and Grow?
+
+                </h2>
+
+
+                <p
+                    class="max-w-2xl mx-auto mt-5 text-lg text-blue-100">
+
+                    Discover the opportunities available at
+                    Udayon School and take the next step
+                    toward a brighter future.
+
+                </p>
+
+
+                <div
+                    class="flex justify-center flex-wrap gap-4 mt-8">
+
+
+                    <a
+                        href="admission.html"
+                        class="btn btn-lg bg-white text-blue-700 border-0 hover:bg-slate-100 rounded-xl">
+
+                        Apply for Admission
+
+                    </a>
+
+
+                    <a
+                        href="about.html"
+                        class="btn btn-lg btn-outline border-white text-white hover:bg-white hover:text-blue-700 rounded-xl">
+
+                        Learn About Us
+
+                    </a>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- ========================================================= -->
+<!-- FOOTER -->
+<!-- ========================================================= -->
+
+<footer class="bg-slate-950 text-slate-300">
+
+
+    <div class="max-w-7xl mx-auto px-5 py-16">
+
+
+        <div
+            class="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+
+
+            <!-- Brand -->
+
+            <div class="lg:col-span-2">
+
+
+                <div class="flex items-center gap-3">
+
+
+                    <div
+                        class="w-12 h-12 rounded-xl bg-blue-600 text-white flex items-center justify-center text-xl font-bold">
+
+                        U
+
+                    </div>
+
+
+                    <div>
+
+
+                        <h2
+                            class="text-xl font-bold text-white">
+
+                            Udayon School
+
+                        </h2>
+
+
+                        <p
+                            class="text-sm text-slate-400">
+
+                            Excellence in Education
+
+                        </p>
+
+
+                    </div>
+
+
+                </div>
+
+
+                <p
+                    class="mt-6 max-w-md leading-7 text-slate-400">
+
+                    Building knowledge, character, and leadership
+                    for tomorrow through quality education and
+                    meaningful learning experiences.
+
+                </p>
+
+
+            </div>
+
+
+
+            <!-- Quick Links -->
+
+            <div>
+
+
+                <h3
+                    class="font-bold text-white mb-5">
+
+                    Quick Links
+
+                </h3>
+
+
+                <ul class="space-y-3">
+
+
+                    <li>
+
+                        <a
+                            href="index.html"
+                            class="hover:text-white transition">
+
+                            Home
+
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a
+                            href="about.html"
+                            class="hover:text-white transition">
+
+                            About Us
+
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a
+                            href="curriculum.html"
+                            class="text-blue-400">
+
+                            Curriculum
+
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a
+                            href="admission.html"
+                            class="hover:text-white transition">
+
+                            Admissions
+
+                        </a>
+
+                    </li>
+
+
+                </ul>
+
+
+            </div>
+
+
+
+            <!-- Information -->
+
+            <div>
+
+
+                <h3
+                    class="font-bold text-white mb-5">
+
+                    Information
+
+                </h3>
+
+
+                <ul class="space-y-3">
+
+
+                    <li>
+
+                        <a
+                            href="notice.html"
+                            class="hover:text-white transition">
+
+                            Notices
+
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a
+                            href="announcement.html"
+                            class="hover:text-white transition">
+
+                            Announcements
+
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a
+                            href="events.html"
+                            class="hover:text-white transition">
+
+                            Events
+
+                        </a>
+
+                    </li>
+
+
+                    
+
+
+                </ul>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- Bottom -->
+
+        <div
+            class="border-t border-slate-800 mt-12 pt-7 flex flex-col sm:flex-row justify-between gap-4 text-sm text-slate-500">
+
+
+            <p>
+
+                © 2026 Udayon School. All rights reserved.
+
+            </p>
+
+
+            <p>
+
+                Excellence • Discipline • Success
+
+            </p>
+
+
+        </div>
+
+
+    </div>
+
+
+</footer>
+
+
+</body>
+
+</html>
+ 

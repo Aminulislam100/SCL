@@ -1,0 +1,1101 @@
+
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admissions | Udayon School</title>
+
+    <!-- Tailwind + DaisyUI -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/daisyui@5"
+        rel="stylesheet"
+        type="text/css">
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+
+        * {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+        }
+
+        .heading-font {
+            font-family: "Playfair Display", serif;
+        }
+
+        .hero-pattern {
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(15, 23, 42, .98),
+                    rgba(5, 150, 105, .92)
+                ),
+                radial-gradient(
+                    circle at 15% 20%,
+                    rgba(255,255,255,.12),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 85% 80%,
+                    rgba(255,255,255,.08),
+                    transparent 30%
+                );
+        }
+
+        .nav-link {
+            transition:
+                color .2s ease,
+                background-color .2s ease;
+        }
+
+        .nav-link:hover {
+            color: #2563eb;
+            background: #eff6ff;
+        }
+
+        .form-card {
+            box-shadow:
+                0 25px 60px rgba(15, 23, 42, .10);
+        }
+
+        .input,
+        .select,
+        .textarea {
+            transition:
+                border-color .2s ease,
+                box-shadow .2s ease;
+        }
+
+        .input:focus,
+        .select:focus,
+        .textarea:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, .10);
+        }
+
+        .info-card {
+            transition:
+                transform .25s ease,
+                box-shadow .25s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow:
+                0 20px 40px rgba(15, 23, 42, .09);
+        }
+
+    </style>
+
+</head>
+
+
+<body class="bg-slate-50 text-slate-800">
+
+
+<!-- ========================================================= -->
+<!-- NAVBAR -->
+<!-- ========================================================= -->
+
+<header
+    class="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur-md">
+
+    <div
+        class="navbar max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div class="navbar-start">
+
+            <!-- Mobile Menu -->
+
+            <div class="dropdown">
+
+                <button
+                    tabindex="0"
+                    class="btn btn-ghost lg:hidden"
+                    aria-label="Open navigation menu">
+
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-6 w-6"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor">
+
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+
+                    </svg>
+
+                </button>
+
+
+                <ul
+                    tabindex="0"
+                    class="menu menu-sm dropdown-content mt-3 z-[1] p-3 shadow-xl bg-white rounded-2xl w-64 border border-slate-100">
+
+                    <li><a href="index.html">Home</a></li>
+
+                    <li><a href="about.html">About</a></li>
+
+                    <li><a href="notice.html">Notice</a></li>
+
+                    <li><a href="announcement.html">Announcement</a></li>
+
+                    <li><a href="curriculum.html">Curriculum</a></li>
+
+                    <li>
+                        <a
+                            href="admission.html"
+                            class="text-blue-600 font-semibold">
+                            Admission
+                        </a>
+                    </li>
+
+                    <li><a href="events.html">Events</a></li>
+
+
+                </ul>
+
+            </div>
+
+
+            <!-- Logo -->
+
+            <a
+                href="index.html"
+                class="btn btn-ghost normal-case text-lg sm:text-xl font-bold gap-2">
+
+                <span
+                    class="flex items-center justify-center w-10 h-10 rounded-xl bg-blue-600 text-white font-bold">
+
+                    U
+
+                </span>
+
+                <span class="hidden sm:inline">
+                    Udayon School
+                </span>
+
+            </a>
+
+        </div>
+
+
+        <!-- Desktop Navigation -->
+
+        <nav class="navbar-center hidden lg:flex">
+
+            <ul class="menu menu-horizontal gap-1">
+
+                <li>
+                    <a
+                        href="index.html"
+                        class="nav-link rounded-lg font-medium">
+                        Home
+                    </a>
+                </li>
+
+                <li>
+                    <a
+                        href="about.html"
+                        class="nav-link rounded-lg font-medium">
+                        About
+                    </a>
+                </li>
+
+                <li>
+                    <a
+                        href="notice.html"
+                        class="nav-link rounded-lg font-medium">
+                        Notice
+                    </a>
+                </li>
+
+                <li>
+                    <a
+                        href="announcement.html"
+                        class="nav-link rounded-lg font-medium">
+                        Announcement
+                    </a>
+                </li>
+
+                <li>
+                    <a
+                        href="curriculum.html"
+                        class="nav-link rounded-lg font-medium">
+                        Curriculum
+                    </a>
+                </li>
+
+                <li>
+                    <a
+                        href="admission.html"
+                        class="rounded-lg font-semibold text-blue-600 bg-blue-50">
+                        Admission
+                    </a>
+                </li>
+
+                <li>
+                    <a
+                        href="events.html"
+                        class="nav-link rounded-lg font-medium">
+                        Events
+                    </a>
+                </li>
+
+
+            </ul>
+
+        </nav>
+
+
+        <div class="navbar-end">
+
+            <a
+                href="admin.html"
+                class="btn btn-primary rounded-xl px-5 shadow-md shadow-blue-600/20">
+
+                Admin Portal
+
+            </a>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<!-- ========================================================= -->
+<!-- HERO -->
+<!-- ========================================================= -->
+
+<section class="hero-pattern text-white relative overflow-hidden">
+
+    <div
+        class="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-emerald-400/10">
+    </div>
+
+    <div
+        class="absolute -bottom-40 -left-32 w-[500px] h-[500px] rounded-full bg-blue-400/10">
+    </div>
+
+
+    <div class="relative max-w-7xl mx-auto px-5">
+
+        <div class="py-24 sm:py-28 text-center">
+
+            <p
+                class="text-sm font-bold uppercase tracking-[.15em] text-emerald-200">
+
+                Admissions 2026
+
+            </p>
+
+
+            <h1
+                class="heading-font text-5xl sm:text-6xl lg:text-7xl font-bold mt-4">
+
+                Admission Open
+
+            </h1>
+
+
+            <p
+                class="text-lg sm:text-xl text-slate-200 mt-6">
+
+                Begin your child's educational journey at Udayon School.
+
+            </p>
+
+
+            <div
+                class="flex justify-center flex-wrap gap-3 mt-7">
+
+                <span
+                    class="badge badge-lg bg-white/10 border-white/20 text-white px-5 py-4">
+
+                    January – March
+
+                </span>
+
+                <span
+                    class="badge badge-lg bg-white/10 border-white/20 text-white px-5 py-4">
+
+                    Classes 1 – 10
+
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ========================================================= -->
+<!-- ADMISSION INFO -->
+<!-- ========================================================= -->
+
+<section class="py-16 bg-white">
+
+    <div class="max-w-7xl mx-auto px-5">
+
+        <div class="grid md:grid-cols-3 gap-6">
+
+
+            <div
+                class="info-card bg-slate-50 border border-slate-100 rounded-2xl p-7">
+
+                <div
+                    class="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center text-xl">
+
+                    📅
+
+                </div>
+
+                <h3
+                    class="font-bold text-xl mt-5">
+
+                    Admission Period
+
+                </h3>
+
+                <p class="text-slate-500 mt-2">
+
+                    Applications are accepted from January to March.
+
+                </p>
+
+            </div>
+
+
+            <div
+                class="info-card bg-slate-50 border border-slate-100 rounded-2xl p-7">
+
+                <div
+                    class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl">
+
+                    🎓
+
+                </div>
+
+                <h3
+                    class="font-bold text-xl mt-5">
+
+                    Classes Available
+
+                </h3>
+
+                <p class="text-slate-500 mt-2">
+
+                    Applications are currently available for Classes 1–10.
+
+                </p>
+
+            </div>
+
+
+            <div
+                class="info-card bg-slate-50 border border-slate-100 rounded-2xl p-7">
+
+                <div
+                    class="w-12 h-12 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center text-xl">
+
+                    📋
+
+                </div>
+
+                <h3
+                    class="font-bold text-xl mt-5">
+
+                    Easy Application
+
+                </h3>
+
+                <p class="text-slate-500 mt-2">
+
+                    Complete the online application form below.
+
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ========================================================= -->
+<!-- APPLICATION FORM -->
+<!-- ========================================================= -->
+
+<section
+    id="application"
+    class="py-24 bg-slate-50">
+
+
+    <div class="max-w-5xl mx-auto px-5">
+
+
+        <div
+            class="text-center max-w-2xl mx-auto mb-12">
+
+            <p
+                class="text-sm font-bold uppercase tracking-[.15em] text-blue-600">
+
+                Online Application
+
+            </p>
+
+            <h2
+                class="heading-font text-4xl sm:text-5xl font-bold text-slate-900 mt-3">
+
+                Student Admission Form
+
+            </h2>
+
+            <p
+                class="text-slate-500 text-lg mt-5">
+
+                Please provide accurate information. Our school
+                team will review your application.
+
+            </p>
+
+        </div>
+
+
+
+        <div
+            class="bg-white rounded-3xl border border-slate-100 form-card overflow-hidden">
+
+
+            <!-- Form Header -->
+
+            <div
+                class="bg-gradient-to-r from-blue-700 to-indigo-700 px-7 sm:px-10 py-7 text-white">
+
+                <h3
+                    class="text-2xl font-bold">
+
+                    Applicant Information
+
+                </h3>
+
+                <p
+                    class="text-blue-100 mt-1">
+
+                    Fields marked with * are required.
+
+                </p>
+
+            </div>
+
+
+
+            <div class="p-7 sm:p-10">
+
+
+                <form
+                    action="https://formspree.io/f/mvkpopzb"
+                    method="POST"
+                    id="admissionForm"
+                    class="space-y-8">
+
+
+                    <!-- Student Information -->
+
+                    <div>
+
+                        <h4
+                            class="text-lg font-bold text-slate-900 mb-5">
+
+                            Student Details
+
+                        </h4>
+
+
+                        <div
+                            class="grid md:grid-cols-2 gap-5">
+
+
+                            <!-- Student Name -->
+
+                            <div>
+
+                                <label
+                                    for="studentName"
+                                    class="label">
+
+                                    <span class="label-text font-semibold">
+                                        Student Name *
+                                    </span>
+
+                                </label>
+
+                                <input
+                                    id="studentName"
+                                    name="studentName"
+                                    type="text"
+                                    placeholder="Full Name"
+                                    autocomplete="name"
+                                    class="input input-bordered w-full rounded-xl"
+                                    required>
+
+                            </div>
+
+
+                            <!-- DOB -->
+
+                            <div>
+
+                                <label
+                                    for="dob"
+                                    class="label">
+
+                                    <span class="label-text font-semibold">
+                                        Date of Birth *
+                                    </span>
+
+                                </label>
+
+                                <input
+                                    id="dob"
+                                    name="dob"
+                                    type="date"
+                                    class="input input-bordered w-full rounded-xl"
+                                    required>
+
+                            </div>
+
+
+                            <!-- Gender -->
+
+                            <div>
+
+                                <label
+                                    for="gender"
+                                    class="label">
+
+                                    <span class="label-text font-semibold">
+                                        Gender
+                                    </span>
+
+                                </label>
+
+                                <select
+                                    id="gender"
+                                    name="gender"
+                                    class="select select-bordered w-full rounded-xl">
+
+                                    <option value="Male">
+                                        Male
+                                    </option>
+
+                                    <option value="Female">
+                                        Female
+                                    </option>
+
+                                    <option value="Other">
+                                        Other
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <!-- Class -->
+
+                            <div>
+
+                                <label
+                                    for="className"
+                                    class="label">
+
+                                    <span class="label-text font-semibold">
+                                        Class Applying For
+                                    </span>
+
+                                </label>
+
+                                <select
+                                    id="className"
+                                    name="className"
+                                    class="select select-bordered w-full rounded-xl">
+
+                                    <option value="Class 1">Class 1</option>
+                                    <option value="Class 2">Class 2</option>
+                                    <option value="Class 3">Class 3</option>
+                                    <option value="Class 4">Class 4</option>
+                                    <option value="Class 5">Class 5</option>
+                                    <option value="Class 6">Class 6</option>
+                                    <option value="Class 7">Class 7</option>
+                                    <option value="Class 8">Class 8</option>
+                                    <option value="Class 9">Class 9</option>
+                                    <option value="Class 10">Class 10</option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="divider"></div>
+
+
+
+                    <!-- Parent Information -->
+
+                    <div>
+
+                        <h4
+                            class="text-lg font-bold text-slate-900 mb-5">
+
+                            Parent / Guardian Details
+
+                        </h4>
+
+
+                        <div
+                            class="grid md:grid-cols-2 gap-5">
+
+
+                            <!-- Father -->
+
+                            <div>
+
+                                <label
+                                    for="fatherName"
+                                    class="label">
+
+                                    <span class="label-text font-semibold">
+                                        Father's Name *
+                                    </span>
+
+                                </label>
+
+                                <input
+                                    id="fatherName"
+                                    name="fatherName"
+                                    type="text"
+                                    placeholder="Father's Name"
+                                    class="input input-bordered w-full rounded-xl"
+                                    required>
+
+                            </div>
+
+
+                            <!-- Mother -->
+
+                            <div>
+
+                                <label
+                                    for="motherName"
+                                    class="label">
+
+                                    <span class="label-text font-semibold">
+                                        Mother's Name
+                                    </span>
+
+                                </label>
+
+                                <input
+                                    id="motherName"
+                                    name="motherName"
+                                    type="text"
+                                    placeholder="Mother's Name"
+                                    class="input input-bordered w-full rounded-xl">
+
+                            </div>
+
+
+                            <!-- Phone -->
+
+                            <div>
+
+                                <label
+                                    for="phone"
+                                    class="label">
+
+                                    <span class="label-text font-semibold">
+                                        Phone Number *
+                                    </span>
+
+                                </label>
+
+                                <input
+                                    id="phone"
+                                    name="phone"
+                                    type="tel"
+                                    placeholder="Phone Number"
+                                    autocomplete="tel"
+                                    class="input input-bordered w-full rounded-xl"
+                                    required>
+
+                            </div>
+
+
+                            <!-- Email -->
+
+                            <div>
+
+                                <label
+                                    for="email"
+                                    class="label">
+
+                                    <span class="label-text font-semibold">
+                                        Email *
+                                    </span>
+
+                                </label>
+
+                                <input
+                                    id="email"
+                                    name="email"
+                                    type="email"
+                                    placeholder="Email Address"
+                                    autocomplete="email"
+                                    class="input input-bordered w-full rounded-xl"
+                                    required>
+
+                            </div>
+
+
+                            <!-- Address -->
+
+                            <div class="md:col-span-2">
+
+                                <label
+                                    for="address"
+                                    class="label">
+
+                                    <span class="label-text font-semibold">
+                                        Address
+                                    </span>
+
+                                </label>
+
+                                <textarea
+                                    id="address"
+                                    name="address"
+                                    rows="4"
+                                    class="textarea textarea-bordered w-full rounded-xl"
+                                    placeholder="Full Address"></textarea>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Message -->
+
+                    <div
+                        id="message"
+                        class="empty:hidden">
+                    </div>
+
+
+
+                    <!-- Submit -->
+
+                    <div
+                        class="pt-2">
+
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary btn-lg w-full rounded-xl shadow-lg shadow-blue-600/20">
+
+                            Submit Admission Application
+
+                        </button>
+
+
+                        <p
+                            class="text-center text-sm text-slate-400 mt-4">
+
+                            By submitting this form, you confirm that
+                            the information provided is accurate.
+
+                        </p>
+
+
+                    </div>
+
+
+                </form>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- ========================================================= -->
+<!-- NEXT STEP -->
+<!-- ========================================================= -->
+
+<section class="py-20 bg-white">
+
+    <div class="max-w-4xl mx-auto px-5 text-center">
+
+        <div
+            class="w-16 h-16 mx-auto rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center text-3xl">
+
+            ✓
+
+        </div>
+
+
+        <h2
+            class="heading-font text-3xl sm:text-4xl font-bold text-slate-900 mt-6">
+
+            What Happens Next?
+
+        </h2>
+
+
+        <p
+            class="text-slate-500 text-lg mt-4 leading-7">
+
+            Once your application is submitted, the school team
+            can review the information and contact you regarding
+            the next steps in the admission process.
+
+        </p>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- ========================================================= -->
+<!-- FOOTER -->
+<!-- ========================================================= -->
+
+<footer class="bg-slate-950 text-slate-300">
+
+
+    <div class="max-w-7xl mx-auto px-5 py-16">
+
+
+        <div
+            class="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+
+
+            <div class="lg:col-span-2">
+
+
+                <div class="flex items-center gap-3">
+
+
+                    <div
+                        class="w-12 h-12 rounded-xl bg-blue-600 text-white flex items-center justify-center text-xl font-bold">
+
+                        U
+
+                    </div>
+
+
+                    <div>
+
+                        <h2
+                            class="text-xl font-bold text-white">
+
+                            Udayon School
+
+                        </h2>
+
+                        <p class="text-sm text-slate-400">
+                            Excellence in Education
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+                <p
+                    class="mt-6 max-w-md leading-7 text-slate-400">
+
+                    Building knowledge, character, and leadership
+                    for tomorrow through quality education and
+                    meaningful learning experiences.
+
+                </p>
+
+
+            </div>
+
+
+
+            <div>
+
+                <h3
+                    class="font-bold text-white mb-5">
+
+                    Quick Links
+
+                </h3>
+
+
+                <ul class="space-y-3">
+
+                    <li>
+                        <a
+                            href="index.html"
+                            class="hover:text-white transition">
+                            Home
+                        </a>
+                    </li>
+
+                    <li>
+                        <a
+                            href="about.html"
+                            class="hover:text-white transition">
+                            About Us
+                        </a>
+                    </li>
+
+                    <li>
+                        <a
+                            href="curriculum.html"
+                            class="hover:text-white transition">
+                            Curriculum
+                        </a>
+                    </li>
+
+                    <li>
+                        <a
+                            href="admission.html"
+                            class="text-blue-400">
+                            Admissions
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+
+            <div>
+
+                <h3
+                    class="font-bold text-white mb-5">
+
+                    Information
+
+                </h3>
+
+
+                <ul class="space-y-3">
+
+                    <li>
+                        <a
+                            href="notice.html"
+                            class="hover:text-white transition">
+                            Notices
+                        </a>
+                    </li>
+
+                    <li>
+                        <a
+                            href="announcement.html"
+                            class="hover:text-white transition">
+                            Announcements
+                        </a>
+                    </li>
+
+                    <li>
+                        <a
+                            href="events.html"
+                            class="hover:text-white transition">
+                            Events
+                        </a>
+                    </li>
+
+
+                </ul>
+
+            </div>
+
+
+        </div>
+
+
+        <div
+            class="border-t border-slate-800 mt-12 pt-7 flex flex-col sm:flex-row justify-between gap-4 text-sm text-slate-500">
+
+            <p>
+                © 2026 Udayon School. All rights reserved.
+            </p>
+
+            <p>
+                Excellence • Discipline • Success
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+</footer>
+
+
+
+<script src="js/admissions.js"></script>
+
+</body>
+
+</html>
+ 

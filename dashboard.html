@@ -1,0 +1,1063 @@
+
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard | Udayon School</title>
+
+    <!-- DaisyUI + Tailwind -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/daisyui@5"
+        rel="stylesheet"
+        type="text/css">
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+
+    <style>
+
+        * {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+        }
+
+        .sidebar-link {
+            transition:
+                background-color .2s ease,
+                color .2s ease,
+                transform .2s ease;
+        }
+
+        .sidebar-link:hover {
+            transform: translateX(3px);
+        }
+
+        .dashboard-card {
+            transition:
+                transform .2s ease,
+                box-shadow .2s ease;
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-2px);
+            box-shadow:
+                0 20px 40px rgba(15, 23, 42, .08);
+        }
+
+        .stat-card {
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(255,255,255,1),
+                    rgba(248,250,252,1)
+                );
+        }
+
+    </style>
+
+</head>
+
+
+<body class="bg-slate-100 text-slate-800">
+
+
+<!-- ========================================================= -->
+<!-- MOBILE TOP BAR -->
+<!-- ========================================================= -->
+
+<header
+    class="lg:hidden sticky top-0 z-50 bg-white border-b border-slate-200">
+
+    <div
+        class="navbar px-4">
+
+        <div class="navbar-start">
+
+            <label
+                for="admin-drawer"
+                class="btn btn-ghost btn-square">
+
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor">
+
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M4 6h16M4 12h16M4 18h16" />
+
+                </svg>
+
+            </label>
+
+        </div>
+
+
+        <div class="navbar-center">
+
+            <span
+                class="font-bold text-lg">
+
+                Udayon Admin
+
+            </span>
+
+        </div>
+
+
+        <div class="navbar-end">
+
+            <a
+                href="index.html"
+                class="btn btn-ghost btn-square"
+                title="Visit Website">
+
+                🌐
+
+            </a>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<!-- ========================================================= -->
+<!-- DRAWER -->
+<!-- ========================================================= -->
+
+<div class="drawer lg:drawer-open">
+
+    <input
+        id="admin-drawer"
+        type="checkbox"
+        class="drawer-toggle">
+
+
+    <div class="drawer-content">
+
+
+        <!-- ================================================= -->
+        <!-- DESKTOP TOPBAR -->
+        <!-- ================================================= -->
+
+        <header
+            class="hidden lg:flex h-20 bg-white border-b border-slate-200 items-center justify-between px-8 sticky top-0 z-40">
+
+            <div>
+
+                <p
+                    class="text-sm text-slate-500">
+
+                    School Management System
+
+                </p>
+
+                <h1
+                    class="text-xl font-bold text-slate-900">
+
+                    Admin Dashboard
+
+                </h1>
+
+            </div>
+
+
+            <div class="flex items-center gap-3">
+
+
+                <a
+                    href="index.html"
+                    class="btn btn-outline rounded-xl">
+
+                    🌐 Visit Website
+
+                </a>
+
+
+                <button
+                    onclick="logout()"
+                    class="btn btn-error rounded-xl text-white">
+
+                    Logout
+
+                </button>
+
+
+            </div>
+
+        </header>
+
+
+
+        <!-- ================================================= -->
+        <!-- MAIN CONTENT -->
+        <!-- ================================================= -->
+
+        <main
+            class="max-w-[1500px] mx-auto p-5 sm:p-8 lg:p-10">
+
+
+            <!-- Page Header -->
+
+            <div
+                class="mb-8">
+
+                <div
+                    class="flex flex-col md:flex-row md:items-end md:justify-between gap-5">
+
+                    <div>
+
+                        <p
+                            class="text-sm font-semibold text-blue-600 uppercase tracking-wider">
+
+                            Administration
+
+                        </p>
+
+                        <h2
+                            class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2">
+
+                            School Management Panel
+
+                        </h2>
+
+                        
+
+                    </div>
+
+
+                    <div
+                        class="badge badge-lg bg-emerald-50 text-emerald-700 border-emerald-200 px-4 py-4">
+
+                        ● System Active
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ================================================= -->
+            <!-- STATISTICS -->
+            <!-- ================================================= -->
+
+            <section
+                class="grid sm:grid-cols-2 xl:grid-cols-4 gap-5 mb-10">
+
+
+                <div
+                    class="stat-card rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+
+                    <div
+                        class="flex items-center justify-between">
+
+                        <div>
+
+                            <p class="text-sm text-slate-500">
+                                Notices
+                            </p>
+
+                            <p
+                                id="noticeCount"
+                                class="text-3xl font-bold text-slate-900 mt-2">
+                                —
+                            </p>
+
+                        </div>
+
+                        <div
+                            class="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center text-xl">
+
+                            📢
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <div
+                    class="stat-card rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+
+                    <div
+                        class="flex items-center justify-between">
+
+                        <div>
+
+                            <p class="text-sm text-slate-500">
+                                Announcements
+                            </p>
+
+                            <p
+                                id="announcementCount"
+                                class="text-3xl font-bold text-slate-900 mt-2">
+                                —
+                            </p>
+
+                        </div>
+
+                        <div
+                            class="w-12 h-12 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center text-xl">
+
+                            📣
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <div
+                    class="stat-card rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+
+                    <div
+                        class="flex items-center justify-between">
+
+                        <div>
+
+                            <p class="text-sm text-slate-500">
+                                Events
+                            </p>
+
+                            <p
+                                id="eventCount"
+                                class="text-3xl font-bold text-slate-900 mt-2">
+                                —
+                            </p>
+
+                        </div>
+
+                        <div
+                            class="w-12 h-12 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center text-xl">
+
+                            📅
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+
+            </section>
+
+
+
+            <!-- ================================================= -->
+            <!-- NAVIGATION TABS -->
+            <!-- ================================================= -->
+
+            <div
+                class="bg-white border border-slate-200 rounded-2xl p-2 shadow-sm mb-8 overflow-x-auto">
+
+                <div
+                    class="tabs tabs-boxed bg-transparent gap-1 min-w-max">
+
+
+                    <button
+                        class="tab tab-active rounded-xl"
+                        onclick="showSection('noticeSection')">
+
+                        📢 Notices
+
+                    </button>
+
+
+                    <button
+                        class="tab rounded-xl"
+                        onclick="showSection('announcementSection')">
+
+                        📣 Announcements
+
+                    </button>
+
+
+                    <button
+                        class="tab rounded-xl"
+                        onclick="showSection('eventSection')">
+
+                        📅 Events
+
+                    </button>
+
+
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ================================================= -->
+            <!-- NOTICES -->
+            <!-- ================================================= -->
+
+            <section id="noticeSection">
+
+                <div
+                    class="dashboard-card bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
+
+
+                    <div
+                        class="px-6 sm:px-8 py-6 border-b border-slate-100">
+
+                        <div
+                            class="flex items-center gap-4">
+
+                            <div
+                                class="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center text-xl">
+
+                                📢
+
+                            </div>
+
+                            <div>
+
+                                <h2
+                                    class="text-xl font-bold text-slate-900">
+
+                                    Manage Notices
+
+                                </h2>
+
+                                <p
+                                    class="text-sm text-slate-500 mt-1">
+
+                                    Publish important information for students
+                                    and parents.
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="p-6 sm:p-8">
+
+
+                        <div
+                            class="grid lg:grid-cols-2 gap-5">
+
+
+                            <div>
+
+                                <label
+                                    class="label">
+
+                                    <span
+                                        class="label-text font-semibold">
+
+                                        Notice Title
+
+                                    </span>
+
+                                </label>
+
+                                <input
+                                    id="noticeTitle"
+                                    class="input input-bordered w-full rounded-xl"
+                                    placeholder="Enter notice title">
+
+                            </div>
+
+
+                            <div
+                                class="lg:col-span-2">
+
+                                <label
+                                    class="label">
+
+                                    <span
+                                        class="label-text font-semibold">
+
+                                        Notice Description
+
+                                    </span>
+
+                                </label>
+
+                                <textarea
+                                    id="noticeText"
+                                    class="textarea textarea-bordered w-full rounded-xl min-h-32"
+                                    placeholder="Write the notice details..."></textarea>
+
+                            </div>
+
+
+                            <div>
+
+                                <button
+                                    onclick="addNotice()"
+                                    class="btn btn-primary rounded-xl px-7">
+
+                                    + Add Notice
+
+                                </button>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <div
+                            class="divider">
+                        </div>
+
+
+                        <div>
+
+                            <h3
+                                class="font-bold text-lg mb-4">
+
+                                Published Notices
+
+                            </h3>
+
+                            <div
+                                id="adminNotices"
+                                class="space-y-3">
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ================================================= -->
+            <!-- ANNOUNCEMENTS -->
+            <!-- ================================================= -->
+
+            <section
+                id="announcementSection"
+                class="hidden">
+
+                <div
+                    class="dashboard-card bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
+
+
+                    <div
+                        class="px-6 sm:px-8 py-6 border-b border-slate-100">
+
+                        <div class="flex items-center gap-4">
+
+                            <div
+                                class="w-12 h-12 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center text-xl">
+
+                                📣
+
+                            </div>
+
+                            <div>
+
+                                <h2
+                                    class="text-xl font-bold">
+
+                                    Manage Announcements
+
+                                </h2>
+
+                                <p
+                                    class="text-sm text-slate-500 mt-1">
+
+                                    Share important updates with the school community.
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="p-6 sm:p-8">
+
+
+                        <div class="space-y-5">
+
+                            <div>
+
+                                <label class="label">
+
+                                    <span class="label-text font-semibold">
+                                        Announcement Title
+                                    </span>
+
+                                </label>
+
+                                <input
+                                    id="announcementTitle"
+                                    class="input input-bordered w-full rounded-xl"
+                                    placeholder="Enter announcement title">
+
+                            </div>
+
+
+                            <div>
+
+                                <label class="label">
+
+                                    <span class="label-text font-semibold">
+                                        Announcement Details
+                                    </span>
+
+                                </label>
+
+                                <textarea
+                                    id="announcementText"
+                                    class="textarea textarea-bordered w-full rounded-xl min-h-32"
+                                    placeholder="Write announcement details..."></textarea>
+
+                            </div>
+
+
+                            <button
+                                onclick="addAnnouncement()"
+                                class="btn btn-secondary rounded-xl">
+
+                                + Add Announcement
+
+                            </button>
+
+                        </div>
+
+
+                        <div class="divider"></div>
+
+
+                        <h3
+                            class="font-bold text-lg mb-4">
+
+                            Published Announcements
+
+                        </h3>
+
+
+                        <div
+                            id="adminAnnouncements"
+                            class="space-y-3">
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ================================================= -->
+            <!-- EVENTS -->
+            <!-- ================================================= -->
+
+            <section
+                id="eventSection"
+                class="hidden">
+
+                <div
+                    class="dashboard-card bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
+
+
+                    <div
+                        class="px-6 sm:px-8 py-6 border-b border-slate-100">
+
+                        <div class="flex items-center gap-4">
+
+                            <div
+                                class="w-12 h-12 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center text-xl">
+
+                                📅
+
+                            </div>
+
+                            <div>
+
+                                <h2
+                                    class="text-xl font-bold">
+
+                                    Manage Events
+
+                                </h2>
+
+                                <p
+                                    class="text-sm text-slate-500 mt-1">
+
+                                    Create and manage upcoming school events.
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="p-6 sm:p-8">
+
+
+                        <div
+                            class="grid md:grid-cols-2 gap-5">
+
+
+                            <div>
+
+                                <label class="label">
+
+                                    <span class="label-text font-semibold">
+                                        Event Name
+                                    </span>
+
+                                </label>
+
+                                <input
+                                    id="eventTitle"
+                                    class="input input-bordered w-full rounded-xl"
+                                    placeholder="Enter event name">
+
+                            </div>
+
+
+                            <div>
+
+                                <label class="label">
+
+                                    <span class="label-text font-semibold">
+                                        Event Date
+                                    </span>
+
+                                </label>
+
+                                <input
+                                    id="eventDate"
+                                    type="date"
+                                    class="input input-bordered w-full rounded-xl">
+
+                            </div>
+
+
+                            <div class="md:col-span-2">
+
+                                <label class="label">
+
+                                    <span class="label-text font-semibold">
+                                        Event Description
+                                    </span>
+
+                                </label>
+
+                                <textarea
+                                    id="eventDescription"
+                                    class="textarea textarea-bordered w-full rounded-xl min-h-32"
+                                    placeholder="Describe the event..."></textarea>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <button
+                            onclick="addEvent()"
+                            class="btn btn-warning rounded-xl mt-5">
+
+                            + Add Event
+
+                        </button>
+
+
+                        <div class="divider"></div>
+
+
+                        <h3
+                            class="font-bold text-lg mb-4">
+
+                            Upcoming Events
+
+                        </h3>
+
+
+                        <div
+                            id="adminEvents"
+                            class="space-y-3">
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+
+
+
+        </main>
+
+
+    </div>
+
+
+
+    <!-- ========================================================= -->
+    <!-- SIDEBAR -->
+    <!-- ========================================================= -->
+
+    <div class="drawer-side z-50">
+
+        <label
+            for="admin-drawer"
+            aria-label="close sidebar"
+            class="drawer-overlay">
+        </label>
+
+
+        <aside
+            class="bg-slate-950 text-slate-300 min-h-full w-72">
+
+
+            <!-- Logo -->
+
+            <div
+                class="h-20 flex items-center px-6 border-b border-slate-800">
+
+                <a
+                    href="index.html"
+                    class="flex items-center gap-3">
+
+                    <div
+                        class="w-11 h-11 rounded-xl bg-blue-600 text-white flex items-center justify-center text-xl font-bold">
+
+                        U
+
+                    </div>
+
+
+                    <div>
+
+                        <h2
+                            class="font-bold text-white">
+
+                            Udayon School
+
+                        </h2>
+
+                        <p
+                            class="text-xs text-slate-500">
+
+                            Administration
+
+                        </p>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+
+
+            <!-- Navigation -->
+
+            <div class="p-5">
+
+
+                <p
+                    class="text-xs font-bold uppercase tracking-wider text-slate-500 px-3 mb-3">
+
+                    Management
+
+                </p>
+
+
+                <ul class="menu p-0 gap-1">
+
+
+                    <li>
+
+                        <button
+                            class="sidebar-link rounded-xl text-left"
+                            onclick="showSection('noticeSection')">
+
+                            <span>📢</span>
+                            Notices
+
+                        </button>
+
+                    </li>
+
+
+                    <li>
+
+                        <button
+                            class="sidebar-link rounded-xl text-left"
+                            onclick="showSection('announcementSection')">
+
+                            <span>📣</span>
+                            Announcements
+
+                        </button>
+
+                    </li>
+
+
+                    <li>
+
+                        <button
+                            class="sidebar-link rounded-xl text-left"
+                            onclick="showSection('eventSection')">
+
+                            <span>📅</span>
+                            Events
+
+                        </button>
+
+                    </li>
+
+
+
+
+
+
+                </ul>
+
+
+
+                <div
+                    class="divider border-slate-800">
+                </div>
+
+
+
+                <p
+                    class="text-xs font-bold uppercase tracking-wider text-slate-500 px-3 mb-3">
+
+                    Website
+
+                </p>
+
+
+                <ul class="menu p-0 gap-1">
+
+
+                    <li>
+
+                        <a
+                            href="index.html"
+                            class="sidebar-link rounded-xl">
+
+                            <span>🌐</span>
+                            View Website
+
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a
+                            href="about.html"
+                            class="sidebar-link rounded-xl">
+
+                            <span>ℹ️</span>
+                            About School
+
+                        </a>
+
+                    </li>
+
+
+                </ul>
+
+
+            </div>
+
+
+
+            <!-- Bottom -->
+
+            <div
+                class="mt-auto p-5 border-t border-slate-800">
+
+                <button
+                    onclick="logout()"
+                    class="btn btn-error btn-block rounded-xl text-white">
+
+                    🚪 Logout
+
+                </button>
+
+            </div>
+
+
+        </aside>
+
+    </div>
+
+</div>
+
+
+
+<!-- ========================================================= -->
+<!-- SCRIPTS -->
+<!-- ========================================================= -->
+
+<script src="js/storage.js"></script>
+<script src="js/dashboard.js"></script>
+
+
+
+
+
+</body>
+
+</html>
+ 

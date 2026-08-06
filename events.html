@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Events | Udayon School</title>
+
+<!-- Tailwind + DaisyUI -->
+<link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+<style>
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+    }
+
+    .glass-nav {
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(14px);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .hero-gradient {
+        background:
+            radial-gradient(circle at 85% 20%, rgba(59, 130, 246, .35), transparent 30%),
+            radial-gradient(circle at 10% 90%, rgba(14, 165, 233, .25), transparent 35%),
+            linear-gradient(135deg, #071a33, #123d73 55%, #155eef);
+    }
+
+    .hero-grid {
+        background-image:
+            linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+        background-size: 40px 40px;
+    }
+
+    .event-card {
+        transition: all .25s ease;
+    }
+
+    .event-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 20px 40px rgba(15, 23, 42, .12);
+    }
+
+    .activity-card {
+        transition: all .25s ease;
+    }
+
+    .activity-card:hover {
+        transform: translateY(-5px);
+        border-color: #bfdbfe;
+    }
+
+    .section-title {
+        letter-spacing: -0.03em;
+    }
+</style>
+
+</head>
+
+<body class="bg-slate-50 text-slate-800">
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<header class="navbar glass-nav sticky top-0 z-50 px-4 lg:px-8">
+
+<!-- Mobile + Brand -->
+
+<div class="navbar-start">
+
+    <div class="dropdown">
+
+        <div tabindex="0"
+             role="button"
+             class="btn btn-ghost lg:hidden text-xl">
+            ☰
+        </div>
+
+        <ul tabindex="0"
+            class="menu menu-sm dropdown-content mt-3 z-[1]
+                   p-3 shadow-xl bg-base-100 rounded-2xl w-64">
+
+            <li>
+                <a href="index.html">Home</a>
+            </li>
+
+            <li>
+                <a href="about.html">About</a>
+            </li>
+
+            <li>
+                <a href="notice.html">Notice</a>
+            </li>
+
+            <li>
+                <a href="announcement.html">Announcement</a>
+            </li>
+
+            <li>
+                <a href="curriculum.html">Curriculum</a>
+            </li>
+
+            <li>
+                <a href="admission.html">Admission</a>
+            </li>
+
+            <li>
+                <a class="active font-bold text-primary"
+                   href="events.html">
+                    Events
+                </a>
+            </li>
+
+
+        </ul>
+
+    </div>
+
+
+    <!-- Brand -->
+
+    <a href="index.html"
+       class="btn btn-ghost normal-case px-2">
+
+        <span class="flex items-center gap-3">
+
+            <span class="grid place-items-center
+                         w-10 h-10 rounded-xl
+                         bg-primary text-white text-lg
+                         shadow-md">
+                🎓
+            </span>
+
+            <span class="hidden sm:block text-left">
+
+                <span class="block font-extrabold
+                             text-slate-900 leading-tight">
+                    Udayon School
+                </span>
+
+                <span class="block text-[10px]
+                             uppercase tracking-widest
+                             text-slate-500">
+                    Excellence • Discipline • Success
+                </span>
+
+            </span>
+
+        </span>
+
+    </a>
+
+</div>
+
+
+<!-- Desktop Navigation -->
+
+<div class="navbar-center hidden lg:flex">
+
+    <ul class="menu menu-horizontal gap-1">
+
+        <li>
+            <a href="index.html">
+                Home
+            </a>
+        </li>
+
+        <li>
+            <a href="about.html">
+                About
+            </a>
+        </li>
+
+        <li>
+            <a href="notice.html">
+                Notice
+            </a>
+        </li>
+
+        <li>
+            <a href="announcement.html">
+                Announcement
+            </a>
+        </li>
+
+        <li>
+            <a href="curriculum.html">
+                Curriculum
+            </a>
+        </li>
+
+        <li>
+            <a href="admission.html">
+                Admission
+            </a>
+        </li>
+
+        <li>
+            <a href="events.html"
+               class="bg-primary/10 text-primary font-bold">
+                Events
+            </a>
+        </li>
+
+
+    </ul>
+
+</div>
+
+
+<!-- Admin -->
+
+<div class="navbar-end">
+
+    <a href="admin.html"
+       class="btn btn-primary rounded-xl font-bold px-5">
+
+        Admin
+
+    </a>
+
+</div>
+ 
+
+</header>
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="relative overflow-hidden hero-gradient text-white">
+
+ 
+<div class="absolute inset-0 hero-grid"></div>
+
+<div class="relative z-10">
+
+    <div class="hero min-h-[430px] px-5">
+
+        <div class="hero-content text-center">
+
+            <div class="max-w-3xl">
+
+                <div class="inline-flex items-center gap-2
+                            px-4 py-2 rounded-full
+                            bg-white/10 border border-white/20
+                            text-sm font-semibold mb-6">
+
+                    <span>📅</span>
+                    <span>School Life & Activities</span>
+
+                </div>
+
+
+                <h1 class="text-5xl md:text-6xl
+                           font-extrabold tracking-tight">
+
+                    School Events
+
+                </h1>
+
+
+                <p class="mt-6 text-lg md:text-xl
+                          text-white/80 leading-relaxed">
+
+                    Discover academic competitions, cultural programs,
+                    sports activities, celebrations, and memorable
+                    experiences at Udayon School.
+
+                </p>
+
+
+                <div class="flex flex-wrap justify-center
+                            gap-3 mt-8">
+
+                    <a href="#upcoming-events"
+                       class="btn btn-primary
+                              border-0 rounded-xl px-6">
+
+                        View Upcoming Events
+
+                    </a>
+
+                    <a href="#activities"
+                       class="btn btn-ghost
+                              border border-white/30
+                              text-white rounded-xl px-6">
+
+                        Explore Activities
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+ 
+
+</section>
+
+<!-- =====================================================
+     QUICK STATS
+===================================================== -->
+
+<section class="relative -mt-10 z-20 px-5">
+
+ 
+<div class="container mx-auto max-w-6xl">
+
+    <div class="grid md:grid-cols-3
+                bg-white rounded-2xl shadow-xl
+                border border-slate-100 overflow-hidden">
+
+        <div class="p-7 text-center border-b
+                    md:border-b-0 md:border-r border-slate-100">
+
+            <div class="text-3xl font-extrabold text-primary">
+                🎓
+            </div>
+
+            <h3 class="font-bold text-lg mt-2">
+                Academic
+            </h3>
+
+            <p class="text-sm text-slate-500 mt-1">
+                Learning & competitions
+            </p>
+
+        </div>
+
+
+        <div class="p-7 text-center border-b
+                    md:border-b-0 md:border-r border-slate-100">
+
+            <div class="text-3xl font-extrabold text-primary">
+                🏆
+            </div>
+
+            <h3 class="font-bold text-lg mt-2">
+                Sports
+            </h3>
+
+            <p class="text-sm text-slate-500 mt-1">
+                Fitness & teamwork
+            </p>
+
+        </div>
+
+
+        <div class="p-7 text-center">
+
+            <div class="text-3xl font-extrabold text-primary">
+                🎭
+            </div>
+
+            <h3 class="font-bold text-lg mt-2">
+                Cultural
+            </h3>
+
+            <p class="text-sm text-slate-500 mt-1">
+                Creativity & celebration
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+ 
+
+</section>
+
+<!-- =====================================================
+     UPCOMING EVENTS
+===================================================== -->
+
+<section id="upcoming-events"
+         class="py-24">
+
+ 
+<div class="container mx-auto px-5 max-w-6xl">
+
+
+    <!-- Heading -->
+
+    <div class="flex flex-col md:flex-row
+                md:items-end md:justify-between
+                gap-5 mb-12">
+
+        <div>
+
+            <p class="text-primary font-bold
+                      uppercase tracking-widest text-sm">
+                What's happening
+            </p>
+
+            <h2 class="section-title
+                       text-4xl md:text-5xl
+                       font-extrabold text-slate-900 mt-2">
+
+                Upcoming Events
+
+            </h2>
+
+            <p class="text-slate-500 mt-4 max-w-2xl">
+
+                Keep up with the latest academic, cultural,
+                sports, and school activities.
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- Dynamic Event Container -->
+
+    <div id="eventContainer"
+         class="grid md:grid-cols-2 lg:grid-cols-3 gap-7">
+
+
+        <!-- Default Event -->
+
+        <div class="event-card
+                    bg-white rounded-2xl
+                    border border-slate-200
+                    shadow-sm overflow-hidden">
+
+            <div class="h-2 bg-primary"></div>
+
+            <div class="p-7">
+
+                <div class="flex items-center
+                            justify-between mb-5">
+
+                    <div class="badge badge-primary
+                                badge-outline">
+
+                        Event
+
+                    </div>
+
+                    <span class="text-xl">
+                        📅
+                    </span>
+
+                </div>
+
+
+                <h2 class="text-xl font-extrabold
+                           text-slate-900">
+
+                    No Events Available
+
+                </h2>
+
+
+                <p class="text-slate-500
+                          leading-relaxed mt-3">
+
+                    Upcoming school events will be
+                    displayed here.
+
+                </p>
+
+                <div class="mt-6 pt-5
+                            border-t border-slate-100">
+
+                    <span class="text-sm text-slate-400">
+                        Check back soon for updates.
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+ 
+
+</section>
+
+<!-- =====================================================
+     ACTIVITIES
+===================================================== -->
+
+<section id="activities"
+         class="py-24 bg-white border-y border-slate-100">
+
+ 
+<div class="container mx-auto px-5 max-w-6xl">
+
+
+    <div class="text-center max-w-2xl
+                mx-auto mb-14">
+
+        <p class="text-primary font-bold
+                  uppercase tracking-widest text-sm">
+
+            Beyond the Classroom
+
+        </p>
+
+        <h2 class="section-title
+                   text-4xl md:text-5xl
+                   font-extrabold text-slate-900 mt-2">
+
+            Our Activities
+
+        </h2>
+
+        <p class="text-slate-500
+                  leading-relaxed mt-5">
+
+            At Udayon School, students are encouraged
+            to explore their interests, develop confidence,
+            and learn through real experiences.
+
+        </p>
+
+    </div>
+
+
+
+    <div class="grid sm:grid-cols-2
+                lg:grid-cols-4 gap-6">
+
+
+        <!-- Academic -->
+
+        <div class="activity-card
+                    bg-slate-50
+                    border border-slate-200
+                    rounded-2xl p-7">
+
+            <div class="w-14 h-14 rounded-2xl
+                        bg-blue-100 text-blue-600
+                        grid place-items-center
+                        text-2xl mb-6">
+
+                📚
+
+            </div>
+
+            <h3 class="text-lg font-extrabold
+                       text-slate-900">
+
+                Academic Events
+
+            </h3>
+
+            <p class="text-slate-500
+                      leading-relaxed mt-3">
+
+                Science fairs, competitions,
+                workshops, quizzes, and
+                educational programs.
+
+            </p>
+
+        </div>
+
+
+
+        <!-- Sports -->
+
+        <div class="activity-card
+                    bg-slate-50
+                    border border-slate-200
+                    rounded-2xl p-7">
+
+            <div class="w-14 h-14 rounded-2xl
+                        bg-green-100 text-green-600
+                        grid place-items-center
+                        text-2xl mb-6">
+
+                ⚽
+
+            </div>
+
+            <h3 class="text-lg font-extrabold
+                       text-slate-900">
+
+                Sports Events
+
+            </h3>
+
+            <p class="text-slate-500
+                      leading-relaxed mt-3">
+
+                Annual sports, outdoor games,
+                athletics, and activities
+                that promote teamwork.
+
+            </p>
+
+        </div>
+
+
+
+        <!-- Cultural -->
+
+        <div class="activity-card
+                    bg-slate-50
+                    border border-slate-200
+                    rounded-2xl p-7">
+
+            <div class="w-14 h-14 rounded-2xl
+                        bg-purple-100 text-purple-600
+                        grid place-items-center
+                        text-2xl mb-6">
+
+                🎭
+
+            </div>
+
+            <h3 class="text-lg font-extrabold
+                       text-slate-900">
+
+                Cultural Events
+
+            </h3>
+
+            <p class="text-slate-500
+                      leading-relaxed mt-3">
+
+                Festivals, performances,
+                celebrations, arts, and
+                cultural programs.
+
+            </p>
+
+        </div>
+
+
+
+        <!-- Social -->
+
+        <div class="activity-card
+                    bg-slate-50
+                    border border-slate-200
+                    rounded-2xl p-7">
+
+            <div class="w-14 h-14 rounded-2xl
+                        bg-emerald-100 text-emerald-600
+                        grid place-items-center
+                        text-2xl mb-6">
+
+                🌱
+
+            </div>
+
+            <h3 class="text-lg font-extrabold
+                       text-slate-900">
+
+                Social Activities
+
+            </h3>
+
+            <p class="text-slate-500
+                      leading-relaxed mt-3">
+
+                Community service, awareness
+                programs, environmental
+                initiatives, and volunteering.
+
+            </p>
+
+        </div>
+
+
+    </div>
+
+</div>
+ 
+
+</section>
+
+<!-- =====================================================
+     CTA
+===================================================== -->
+
+<section class="py-24 px-5">
+
+ 
+<div class="container mx-auto max-w-6xl">
+
+    <div class="relative overflow-hidden
+                rounded-3xl
+                bg-gradient-to-r
+                from-slate-950
+                via-blue-950
+                to-primary
+                text-white">
+
+        <div class="absolute inset-0 opacity-10
+                    hero-grid"></div>
+
+        <div class="relative z-10
+                    p-10 md:p-16
+                    text-center">
+
+            <div class="text-4xl mb-5">
+                🌟
+            </div>
+
+            <h2 class="text-3xl md:text-4xl
+                       font-extrabold">
+
+                Be Part of School Life
+
+            </h2>
+
+            <p class="max-w-2xl mx-auto
+                      text-white/75
+                      leading-relaxed mt-4">
+
+                From classroom achievements to
+                unforgettable celebrations, every
+                event is an opportunity to learn,
+                participate, and grow.
+
+            </p>
+
+            <div class="flex flex-wrap
+                        justify-center gap-3 mt-8">
+
+                <a href="admission.html"
+                   class="btn btn-primary
+                          rounded-xl px-7">
+
+                    Join Udayon School
+
+                </a>
+
+                <a href="about.html"
+                   class="btn btn-ghost
+                          border border-white/30
+                          text-white rounded-xl px-7">
+
+                    Learn About Us
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+ 
+
+</section>
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="bg-slate-950 text-slate-300">
+
+ 
+<div class="container mx-auto
+            max-w-6xl px-5 py-16">
+
+
+    <div class="grid md:grid-cols-3
+                gap-10">
+
+
+        <!-- School -->
+
+        <div>
+
+            <div class="flex items-center gap-3">
+
+                <div class="w-11 h-11 rounded-xl
+                            bg-primary
+                            grid place-items-center
+                            text-xl">
+
+                    🎓
+
+                </div>
+
+                <div>
+
+                    <h2 class="text-xl
+                               font-extrabold text-white">
+
+                        Udayon School
+
+                    </h2>
+
+                    <p class="text-xs
+                              text-slate-500">
+
+                        Excellence • Discipline • Success
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <p class="mt-5 text-sm
+                      text-slate-400
+                      leading-relaxed max-w-sm">
+
+                Building knowledge, character,
+                confidence, and leadership for
+                tomorrow.
+
+            </p>
+
+        </div>
+
+
+
+        <!-- Quick Links -->
+
+        <div>
+
+            <h3 class="font-bold text-white mb-5">
+                Quick Links
+            </h3>
+
+            <div class="grid grid-cols-2 gap-y-3">
+
+                <a href="index.html"
+                   class="hover:text-white">
+                    Home
+                </a>
+
+                <a href="about.html"
+                   class="hover:text-white">
+                    About
+                </a>
+
+                <a href="notice.html"
+                   class="hover:text-white">
+                    Notices
+                </a>
+
+                <a href="announcement.html"
+                   class="hover:text-white">
+                    Announcements
+                </a>
+
+                <a href="curriculum.html"
+                   class="hover:text-white">
+                    Curriculum
+                </a>
+
+                <a href="admission.html"
+                   class="hover:text-white">
+                    Admission
+                </a>
+
+                <a href="events.html"
+                   class="text-primary">
+                    Events
+                </a>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Contact / Admin -->
+
+        <div>
+
+            <h3 class="font-bold text-white mb-5">
+                School Portal
+            </h3>
+
+            <p class="text-sm text-slate-400
+                      leading-relaxed">
+
+                Stay connected with Udayon School
+                for the latest notices, events and
+                announcements.
+
+            </p>
+
+            <a href="admin.html"
+               class="btn btn-primary
+                      btn-sm rounded-lg mt-5">
+
+                Admin Portal
+
+            </a>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="border-t border-white/10
+                mt-12 pt-7
+                flex flex-col md:flex-row
+                justify-between gap-3
+                text-sm text-slate-500">
+
+        <p>
+            © 2026 Udayon School. All rights reserved.
+        </p>
+
+        <p>
+            Excellence • Discipline • Success
+        </p>
+
+    </div>
+
+</div>
+ 
+
+</footer>
+
+<!-- Existing JavaScript -->
+
+<script src="js/storage.js"></script>
+
+<script src="js/events.js"></script>
+
+</body>
+</html>

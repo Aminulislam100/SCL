@@ -1,0 +1,533 @@
+
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Login | Udayon School</title>
+
+    <!-- Tailwind + DaisyUI -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5"
+        rel="stylesheet"
+        type="text/css">
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap"
+        rel="stylesheet">
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+        }
+
+        .heading-font {
+            font-family: "Playfair Display", serif;
+        }
+
+        .login-background {
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(15, 23, 42, .98),
+                    rgba(30, 64, 175, .94)
+                ),
+                radial-gradient(
+                    circle at 15% 20%,
+                    rgba(255,255,255,.12),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 85% 80%,
+                    rgba(255,255,255,.08),
+                    transparent 30%
+                );
+        }
+
+        .glass {
+            background: rgba(255,255,255,.08);
+            border: 1px solid rgba(255,255,255,.12);
+            backdrop-filter: blur(12px);
+        }
+
+        .input:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, .12);
+        }
+
+        .login-card {
+            animation: cardEnter .5s ease-out;
+        }
+
+        @keyframes cardEnter {
+
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body class="min-h-screen bg-slate-50">
+
+
+<!-- ========================================================= -->
+<!-- MAIN -->
+<!-- ========================================================= -->
+
+<main class="min-h-screen grid lg:grid-cols-2">
+
+
+    <!-- ===================================================== -->
+    <!-- LEFT BRAND PANEL -->
+    <!-- ===================================================== -->
+
+    <section class="login-background text-white hidden lg:flex relative overflow-hidden">
+
+
+        <!-- Decorative circles -->
+
+        <div class="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-blue-400/10"></div>
+
+        <div class="absolute -bottom-40 -left-32 w-[500px] h-[500px] rounded-full bg-indigo-400/10"></div>
+
+
+        <div class="relative z-10 flex flex-col justify-between w-full p-12 xl:p-20">
+
+
+            <!-- Brand -->
+
+            <div>
+
+                <a href="index.html"
+                    class="inline-flex items-center gap-3">
+
+                    <div class="w-12 h-12 rounded-xl bg-white text-blue-700 flex items-center justify-center text-xl font-bold shadow-lg">
+
+                        U
+
+                    </div>
+
+                    <div>
+
+                        <h1 class="text-xl font-bold">
+                            Udayon School
+                        </h1>
+
+                        <p class="text-sm text-blue-200">
+                            Excellence in Education
+                        </p>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+
+            <!-- Main message -->
+
+            <div class="max-w-xl">
+
+                <p class="uppercase tracking-[.18em] text-sm font-bold text-blue-200">
+                    Administration Portal
+                </p>
+
+
+                <h2 class="heading-font text-5xl xl:text-6xl font-bold leading-tight mt-4">
+
+                    Manage your school
+                    <span class="text-blue-300">
+                        with confidence.
+                    </span>
+
+                </h2>
+
+
+                <p class="text-lg text-slate-300 leading-8 mt-7 max-w-lg">
+
+                    Access the Udayon School administration panel
+                    to manage notices, announcements, events, and other school information.
+
+                </p>
+
+
+                <!-- Feature list -->
+
+                <div class="mt-9 space-y-4">
+
+                    <div class="flex items-center gap-4">
+
+                        <div class="w-10 h-10 rounded-xl glass flex items-center justify-center">
+                            ✓
+                        </div>
+
+                        <span class="text-slate-200">
+                            Manage school notices
+                        </span>
+
+                    </div>
+
+
+                    <div class="flex items-center gap-4">
+
+                        <div class="w-10 h-10 rounded-xl glass flex items-center justify-center">
+                            ✓
+                        </div>
+
+                        <span class="text-slate-200">
+                            Publish announcements and events
+                        </span>
+
+                    </div>
+
+
+                    <div class="flex items-center gap-4">
+
+                        <div class="w-10 h-10 rounded-xl glass flex items-center justify-center">
+                            ✓
+                        </div>
+
+                        <span class="text-slate-200">
+                            Maintain school information
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Footer -->
+
+            <div class="text-sm text-slate-400">
+
+                © 2026 Udayon School. All rights reserved.
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ===================================================== -->
+    <!-- LOGIN PANEL -->
+    <!-- ===================================================== -->
+
+    <section class="flex items-center justify-center px-5 py-10 sm:px-8">
+
+
+        <div class="w-full max-w-md login-card">
+
+
+            <!-- Mobile logo -->
+
+            <div class="lg:hidden text-center mb-8">
+
+                <a href="index.html"
+                    class="inline-flex items-center gap-3">
+
+                    <div class="w-12 h-12 rounded-xl bg-blue-600 text-white flex items-center justify-center text-xl font-bold shadow-lg">
+
+                        U
+
+                    </div>
+
+                    <div class="text-left">
+
+                        <h1 class="font-bold text-lg text-slate-900">
+                            Udayon School
+                        </h1>
+
+                        <p class="text-xs text-slate-500">
+                            Administration Portal
+                        </p>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+
+            <!-- Login card -->
+
+            <div class="bg-white rounded-3xl shadow-xl border border-slate-100 p-7 sm:p-10">
+
+
+                <!-- Icon -->
+
+                <div class="flex justify-center mb-6">
+
+                    <div class="w-16 h-16 rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center">
+
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            class="w-8 h-8"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor">
+
+                            <path stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="1.8"
+                                d="M12 15v2m-6 4h12a2 2 0 002-2v-7a2 2 0 00-2-2H6a2 2 0 00-2 2v7a2 2 0 002 2zm2-9V7a4 4 0 118 0v3" />
+
+                        </svg>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Heading -->
+
+                <div class="text-center">
+
+                    <p class="text-sm font-semibold text-blue-600 uppercase tracking-wider">
+                        Secure Access
+                    </p>
+
+                    <h2 class="heading-font text-4xl font-bold text-slate-900 mt-2">
+                        Admin Login
+                    </h2>
+
+                    <p class="text-slate-500 mt-3 leading-6">
+
+                        Sign in to access the Udayon School
+                        administration panel.
+
+                    </p>
+
+                </div>
+
+
+
+                <!-- Login Form -->
+
+                <form id="loginForm" class="mt-8">
+
+
+                    <!-- Password -->
+
+                    <div>
+
+                        <label
+                            for="adminPassword"
+                            class="block text-sm font-semibold text-slate-700 mb-2">
+
+                            Password
+
+                        </label>
+
+
+                        <div class="relative">
+
+                            <input
+                                id="adminPassword"
+                                name="password"
+                                type="password"
+                                placeholder="Enter your password"
+                                autocomplete="current-password"
+                                class="input input-bordered w-full h-12 rounded-xl pr-12"
+                                required>
+
+
+                            <!-- Show password -->
+
+                            <button
+                                type="button"
+                                id="togglePassword"
+                                class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700"
+                                aria-label="Show password">
+
+                                <svg id="eyeIcon"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="w-5 h-5"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor">
+
+                                    <path stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+
+                                    <path stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+
+                                </svg>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Login button -->
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary w-full h-12 mt-6 rounded-xl text-base font-semibold shadow-lg shadow-blue-600/20">
+
+                        Sign In
+
+                    </button>
+
+
+                </form>
+
+
+
+                <!-- Login message -->
+
+                <div
+                    id="loginMessage"
+                    class="mt-5 text-center text-sm"
+                    role="alert"
+                    aria-live="polite">
+
+                </div>
+
+
+
+                <!-- Security notice -->
+
+                <div class="mt-7 p-4 rounded-xl bg-slate-50 border border-slate-100">
+
+                    <div class="flex gap-3">
+
+                        <div class="text-blue-600 mt-0.5">
+                            🔒
+                        </div>
+
+                        <p class="text-xs text-slate-500 leading-5">
+
+                            This area is restricted to authorized
+                            school administrators. Please keep your
+                            login credentials private.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Back -->
+
+                <div class="text-center mt-7">
+
+                    <a href="index.html"
+                        class="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:text-blue-800 transition">
+
+                        <span>←</span>
+
+                        Back to Website
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- Bottom text -->
+
+            <p class="text-center text-xs text-slate-400 mt-6">
+
+                Udayon School Administration System
+
+            </p>
+
+
+        </div>
+
+    </section>
+
+</main>
+
+
+
+<!-- ========================================================= -->
+<!-- AUTH SCRIPT -->
+<!-- ========================================================= -->
+
+<script src="js/auth.js"></script>
+
+
+<!-- ========================================================= -->
+<!-- PASSWORD VISIBILITY -->
+<!-- ========================================================= -->
+
+<script>
+
+    const passwordInput =
+        document.getElementById("adminPassword");
+
+    const togglePassword =
+        document.getElementById("togglePassword");
+
+    const eyeIcon =
+        document.getElementById("eyeIcon");
+
+
+    if (togglePassword && passwordInput) {
+
+        togglePassword.addEventListener("click", function () {
+
+            const isPassword =
+                passwordInput.type === "password";
+
+
+            passwordInput.type =
+                isPassword ? "text" : "password";
+
+
+            togglePassword.setAttribute(
+                "aria-label",
+                isPassword ? "Hide password" : "Show password"
+            );
+
+        });
+
+    }
+
+</script>
+
+
+</body>
+
+</html>
