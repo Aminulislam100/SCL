@@ -1,30 +1,48 @@
-
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 
 <head>
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Announcements | Udayon School</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Announcements | Udayon School
+    </title>
 
 
-    <!-- Tailwind + DaisyUI -->
+    <!-- =====================================================
+         DAISYUI
+    ====================================================== -->
 
     <link
         href="https://cdn.jsdelivr.net/npm/daisyui@5"
         rel="stylesheet"
         type="text/css">
 
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- =====================================================
+         TAILWIND
+    ====================================================== -->
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">
+    </script>
 
 
-    <!-- Google Fonts -->
+    <!-- =====================================================
+         GOOGLE FONTS
+    ====================================================== -->
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com">
 
-    <link rel="preconnect"
+    <link
+        rel="preconnect"
         href="https://fonts.gstatic.com"
         crossorigin>
 
@@ -33,72 +51,106 @@
         rel="stylesheet">
 
 
+    <!-- =====================================================
+         PAGE STYLE
+    ====================================================== -->
+
     <style>
 
         * {
             scroll-behavior: smooth;
         }
 
+
         body {
             font-family: "Inter", sans-serif;
         }
+
 
         .heading-font {
             font-family: "Playfair Display", serif;
         }
 
+
         .hero-pattern {
+
             background:
+
                 linear-gradient(
                     135deg,
                     rgba(15, 23, 42, .97),
                     rgba(30, 64, 175, .92)
                 ),
+
                 radial-gradient(
                     circle at 15% 20%,
                     rgba(255,255,255,.12),
                     transparent 30%
                 ),
+
                 radial-gradient(
                     circle at 85% 80%,
                     rgba(255,255,255,.08),
                     transparent 30%
                 );
+
         }
+
 
         .section-label {
             letter-spacing: .15em;
         }
 
+
         .nav-link {
+
             transition:
                 color .2s ease,
                 background-color .2s ease;
+
         }
+
 
         .nav-link:hover {
+
             color: #2563eb;
             background: #eff6ff;
+
         }
 
+
         .announcement-card {
+
             transition:
                 transform .25s ease,
                 box-shadow .25s ease;
+
         }
+
 
         .announcement-card:hover {
+
             transform: translateY(-5px);
+
             box-shadow:
                 0 20px 40px rgba(15, 23, 42, .10);
+
         }
+
 
         .announcement-icon {
-            transition: transform .25s ease;
+
+            transition:
+                transform .25s ease;
+
         }
 
-        .announcement-card:hover .announcement-icon {
+
+        .announcement-card:hover
+        .announcement-icon {
+
             transform: scale(1.08);
+
         }
 
     </style>
@@ -109,19 +161,18 @@
 <body class="bg-slate-50 text-slate-800">
 
 
-<!-- ========================================================= -->
-<!-- NAVBAR -->
-<!-- ========================================================= -->
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
 
 <header
     class="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur-md">
-
 
     <div
         class="navbar max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
 
-        <!-- Mobile menu + logo -->
+        <!-- MOBILE / LOGO -->
 
         <div class="navbar-start">
 
@@ -186,7 +237,9 @@
                         <a
                             href="announcement.html"
                             class="text-blue-600 font-semibold">
+
                             Announcement
+
                         </a>
                     </li>
 
@@ -212,10 +265,7 @@
                     </li>
 
 
-
-
                 </ul>
-
 
             </div>
 
@@ -234,100 +284,123 @@
 
 
                 <span class="hidden sm:inline">
+
                     Udayon School
+
                 </span>
 
 
             </a>
 
-
         </div>
 
 
-        <!-- Desktop Navigation -->
+        <!-- DESKTOP NAVIGATION -->
 
         <nav class="navbar-center hidden lg:flex">
-
 
             <ul class="menu menu-horizontal gap-1">
 
 
                 <li>
+
                     <a
                         href="index.html"
                         class="nav-link rounded-lg font-medium">
+
                         Home
+
                     </a>
+
                 </li>
 
 
                 <li>
+
                     <a
                         href="about.html"
                         class="nav-link rounded-lg font-medium">
+
                         About
+
                     </a>
+
                 </li>
 
 
                 <li>
+
                     <a
                         href="notice.html"
                         class="nav-link rounded-lg font-medium">
+
                         Notice
+
                     </a>
+
                 </li>
 
 
                 <li>
+
                     <a
                         href="announcement.html"
                         class="rounded-lg font-semibold text-blue-600 bg-blue-50">
+
                         Announcement
+
                     </a>
+
                 </li>
 
 
                 <li>
+
                     <a
                         href="curriculum.html"
                         class="nav-link rounded-lg font-medium">
+
                         Curriculum
+
                     </a>
+
                 </li>
 
 
                 <li>
+
                     <a
                         href="admission.html"
                         class="nav-link rounded-lg font-medium">
+
                         Admission
+
                     </a>
+
                 </li>
 
 
                 <li>
+
                     <a
                         href="events.html"
                         class="nav-link rounded-lg font-medium">
+
                         Events
+
                     </a>
+
                 </li>
-
-
-               
 
 
             </ul>
 
-
         </nav>
 
 
-        <!-- Admin -->
+        <!-- ADMIN -->
 
         <div class="navbar-end">
-
 
             <a
                 href="admin.html"
@@ -337,26 +410,21 @@
 
             </a>
 
-
         </div>
 
 
     </div>
 
-
 </header>
 
 
-
-<!-- ========================================================= -->
-<!-- HERO -->
-<!-- ========================================================= -->
+<!-- =========================================================
+     HERO
+========================================================= -->
 
 <section
     class="hero-pattern text-white relative overflow-hidden">
 
-
-    <!-- Decorative background -->
 
     <div
         class="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-blue-400/10">
@@ -403,32 +471,27 @@
 
         </div>
 
-
     </div>
-
 
 </section>
 
 
-
-<!-- ========================================================= -->
-<!-- ANNOUNCEMENTS -->
-<!-- ========================================================= -->
+<!-- =========================================================
+     ANNOUNCEMENTS
+========================================================= -->
 
 <section class="py-24 bg-slate-50">
-
 
     <div class="max-w-7xl mx-auto px-5">
 
 
-        <!-- Heading -->
+        <!-- HEADING -->
 
         <div
             class="flex flex-col sm:flex-row sm:items-end justify-between gap-5 mb-10">
 
 
             <div>
-
 
                 <p
                     class="section-label text-sm font-bold uppercase text-blue-600">
@@ -445,23 +508,17 @@
 
                 </h2>
 
-
             </div>
 
 
             <div
                 class="flex items-center gap-2 text-sm text-slate-500">
 
-
                 <span
                     class="w-2 h-2 rounded-full bg-green-500">
                 </span>
 
-
-                <span>
-                    Updated regularly
-                </span>
-
+                Updated regularly
 
             </div>
 
@@ -469,97 +526,55 @@
         </div>
 
 
-
-        <!-- Dynamic Announcement Container -->
+        <!-- =================================================
+             IMPORTANT:
+             JAVASCRIPT WILL REPLACE THIS CONTENT
+        ================================================== -->
 
         <div
             id="announcementContainer"
             class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
 
-            <!-- Default Announcement -->
+            <!-- Loading -->
 
-            <article
-                class="announcement-card bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
+            <div class="sm:col-span-2 lg:col-span-3">
 
-
-                <!-- Accent -->
-
-                <div class="h-1 bg-indigo-600"></div>
+                <div
+                    class="bg-white rounded-2xl border border-slate-100 shadow-sm p-10 text-center">
 
 
-                <div class="p-7">
-
-
-                    <div
-                        class="flex items-start justify-between gap-4">
-
-
-                        <div
-                            class="announcement-icon w-14 h-14 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center text-2xl">
-
-                            🔔
-
-                        </div>
-
-
-                        <span
-                            class="badge badge-secondary badge-outline">
-
-                            Announcement
-
-                        </span>
-
-
+                    <div class="text-4xl mb-4">
+                        🔔
                     </div>
 
 
                     <h3
-                        class="text-xl font-bold text-slate-900 mt-6">
+                        class="text-xl font-bold text-slate-800">
 
-                        No Announcements
+                        Loading announcements...
 
                     </h3>
 
 
                     <p
-                        class="text-slate-500 leading-7 mt-3">
+                        class="text-slate-500 mt-2">
 
-                        New school announcements will be
-                        published here. Please check back
-                        regularly for the latest updates.
+                        Please wait while we load the latest
+                        school announcements.
 
                     </p>
 
 
-                    <div
-                        class="flex items-center gap-2 mt-6 pt-5 border-t border-slate-100 text-sm text-slate-400">
-
-
-                        <span>
-                            🕐
-                        </span>
-
-
-                        <span>
-                            Check back later
-                        </span>
-
-
-                    </div>
-
-
                 </div>
 
-
-            </article>
+            </div>
 
 
         </div>
 
 
-
-        <!-- Information panel -->
+        <!-- INFORMATION -->
 
         <div
             class="mt-14 bg-white rounded-2xl border border-slate-100 p-7 sm:p-8">
@@ -601,26 +616,21 @@
 
                 </div>
 
-
             </div>
-
 
         </div>
 
 
     </div>
 
-
 </section>
 
 
-
-<!-- ========================================================= -->
-<!-- QUICK LINKS -->
-<!-- ========================================================= -->
+<!-- =========================================================
+     QUICK LINKS
+========================================================= -->
 
 <section class="py-24 bg-white px-5">
-
 
     <div class="max-w-7xl mx-auto">
 
@@ -657,12 +667,11 @@
         </div>
 
 
-
         <div
             class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
 
-            <!-- Notice -->
+            <!-- NOTICE -->
 
             <a
                 href="notice.html"
@@ -704,8 +713,7 @@
             </a>
 
 
-
-            <!-- Events -->
+            <!-- EVENTS -->
 
             <a
                 href="events.html"
@@ -747,26 +755,18 @@
             </a>
 
 
-
-         
-
-
         </div>
 
-
     </div>
-
 
 </section>
 
 
+<!-- =========================================================
+     CTA
+========================================================= -->
 
-<!-- ========================================================= -->
-<!-- CTA -->
-<!-- ========================================================= -->
-
-<section class="py-24 px-5">
-
+<section class="py-24 px-5 bg-slate-50">
 
     <div class="max-w-7xl mx-auto">
 
@@ -841,23 +841,18 @@
 
             </div>
 
-
         </div>
 
-
     </div>
-
 
 </section>
 
 
-
-<!-- ========================================================= -->
-<!-- FOOTER -->
-<!-- ========================================================= -->
+<!-- =========================================================
+     FOOTER
+========================================================= -->
 
 <footer class="bg-slate-950 text-slate-300">
-
 
     <div class="max-w-7xl mx-auto px-5 py-16">
 
@@ -865,8 +860,6 @@
         <div
             class="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
 
-
-            <!-- Brand -->
 
             <div class="lg:col-span-2">
 
@@ -901,7 +894,6 @@
 
                     </div>
 
-
                 </div>
 
 
@@ -914,15 +906,10 @@
 
                 </p>
 
-
             </div>
 
 
-
-            <!-- Quick Links -->
-
             <div>
-
 
                 <h3
                     class="font-bold text-white mb-5">
@@ -936,7 +923,6 @@
 
 
                     <li>
-
                         <a
                             href="index.html"
                             class="hover:text-white transition">
@@ -944,12 +930,10 @@
                             Home
 
                         </a>
-
                     </li>
 
 
                     <li>
-
                         <a
                             href="about.html"
                             class="hover:text-white transition">
@@ -957,12 +941,10 @@
                             About Us
 
                         </a>
-
                     </li>
 
 
                     <li>
-
                         <a
                             href="curriculum.html"
                             class="hover:text-white transition">
@@ -970,12 +952,10 @@
                             Curriculum
 
                         </a>
-
                     </li>
 
 
                     <li>
-
                         <a
                             href="admission.html"
                             class="hover:text-white transition">
@@ -983,21 +963,15 @@
                             Admissions
 
                         </a>
-
                     </li>
 
 
                 </ul>
 
-
             </div>
 
 
-
-            <!-- Information -->
-
             <div>
-
 
                 <h3
                     class="font-bold text-white mb-5">
@@ -1049,54 +1023,65 @@
                     </li>
 
 
-
-
-
                 </ul>
-
 
             </div>
 
-
         </div>
 
-
-
-        <!-- Bottom -->
 
         <div
             class="border-t border-slate-800 mt-12 pt-7 flex flex-col sm:flex-row justify-between gap-4 text-sm text-slate-500">
 
 
             <p>
-
                 © 2026 Udayon School. All rights reserved.
-
             </p>
 
 
             <p>
-
                 Excellence • Discipline • Success
-
             </p>
 
 
         </div>
 
-
     </div>
-
 
 </footer>
 
 
+<!-- =========================================================
+     FIREBASE
+========================================================= -->
 
-<!-- ========================================================= -->
-<!-- SCRIPTS -->
-<!-- ========================================================= -->
+<script
+    src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js">
+</script>
+
+
+<script
+    src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js">
+</script>
+
+
+<!-- =========================================================
+     FIREBASE CONFIG
+========================================================= -->
+
+<script src="./js/firebase-config.js"></script>
+
+
+<!-- =========================================================
+     STORAGE
+========================================================= -->
 
 <script src="./js/storage.js"></script>
+
+
+<!-- =========================================================
+     ANNOUNCEMENTS PAGE JAVASCRIPT
+========================================================= -->
 
 <script src="./js/announcements.js"></script>
 
@@ -1104,4 +1089,3 @@
 </body>
 
 </html>
- 
