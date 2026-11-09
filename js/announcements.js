@@ -1,177 +1,127 @@
+// ============================================================
+// ANNOUNCEMENTS.JS - PUBLIC FIREBASE VERSION
+// ============================================================
 
-// Display Announcements
+let publicAnnouncementUnsubscribe = null;
 
 
-function displayAnnouncements(){
+function loadPublicAnnouncements() {
 
+    const containers = [
 
-    let announcements = getItems("announcements");
+        document.getElementById("announcementContainer"),
+        document.getElementById("latestAnnouncements")
 
+    ].filter(Boolean);
 
+    if (!containers.length) return;
 
-    let container =
-    document.getElementById("announcementContainer");
+    containers.forEach(container => {
+        container.textContent = "Loading announcements...";
+    });
 
-
-
-    if(container){
-
-
-        container.innerHTML = "";
-
-
-
-        if(announcements.length === 0){
-
-
-            container.innerHTML = `
-
-
-            <div class="card bg-base-100 shadow-xl">
-
-
-            <div class="card-body">
-
-
-            <h2 class="card-title">
-
-            No Announcements Available
-
-            </h2>
-
-
-            <p>
-
-            New announcements will appear here.
-
-            </p>
-
-
-            </div>
-
-
-            </div>
-
-
-            `;
-
-
-        }
-
-
-
-        announcements.forEach(item=>{
-
-
-            container.innerHTML += `
-
-
-            <div class="card bg-base-100 shadow-xl">
-
-
-            <div class="card-body">
-
-
-            <div class="badge badge-secondary">
-
-            Announcement
-
-            </div>
-
-
-            <h2 class="card-title">
-
-            ${item.title}
-
-            </h2>
-
-
-
-            <p>
-
-            ${item.text}
-
-            </p>
-
-
-
-            </div>
-
-
-            </div>
-
-
-            `;
-
-
-
-        });
-
-
-
+    if (publicAnnouncementUnsubscribe) {
+        publicAnnouncementUnsubscribe();
     }
 
+    publicAnnouncementUnsubscribe =
+        db.collection("announcements").onSnapshot(
 
+            snapshot => {
 
+                const announcements = [];
 
+                snapshot.forEach(doc => {
 
-    let latest =
-    document.getElementById("latestAnnouncements");
+                    announcements.push({
+                        id: doc.id,
+                        ...doc.data()
+                    });
 
+                });
 
+                announcements.sort((a, b) => {
 
-    if(latest){
+                    const timeA = a.createdAt?.toMillis?.() || 0;
+                    const timeB = b.createdAt?.toMillis?.() || 0;
 
+                    return timeB - timeA;
 
-        latest.innerHTML = "";
+                });
 
+                containers.forEach(container => {
 
+                    container.innerHTML = "";
 
-        announcements.slice(0,3).forEach(item=>{
+                    if (announcements.length === 0) {
 
+                        container.textContent =
+                            "No announcements available.";
 
-            latest.innerHTML += `
+                        return;
+                    }
 
+                    announcements.forEach(item => {
 
-            <div class="card bg-base-100 shadow">
+                        const card = document.createElement("div");
 
+                        card.className =
+                            "card bg-base-100 shadow-xl mb-4";
 
-            <div class="card-body">
+                        const body = document.createElement("div");
+                        body.className = "card-body";
 
+                        const title = document.createElement("h2");
+                        title.className = "card-title";
+                        title.textContent =
+                            item.title || "Announcement";
 
-            <h3 class="card-title">
+                        const description =
+                            document.createElement("p");
 
-            ${item.title}
+                        description.textContent = item.text || "";
 
-            </h3>
+                        const date = document.createElement("small");
+                        date.textContent = item.date || "";
 
+                        body.append(title, description, date);
 
-            <p>
+                        card.appendChild(body);
 
-            ${item.text}
+                        container.appendChild(card);
 
-            </p>
+                    });
 
+                });
 
-            </div>
+            },
 
+            error => {
 
-            </div>
+                console.error(
+                    "Public announcements error:",
+                    error
+                );
 
+                containers.forEach(container => {
 
-            `;
+                    container.textContent =
+                        "Unable to load announcements. Please try again later.";
 
+                });
 
-        });
+            }
 
-
-    }
-
-
-
+        );
 }
 
 
+// ============================================================
+// INITIAL LOAD
+// ============================================================
 
+document.addEventListener("DOMContentLoaded", function () {
 
-displayAnnouncements();
+    loadPublicAnnouncements();
+
+});

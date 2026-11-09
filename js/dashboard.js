@@ -1,19 +1,16 @@
+
 // ============================================================
 // DASHBOARD.JS
+// NOTICES + ANNOUNCEMENTS + EVENTS: FIREBASE FIRESTORE
 // ============================================================
 
+let firebaseNotices = [];
+let firebaseAnnouncements = [];
+let firebaseEvents = [];
 
-// ============================================================
-// LOGIN
-// ============================================================
-
-function checkLogin() {
-
-    // If you already have your own login system,
-    // keep that code here.
-
-    console.log("Admin dashboard loaded");
-}
+let noticeUnsubscribe = null;
+let announcementUnsubscribe = null;
+let eventUnsubscribe = null;
 
 
 // ============================================================
@@ -21,7 +18,6 @@ function checkLogin() {
 // ============================================================
 
 function showSection(section) {
-
     const sections = [
         "noticeSection",
         "announcementSection",
@@ -29,31 +25,16 @@ function showSection(section) {
     ];
 
     sections.forEach(id => {
-
         const element = document.getElementById(id);
-
-        if (element) {
-            element.classList.add("hidden");
-        }
-
+        if (element) element.classList.add("hidden");
     });
 
-
     const selected = document.getElementById(section);
-
-    if (selected) {
-        selected.classList.remove("hidden");
-    }
-
-
-    // Update tabs
+    if (selected) selected.classList.remove("hidden");
 
     const tabs = document.querySelectorAll(".tabs .tab");
 
-    tabs.forEach(tab => {
-        tab.classList.remove("tab-active");
-    });
-
+    tabs.forEach(tab => tab.classList.remove("tab-active"));
 
     const sectionMap = {
         noticeSection: 0,
@@ -61,422 +42,439 @@ function showSection(section) {
         eventSection: 2
     };
 
-
     const index = sectionMap[section];
 
     if (index !== undefined && tabs[index]) {
         tabs[index].classList.add("tab-active");
     }
 
-
-    // Close mobile drawer
-
     const drawer = document.getElementById("admin-drawer");
-
-    if (drawer) {
-        drawer.checked = false;
-    }
-
+    if (drawer) drawer.checked = false;
 }
 
 
 // ============================================================
-// NOTICES
+// ADMIN LOGIN CHECK
 // ============================================================
 
-function addNotice() {
-
-    const titleElement =
-        document.getElementById("noticeTitle");
-
-    const textElement =
-        document.getElementById("noticeText");
-
-
-    if (!titleElement || !textElement) {
-        console.error("Notice form elements not found.");
-        return;
+function checkAdminLogin() {
+    if (!auth.currentUser) {
+        alert("Admin login required. Please log in again.");
+        window.location.href = "admin.html";
+        return false;
     }
 
+    return true;
+}
+
+
+// ============================================================
+// SORTING
+// ============================================================
+
+function sortNewestFirst(items) {
+    return items.sort((a, b) => {
+        const timeA = a.createdAt?.toMillis?.() || 0;
+        const timeB = b.createdAt?.toMillis?.() || 0;
+
+        return timeB - timeA;
+    });
+}
+
+
+// ============================================================
+// NOTICES - FIREBASE
+// ============================================================
+
+async function addNotice() {
+    const titleElement = document.getElementById("noticeTitle");
+    const textElement = document.getElementById("noticeText");
+
+    if (!titleElement || !textElement) return;
 
     const title = titleElement.value.trim();
     const text = textElement.value.trim();
 
-
     if (!title || !text) {
-
-        alert("Please enter both the notice title and notice details.");
-
+        alert("Please enter both notice title and details.");
         return;
     }
 
+    if (!checkAdminLogin()) return;
 
-    addItem("notices", {
+    try {
+        await db.collection("notices").add({
+            title: title,
+            text: text,
+            date: new Date().toLocaleDateString(),
+            createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
 
-        id: Date.now(),
+        titleElement.value = "";
+        textElement.value = "";
 
-        title: title,
+        alert("Notice published successfully!");
 
-        text: text,
-
-        date: new Date().toLocaleDateString()
-
-    });
-
-
-    titleElement.value = "";
-    textElement.value = "";
-
-
-    loadNotices();
-
-    updateCounts();
-
+    } catch (error) {
+        console.error("Firebase notice error:", error);
+        alert("Notice could not be published: " + error.message);
+    }
 }
 
 
-// ============================================================
-// LOAD NOTICES
-// ============================================================
-
 function loadNotices() {
+    const box = document.getElementById("adminNotices");
 
-    const box =
-        document.getElementById("adminNotices");
+    if (!box) return;
 
+    box.textContent = "Loading notices...";
 
-    if (!box) {
-        return;
+    if (noticeUnsubscribe) {
+        noticeUnsubscribe();
     }
 
+    noticeUnsubscribe = db.collection("notices").onSnapshot(
+        snapshot => {
+            firebaseNotices = [];
+
+            snapshot.forEach(doc => {
+                firebaseNotices.push({
+                    id: doc.id,
+                    ...doc.data()
+                });
+            });
+
+            sortNewestFirst(firebaseNotices);
+
+            renderAdminNotices();
+            updateCounts();
+        },
+
+        error => {
+            console.error("Firebase notice loading error:", error);
+            box.textContent = "Could not load notices: " + error.message;
+        }
+    );
+}
+
+
+function renderAdminNotices() {
+    const box = document.getElementById("adminNotices");
+
+    if (!box) return;
 
     box.innerHTML = "";
 
-
-    const notices = getItems("notices");
-
-
-    if (notices.length === 0) {
-
-        box.innerHTML = `
-            <div class="alert">
-                <span>No notices published yet.</span>
-            </div>
-        `;
-
+    if (!firebaseNotices.length) {
+        box.textContent = "No notices published yet.";
         return;
     }
 
+    firebaseNotices.forEach(notice => {
+        const card = document.createElement("div");
+        card.className = "alert mt-3";
 
-    notices.forEach(notice => {
+        const content = document.createElement("div");
+        content.className = "flex-1";
 
-        box.innerHTML += `
+        const title = document.createElement("b");
+        title.textContent = notice.title || "";
 
-            <div class="alert mt-3">
+        const description = document.createElement("p");
+        description.textContent = notice.text || "";
 
-                <div class="flex-1">
+        const date = document.createElement("small");
+        date.textContent = notice.date || "";
 
-                    <b>${notice.title}</b>
+        const button = document.createElement("button");
+        button.className = "btn btn-error btn-sm";
+        button.textContent = "Delete";
 
-                    <p>${notice.text}</p>
+        button.onclick = () => removeItem("notices", notice.id);
 
-                    <small class="opacity-60">
-                        ${notice.date}
-                    </small>
+        content.append(title, description, date);
+        card.append(content, button);
 
-                </div>
-
-
-                <button
-                    onclick="removeItem('notices', ${notice.id})"
-                    class="btn btn-error btn-sm">
-
-                    Delete
-
-                </button>
-
-            </div>
-
-        `;
-
+        box.appendChild(card);
     });
-
 }
 
 
 // ============================================================
-// ANNOUNCEMENTS
+// ANNOUNCEMENTS - FIREBASE
 // ============================================================
 
-function addAnnouncement() {
-
+async function addAnnouncement() {
     const titleElement =
         document.getElementById("announcementTitle");
 
     const textElement =
         document.getElementById("announcementText");
 
-
-    if (!titleElement || !textElement) {
-        console.error("Announcement form elements not found.");
-        return;
-    }
-
+    if (!titleElement || !textElement) return;
 
     const title = titleElement.value.trim();
     const text = textElement.value.trim();
 
-
     if (!title || !text) {
-
-        alert("Please enter both the announcement title and details.");
-
+        alert("Please enter announcement title and details.");
         return;
     }
 
+    if (!checkAdminLogin()) return;
 
-    addItem("announcements", {
+    try {
+        await db.collection("announcements").add({
+            title: title,
+            text: text,
+            date: new Date().toLocaleDateString(),
+            createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
 
-        id: Date.now(),
+        titleElement.value = "";
+        textElement.value = "";
 
-        title: title,
+        alert("Announcement published successfully!");
 
-        text: text
-
-    });
-
-
-    titleElement.value = "";
-    textElement.value = "";
-
-
-    loadAnnouncements();
-
-    updateCounts();
-
+    } catch (error) {
+        console.error("Firebase announcement error:", error);
+        alert("Announcement could not be published: " + error.message);
+    }
 }
 
 
-// ============================================================
-// LOAD ANNOUNCEMENTS
-// ============================================================
-
 function loadAnnouncements() {
+    const box = document.getElementById("adminAnnouncements");
 
-    const box =
-        document.getElementById("adminAnnouncements");
+    if (!box) return;
 
+    box.textContent = "Loading announcements...";
 
-    if (!box) {
-        return;
+    if (announcementUnsubscribe) {
+        announcementUnsubscribe();
     }
 
+    announcementUnsubscribe =
+        db.collection("announcements").onSnapshot(
+            snapshot => {
+                firebaseAnnouncements = [];
+
+                snapshot.forEach(doc => {
+                    firebaseAnnouncements.push({
+                        id: doc.id,
+                        ...doc.data()
+                    });
+                });
+
+                sortNewestFirst(firebaseAnnouncements);
+
+                renderAdminAnnouncements();
+                updateCounts();
+            },
+
+            error => {
+                console.error("Firebase announcement error:", error);
+                box.textContent =
+                    "Could not load announcements: " + error.message;
+            }
+        );
+}
+
+
+function renderAdminAnnouncements() {
+    const box = document.getElementById("adminAnnouncements");
+
+    if (!box) return;
 
     box.innerHTML = "";
 
-
-    const announcements =
-        getItems("announcements");
-
-
-    if (announcements.length === 0) {
-
-        box.innerHTML = `
-            <div class="alert">
-                <span>No announcements published yet.</span>
-            </div>
-        `;
-
+    if (!firebaseAnnouncements.length) {
+        box.textContent = "No announcements published yet.";
         return;
     }
 
+    firebaseAnnouncements.forEach(item => {
+        const card = document.createElement("div");
+        card.className = "alert mt-3";
 
-    announcements.forEach(item => {
+        const content = document.createElement("div");
+        content.className = "flex-1";
 
-        box.innerHTML += `
+        const title = document.createElement("b");
+        title.textContent = item.title || "";
 
-            <div class="alert mt-3">
+        const description = document.createElement("p");
+        description.textContent = item.text || "";
 
-                <div class="flex-1">
+        const date = document.createElement("small");
+        date.textContent = item.date || "";
 
-                    <b>${item.title}</b>
+        const button = document.createElement("button");
+        button.className = "btn btn-error btn-sm";
+        button.textContent = "Delete";
 
-                    <p>${item.text}</p>
+        button.onclick = () =>
+            removeItem("announcements", item.id);
 
-                </div>
+        content.append(title, description, date);
+        card.append(content, button);
 
-
-                <button
-                    onclick="removeItem('announcements', ${item.id})"
-                    class="btn btn-error btn-sm">
-
-                    Delete
-
-                </button>
-
-            </div>
-
-        `;
-
+        box.appendChild(card);
     });
-
 }
 
 
 // ============================================================
-// EVENTS
+// EVENTS - FIREBASE
 // ============================================================
 
-function addEvent() {
-
-    const titleElement =
-        document.getElementById("eventTitle");
-
-    const dateElement =
-        document.getElementById("eventDate");
-
+async function addEvent() {
+    const titleElement = document.getElementById("eventTitle");
+    const dateElement = document.getElementById("eventDate");
     const descriptionElement =
         document.getElementById("eventDescription");
 
+    if (!titleElement || !dateElement || !descriptionElement) return;
 
-    if (
-        !titleElement ||
-        !dateElement ||
-        !descriptionElement
-    ) {
-
-        console.error("Event form elements not found.");
-
-        return;
-    }
-
-
-    const title =
-        titleElement.value.trim();
-
-    const date =
-        dateElement.value;
-
-    const description =
-        descriptionElement.value.trim();
-
+    const title = titleElement.value.trim();
+    const date = dateElement.value;
+    const description = descriptionElement.value.trim();
 
     if (!title || !date) {
-
-        alert("Please enter the event name and date.");
-
+        alert("Please enter event name and date.");
         return;
     }
 
+    if (!checkAdminLogin()) return;
 
-    addItem("events", {
+    try {
+        await db.collection("events").add({
+            title: title,
+            date: date,
+            description: description,
+            createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
 
-        id: Date.now(),
+        titleElement.value = "";
+        dateElement.value = "";
+        descriptionElement.value = "";
 
-        title: title,
+        alert("Event published successfully!");
 
-        date: date,
-
-        description: description
-
-    });
-
-
-    titleElement.value = "";
-    dateElement.value = "";
-    descriptionElement.value = "";
-
-
-    loadEvents();
-
-    updateCounts();
-
+    } catch (error) {
+        console.error("Firebase event error:", error);
+        alert("Event could not be published: " + error.message);
+    }
 }
 
 
-// ============================================================
-// LOAD EVENTS
-// ============================================================
-
 function loadEvents() {
+    const box = document.getElementById("adminEvents");
 
-    const box =
-        document.getElementById("adminEvents");
+    if (!box) return;
 
+    box.textContent = "Loading events...";
 
-    if (!box) {
-        return;
+    if (eventUnsubscribe) {
+        eventUnsubscribe();
     }
 
+    eventUnsubscribe = db.collection("events").onSnapshot(
+        snapshot => {
+            firebaseEvents = [];
+
+            snapshot.forEach(doc => {
+                firebaseEvents.push({
+                    id: doc.id,
+                    ...doc.data()
+                });
+            });
+
+            sortNewestFirst(firebaseEvents);
+
+            renderAdminEvents();
+            updateCounts();
+        },
+
+        error => {
+            console.error("Firebase event loading error:", error);
+            box.textContent = "Could not load events: " + error.message;
+        }
+    );
+}
+
+
+function renderAdminEvents() {
+    const box = document.getElementById("adminEvents");
+
+    if (!box) return;
 
     box.innerHTML = "";
 
-
-    const events =
-        getItems("events");
-
-
-    if (events.length === 0) {
-
-        box.innerHTML = `
-            <div class="alert">
-                <span>No events published yet.</span>
-            </div>
-        `;
-
+    if (!firebaseEvents.length) {
+        box.textContent = "No events published yet.";
         return;
     }
 
+    firebaseEvents.forEach(event => {
+        const card = document.createElement("div");
+        card.className = "alert mt-3";
 
-    events.forEach(event => {
+        const content = document.createElement("div");
+        content.className = "flex-1";
 
-        box.innerHTML += `
+        const title = document.createElement("b");
+        title.textContent = event.title || "";
 
-            <div class="alert mt-3">
+        const date = document.createElement("p");
+        date.textContent = "📅 " + (event.date || "");
 
-                <div class="flex-1">
+        const description = document.createElement("p");
+        description.textContent = event.description || "";
 
-                    <b>${event.title}</b>
+        const button = document.createElement("button");
+        button.className = "btn btn-error btn-sm";
+        button.textContent = "Delete";
 
-                    <p>📅 ${event.date}</p>
+        button.onclick = () => removeItem("events", event.id);
 
-                    <p>${event.description}</p>
+        content.append(title, date, description);
+        card.append(content, button);
 
-                </div>
-
-
-                <button
-                    onclick="removeItem('events', ${event.id})"
-                    class="btn btn-error btn-sm">
-
-                    Delete
-
-                </button>
-
-            </div>
-
-        `;
-
+        box.appendChild(card);
     });
-
 }
 
 
 // ============================================================
-// DELETE
+// DELETE - FIREBASE
 // ============================================================
 
-function removeItem(type, id) {
+async function removeItem(type, id) {
+    const collectionNames = [
+        "notices",
+        "announcements",
+        "events"
+    ];
 
-    deleteItem(type, id);
+    if (!collectionNames.includes(type)) {
+        return;
+    }
 
+    if (!checkAdminLogin()) return;
 
-    loadNotices();
-    loadAnnouncements();
-    loadEvents();
+    if (!confirm("Are you sure you want to delete this " +
+        type.slice(0, -1) + "?")) {
+        return;
+    }
 
-    updateCounts();
+    try {
+        await db.collection(type).doc(String(id)).delete();
 
+    } catch (error) {
+        console.error("Firebase delete error:", error);
+        alert("Could not delete item: " + error.message);
+    }
 }
 
 
@@ -485,40 +483,22 @@ function removeItem(type, id) {
 // ============================================================
 
 function updateCounts() {
-
-    const noticeCount =
-        document.getElementById("noticeCount");
-
+    const noticeCount = document.getElementById("noticeCount");
     const announcementCount =
         document.getElementById("announcementCount");
-
-    const eventCount =
-        document.getElementById("eventCount");
-
+    const eventCount = document.getElementById("eventCount");
 
     if (noticeCount) {
-
-        noticeCount.textContent =
-            getItems("notices").length;
-
+        noticeCount.textContent = firebaseNotices.length;
     }
-
 
     if (announcementCount) {
-
-        announcementCount.textContent =
-            getItems("announcements").length;
-
+        announcementCount.textContent = firebaseAnnouncements.length;
     }
-
 
     if (eventCount) {
-
-        eventCount.textContent =
-            getItems("events").length;
-
+        eventCount.textContent = firebaseEvents.length;
     }
-
 }
 
 
@@ -526,14 +506,10 @@ function updateCounts() {
 // INITIAL LOAD
 // ============================================================
 
-document.addEventListener("DOMContentLoaded", () => {
-
+document.addEventListener("DOMContentLoaded", function () {
     loadNotices();
-
     loadAnnouncements();
-
     loadEvents();
 
     updateCounts();
-
 });

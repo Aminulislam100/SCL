@@ -1,117 +1,112 @@
-const ADMIN_PASSWORD = "44881212";
+// ============================================================
+// AUTH.JS - FIREBASE ADMIN AUTHENTICATION
+// ============================================================
 
+const ADMIN_EMAIL = "aminulislamiba@gmail.com";
+const ADMIN_UID = "pyP601yMn3Rs1n8fth0bGHyzE8f2";
 
-// Login System
+// ============================================================
+// LOGIN
+// ============================================================
 
-const loginForm = document.getElementById("loginForm");
+document.addEventListener("DOMContentLoaded", function () {
 
+    const loginForm = document.getElementById("loginForm");
 
-if (loginForm) {
+    if (!loginForm) return;
 
+    loginForm.addEventListener("submit", async function (event) {
 
-    loginForm.addEventListener("submit", function(e) {
+        event.preventDefault();
 
+        const passwordElement =
+            document.getElementById("adminPassword");
 
-        e.preventDefault();
+        const message =
+            document.getElementById("loginMessage");
 
+        const password = passwordElement.value;
 
-
-        let password = document.getElementById("adminPassword").value;
-
-
-        let message = document.getElementById("loginMessage");
-
-
-
-        if (password === ADMIN_PASSWORD) {
-
-
-            localStorage.setItem(
-                "adminLogin",
-                "true"
-            );
-
-
-            message.innerHTML = `
-
-            <div class="alert alert-success">
-
-            Login Successful. Redirecting...
-
-            </div>
-
-            `;
-
-
-
-            setTimeout(() => {
-
-
-                window.location.href = "dashboard.html";
-
-
-            }, 1000);
-
-
-
+        if (!password) {
+            message.textContent = "Please enter your password.";
+            return;
         }
 
-        else {
+        message.textContent = "Logging in...";
 
+        try {
 
-            message.innerHTML = `
+            const result =
+                await auth.signInWithEmailAndPassword(
+                    ADMIN_EMAIL,
+                    password
+                );
 
-            <div class="alert alert-error">
+            if (result.user.uid !== ADMIN_UID) {
+                await auth.signOut();
+                throw new Error("Unauthorized account.");
+            }
 
-            Incorrect Password
+            localStorage.setItem("adminLogin", "true");
 
-            </div>
+            window.location.href = "dashboard.html";
 
-            `;
+        } catch (error) {
 
+            console.error("Login error:", error);
+
+            message.textContent =
+                "Login failed. Check your password and Firebase setup.";
 
         }
-
-
 
     });
 
-
-}
-
+});
 
 
-// Protect Dashboard
+// ============================================================
+// CHECK ADMIN LOGIN
+// ============================================================
 
 function checkLogin() {
 
+    auth.onAuthStateChanged(async function (user) {
 
-    if (
-        localStorage.getItem("adminLogin") !== "true"
-    ) {
+        if (!user || user.uid !== ADMIN_UID) {
 
+            if (user) {
+                await auth.signOut();
+            }
 
-        window.location.href = "admin.html";
+            window.location.href = "admin.html";
+        }
 
-
-    }
-
+    });
 
 }
 
 
+// ============================================================
+// LOGOUT
+// ============================================================
 
-// Logout
+async function logout() {
 
-function logout() {
+    try {
 
+        await auth.signOut();
 
-    localStorage.removeItem(
-        "adminLogin"
-    );
+        localStorage.removeItem("adminLogin");
 
+        window.location.href = "admin.html";
 
-    window.location.href = "admin.html";
+    } catch (error) {
 
+        console.error("Logout error:", error);
+
+        alert("Logout failed. Please try again.");
+
+    }
 
 }

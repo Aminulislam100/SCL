@@ -1,1101 +1,1377 @@
 
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#071225">
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admissions | Udayon School</title>
+  <meta name="description" content="Apply for admission at Udayon School. Begin your child's journey of learning, growth and achievement.">
 
-    <title>Admissions | Udayon School</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <!-- Tailwind + DaisyUI -->
-    <link
-        href="https://cdn.jsdelivr.net/npm/daisyui@5"
-        rel="stylesheet"
-        type="text/css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style>
+    :root {
+      --bg: #071225;
+      --bg-soft: #0b1b33;
+      --panel: rgba(15, 35, 62, .78);
+      --blue: #398bff;
+      --cyan: #48e0f5;
+      --text: #f3f7ff;
+      --muted: #a8b8ce;
+      --border: rgba(126, 177, 239, .18);
+      --max-width: 1180px;
+    }
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap"
-        rel="stylesheet">
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 95px;
+    }
 
-    <style>
+    body {
+      font-family: "DM Sans", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
 
-        * {
-            scroll-behavior: smooth;
-        }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse at 10% 10%, rgba(35,112,255,.15), transparent 35%),
+        radial-gradient(ellipse at 90% 60%, rgba(31,205,235,.08), transparent 35%);
+    }
 
-        body {
-            font-family: "Inter", sans-serif;
-        }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
 
-        .heading-font {
-            font-family: "Playfair Display", serif;
-        }
+    button, input, select, textarea {
+      font: inherit;
+    }
 
-        .hero-pattern {
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(15, 23, 42, .98),
-                    rgba(5, 150, 105, .92)
-                ),
-                radial-gradient(
-                    circle at 15% 20%,
-                    rgba(255,255,255,.12),
-                    transparent 30%
-                ),
-                radial-gradient(
-                    circle at 85% 80%,
-                    rgba(255,255,255,.08),
-                    transparent 30%
-                );
-        }
+    .container {
+      width: min(var(--max-width), calc(100% - 40px));
+      margin-inline: auto;
+    }
 
-        .nav-link {
-            transition:
-                color .2s ease,
-                background-color .2s ease;
-        }
+    .section {
+      padding: 100px 0;
+    }
 
-        .nav-link:hover {
-            color: #2563eb;
-            background: #eff6ff;
-        }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--cyan);
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: 2.3px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
 
-        .form-card {
-            box-shadow:
-                0 25px 60px rgba(15, 23, 42, .10);
-        }
+    .eyebrow::before {
+      content: "";
+      width: 24px;
+      height: 2px;
+      background: var(--cyan);
+      box-shadow: 0 0 12px var(--cyan);
+    }
 
-        .input,
-        .select,
-        .textarea {
-            transition:
-                border-color .2s ease,
-                box-shadow .2s ease;
-        }
+    h1, h2, h3, h4 {
+      font-family: "Space Grotesk", sans-serif;
+      line-height: 1.2;
+    }
 
-        .input:focus,
-        .select:focus,
-        .textarea:focus {
-            outline: none;
-            border-color: #2563eb;
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, .10);
-        }
+    h2 {
+      font-size: clamp(2rem, 4vw, 3.1rem);
+      letter-spacing: -1.3px;
+    }
 
-        .info-card {
-            transition:
-                transform .25s ease,
-                box-shadow .25s ease;
-        }
+    .gradient-text {
+      background: linear-gradient(100deg, #fff, #76c7ff, #51e5e9);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
 
-        .info-card:hover {
-            transform: translateY(-5px);
-            box-shadow:
-                0 20px 40px rgba(15, 23, 42, .09);
-        }
+    .section-heading {
+      max-width: 720px;
+      text-align: center;
+      margin: 0 auto 50px;
+    }
 
-    </style>
+    .section-description {
+      color: var(--muted);
+      margin-top: 17px;
+    }
 
+    /* NAVIGATION */
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(5,16,33,.88);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.2rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .brand-mark {
+      width: 43px;
+      height: 43px;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      color: #061326;
+      background: linear-gradient(135deg, #58c9ff, #54eee2);
+      box-shadow: 0 0 25px rgba(57,139,255,.3);
+    }
+
+    .brand small {
+      display: block;
+      color: var(--cyan);
+      font-family: "DM Sans", sans-serif;
+      font-size: .62rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 19px;
+    }
+
+    .nav-links a {
+      color: #c4d1e4;
+      font-size: .86rem;
+      font-weight: 600;
+      transition: color .2s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--cyan);
+    }
+
+    .nav-links .admin-link {
+      padding: 10px 16px;
+      color: var(--cyan);
+      border: 1px solid rgba(72,224,245,.4);
+      border-radius: 10px;
+    }
+
+    .menu-toggle {
+      display: none;
+      width: 43px;
+      height: 42px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: white;
+      background: var(--panel);
+      font-size: 1.3rem;
+      cursor: pointer;
+    }
+
+    /* HERO */
+
+    .hero {
+      position: relative;
+      min-height: 570px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(4,15,33,.96), rgba(5,20,40,.77) 60%, rgba(5,20,40,.4)),
+        url("./src/WhatsApp\ Image\ 2026-11-09\ at\ 3.27.37\ PM.jpeg")
+        center/cover no-repeat;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      right: -120px;
+      top: 70px;
+      border: 1px solid rgba(72,224,245,.2);
+      border-radius: 50%;
+      box-shadow:
+        0 0 0 35px rgba(72,224,245,.03),
+        0 0 0 75px rgba(72,224,245,.02);
+    }
+
+    .hero-content {
+      max-width: 780px;
+      position: relative;
+      z-index: 1;
+      padding: 100px 0;
+    }
+
+    .hero h1 {
+      font-size: clamp(3.1rem, 7vw, 5.6rem);
+      letter-spacing: -3px;
+      margin-bottom: 22px;
+    }
+
+    .hero-description {
+      max-width: 630px;
+      color: #c1d0e4;
+      font-size: 1.1rem;
+      margin-bottom: 28px;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .hero-badge {
+      padding: 10px 17px;
+      border: 1px solid rgba(72,224,245,.28);
+      border-radius: 30px;
+      color: #e7f6ff;
+      background: rgba(72,224,245,.08);
+      backdrop-filter: blur(10px);
+      font-size: .86rem;
+      font-weight: 700;
+    }
+
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 23px;
+      border-radius: 11px;
+      font-weight: 800;
+      transition: .25s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .btn-primary {
+      color: #061326;
+      background: linear-gradient(110deg, #58c9ff, #54eee2);
+      box-shadow: 0 8px 28px rgba(54,184,255,.2);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 12px 35px rgba(54,184,255,.35);
+    }
+
+    /* INFORMATION CARDS */
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .info-card {
+      padding: 30px;
+      border: 1px solid var(--border);
+      border-radius: 19px;
+      background: linear-gradient(145deg, rgba(19,45,77,.8), rgba(10,26,48,.8));
+      transition: .3s ease;
+    }
+
+    .info-card:hover {
+      transform: translateY(-7px);
+      border-color: rgba(72,224,245,.5);
+      box-shadow: 0 20px 45px rgba(0,0,0,.2);
+    }
+
+    .info-icon {
+      width: 55px;
+      height: 55px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 23px;
+      border-radius: 15px;
+      border: 1px solid rgba(72,224,245,.2);
+      background: rgba(57,139,255,.14);
+      font-size: 1.6rem;
+    }
+
+    .info-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 12px;
+    }
+
+    .info-card p {
+      color: var(--muted);
+      font-size: .94rem;
+    }
+
+    /* IMAGE SECTION */
+
+    .image-feature {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .feature-photo {
+      min-height: 370px;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      box-shadow: 0 22px 60px rgba(0,0,0,.25);
+    }
+
+    .feature-photo img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      inset: 0;
+      object-fit: cover;
+      transition: transform .6s ease;
+    }
+
+    .feature-photo:hover img {
+      transform: scale(1.05);
+    }
+
+    .feature-copy p {
+      color: var(--muted);
+      margin: 20px 0;
+    }
+
+    .feature-points {
+      display: grid;
+      gap: 13px;
+      margin-top: 24px;
+    }
+
+    .feature-point {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #d9e7f7;
+      font-weight: 600;
+    }
+
+    .feature-point span {
+      color: var(--cyan);
+    }
+
+    /* APPLICATION SECTION */
+
+    .application-section {
+      background:
+        radial-gradient(ellipse at 10% 10%, rgba(35,112,255,.1), transparent 35%),
+        rgba(5,16,33,.5);
+      border-block: 1px solid var(--border);
+    }
+
+    .form-card {
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 23px;
+      background: linear-gradient(145deg, rgba(17,40,69,.95), rgba(8,24,45,.96));
+      box-shadow: 0 25px 70px rgba(0,0,0,.22);
+    }
+
+    .form-header {
+      padding: 30px 38px;
+      background:
+        linear-gradient(110deg, rgba(36,116,219,.8), rgba(20,174,204,.45));
+      border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+
+    .form-header h3 {
+      font-size: 1.6rem;
+    }
+
+    .form-header p {
+      color: #d8f3ff;
+      margin-top: 7px;
+      font-size: .9rem;
+    }
+
+    .form-body {
+      padding: 38px;
+    }
+
+    .form-section-title {
+      font-size: 1.25rem;
+      margin-bottom: 23px;
+      color: white;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+
+    .form-group {
+      min-width: 0;
+    }
+
+    .form-group.full-width {
+      grid-column: 1 / -1;
+    }
+
+    .form-label {
+      display: block;
+      color: #dce9f8;
+      font-size: .9rem;
+      font-weight: 700;
+      margin-bottom: 9px;
+    }
+
+    .form-control {
+      display: block;
+      width: 100%;
+      min-height: 51px;
+      padding: 12px 15px;
+      border: 1px solid rgba(126,177,239,.25);
+      border-radius: 11px;
+      outline: none;
+      color: white;
+      background: rgba(3,15,31,.65);
+      transition: .25s ease;
+    }
+
+    .form-control:focus {
+      border-color: var(--cyan);
+      box-shadow: 0 0 0 4px rgba(72,224,245,.09);
+    }
+
+    .form-control::placeholder {
+      color: #7187a3;
+    }
+
+    .form-control option {
+      color: white;
+      background: #102440;
+    }
+
+    textarea.form-control {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .form-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 34px 0;
+    }
+
+    #message {
+      color: var(--cyan);
+      font-size: .9rem;
+      margin-bottom: 15px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      min-height: 55px;
+      border: none;
+      border-radius: 12px;
+      color: #061326;
+      background: linear-gradient(110deg, #58c9ff, #54eee2);
+      box-shadow: 0 9px 28px rgba(57,139,255,.2);
+      font-weight: 800;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: .25s ease;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 13px 35px rgba(57,139,255,.35);
+    }
+
+    .form-note {
+      text-align: center;
+      color: #8da2bc;
+      font-size: .8rem;
+      margin-top: 17px;
+    }
+
+    /* NEXT STEPS */
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .step-card {
+      padding: 28px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: var(--panel);
+    }
+
+    .step-number {
+      width: 43px;
+      height: 43px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 18px;
+      border-radius: 13px;
+      color: #061326;
+      background: linear-gradient(135deg, #58c9ff, #54eee2);
+      font-weight: 800;
+    }
+
+    .step-card h3 {
+      margin-bottom: 10px;
+    }
+
+    .step-card p {
+      color: var(--muted);
+      font-size: .93rem;
+    }
+
+    /* CTA */
+
+    .cta-panel {
+      padding: 65px 30px;
+      text-align: center;
+      border: 1px solid rgba(72,224,245,.25);
+      border-radius: 24px;
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(57,139,255,.24), transparent 65%),
+        linear-gradient(135deg, #102e51, #0a1a31);
+    }
+
+    .cta-panel p {
+      max-width: 620px;
+      margin: 17px auto 25px;
+      color: var(--muted);
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding: 55px 0 25px;
+      background: rgba(4,13,27,.85);
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.7fr 1fr 1fr;
+      gap: 45px;
+      padding-bottom: 38px;
+    }
+
+    .footer-about p {
+      max-width: 400px;
+      color: var(--muted);
+      margin-top: 17px;
+      font-size: .92rem;
+    }
+
+    .footer-links h3 {
+      margin-bottom: 15px;
+      font-size: 1rem;
+    }
+
+    .footer-links a {
+      display: block;
+      margin: 9px 0;
+      color: var(--muted);
+      font-size: .9rem;
+      transition: color .2s ease;
+    }
+
+    .footer-links a:hover,
+    .footer-links a.active {
+      color: var(--cyan);
+    }
+
+    .copyright {
+      padding-top: 22px;
+      border-top: 1px solid var(--border);
+      color: #8295af;
+      text-align: center;
+      font-size: .83rem;
+    }
+
+    /* ANIMATIONS */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 1050px) {
+      .nav-links {
+        gap: 12px;
+      }
+
+      .nav-links a {
+        font-size: .78rem;
+      }
+    }
+
+    @media (max-width: 850px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 78px;
+        left: 0;
+        right: 0;
+        padding: 18px 25px 24px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        background: rgba(5,16,33,.98);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 12px 8px;
+        font-size: .95rem;
+      }
+
+      .nav-links .admin-link {
+        margin-top: 8px;
+        text-align: center;
+      }
+
+      .info-grid,
+      .steps-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .image-feature {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .feature-photo {
+        min-height: 320px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .section {
+        padding: 72px 0;
+      }
+
+      .container {
+        width: calc(100% - 30px);
+      }
+
+      .hero {
+        min-height: 490px;
+      }
+
+      .hero-content {
+        padding: 75px 0;
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+        letter-spacing: -2px;
+      }
+
+      .hero-description {
+        font-size: 1rem;
+      }
+
+      .hero-badges {
+        gap: 8px;
+      }
+
+      .hero-badge {
+        font-size: .77rem;
+        padding: 8px 12px;
+      }
+
+      .form-header {
+        padding: 25px 22px;
+      }
+
+      .form-body {
+        padding: 25px 20px;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+        gap: 17px;
+      }
+
+      .form-group.full-width {
+        grid-column: auto;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .cta-panel {
+        padding: 45px 20px;
+      }
+    }
+  </style>
 </head>
 
+<body>
 
-<body class="bg-slate-50 text-slate-800">
+  <!-- NAVIGATION -->
+  <header class="navbar">
+    <div class="container nav-inner">
+
+      <a href="index.html" class="brand">
+        <span class="brand-mark">U</span>
+        <span>
+          UDAYON SCHOOL
+          <small>Learn · Grow · Shine</small>
+        </span>
+      </a>
+
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="navLinks">
+        ☰
+      </button>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="notice.html">Notice</a>
+        <a href="announcement.html">Announcement</a>
+        <a href="curriculum.html">Curriculum</a>
+        <a href="admission.html" class="active">Admission</a>
+        <a href="events.html">Events</a>
+        <a href="admin.html" class="admin-link">Admin Portal ↗</a>
+      </nav>
+
+    </div>
+  </header>
 
 
-<!-- ========================================================= -->
-<!-- NAVBAR -->
-<!-- ========================================================= -->
+  <main>
 
-<header
-    class="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur-md">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
 
-    <div
-        class="navbar max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="hero-content reveal">
 
-        <div class="navbar-start">
+          <span class="eyebrow">Admissions 2026</span>
 
-            <!-- Mobile Menu -->
+          <h1>
+            Your Child's
+            <span class="gradient-text">Future Starts Here.</span>
+          </h1>
 
-            <div class="dropdown">
+          <p class="hero-description">
+            Begin your child's educational journey at Udayon School.
+            Discover a supportive learning environment where knowledge,
+            character and creativity grow together.
+          </p>
 
-                <button
-                    tabindex="0"
-                    class="btn btn-ghost lg:hidden"
-                    aria-label="Open navigation menu">
+          <a href="#application" class="btn btn-primary">
+            Apply for Admission →
+          </a>
 
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="h-6 w-6"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor">
+          <div class="hero-badges">
+            <span class="hero-badge">January – March</span>
+            <span class="hero-badge">Classes 1 – 10</span>
+          </div>
 
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M4 6h16M4 12h16M4 18h16" />
+        </div>
 
-                    </svg>
+      </div>
+    </section>
 
+
+    <!-- ADMISSION INFORMATION -->
+    <section class="section">
+      <div class="container">
+
+        <div class="section-heading reveal">
+          <span class="eyebrow">Admission Information</span>
+          <h2>Start Your Journey at <span class="gradient-text">Udayon</span></h2>
+          <p class="section-description">
+            Everything you need to know before beginning your application.
+          </p>
+        </div>
+
+        <div class="info-grid">
+
+          <article class="info-card reveal">
+            <div class="info-icon">📅</div>
+            <h3>Admission Period</h3>
+            <p>
+              Applications are accepted from January to March.
+            </p>
+          </article>
+
+          <article class="info-card reveal">
+            <div class="info-icon">🎓</div>
+            <h3>Classes Available</h3>
+            <p>
+              Applications are currently available for Classes 1–10.
+            </p>
+          </article>
+
+          <article class="info-card reveal">
+            <div class="info-icon">📋</div>
+            <h3>Easy Application</h3>
+            <p>
+              Complete the online application form below.
+            </p>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- SCHOOL PHOTO SECTION -->
+    <section class="section">
+      <div class="container image-feature">
+
+        <div class="feature-photo reveal">
+          <img
+            src="./src/WhatsApp Image 2026-11-09 at 3.27.35 PM.jpeg"
+            alt="Students learning together in a classroom"
+            loading="lazy">
+        </div>
+
+        <div class="feature-copy reveal">
+          <span class="eyebrow">A Place to Grow</span>
+
+          <h2>
+            More Than Just
+            <span class="gradient-text">Education.</span>
+          </h2>
+
+          <p>
+            At Udayon School, we believe every child deserves an
+            opportunity to learn, explore and develop their abilities.
+            Our educational approach focuses on academic progress,
+            confidence and positive values.
+          </p>
+
+          <div class="feature-points">
+            <div class="feature-point">
+              <span>✦</span> Learning and personal development
+            </div>
+            <div class="feature-point">
+              <span>✦</span> Encouraging curiosity and creativity
+            </div>
+            <div class="feature-point">
+              <span>✦</span> Building confidence and responsibility
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- APPLICATION FORM -->
+    <section class="section application-section" id="application">
+
+      <div class="container">
+
+        <div class="section-heading reveal">
+          <span class="eyebrow">Online Application</span>
+
+          <h2>
+            Student <span class="gradient-text">Admission Form</span>
+          </h2>
+
+          <p class="section-description">
+            Please provide accurate information. Our school team
+            will review your application.
+          </p>
+        </div>
+
+
+        <div class="form-card reveal">
+
+          <div class="form-header">
+            <h3>Applicant Information</h3>
+            <p>Fields marked with * are required.</p>
+          </div>
+
+          <div class="form-body">
+
+            <!-- Original Formspree endpoint and form ID preserved -->
+            <form
+              action="https://formspree.io/f/mvkpopzb"
+              method="POST"
+              id="admissionForm"
+              class="space-y-8">
+
+
+              <!-- STUDENT DETAILS -->
+              <div>
+
+                <h4 class="form-section-title">
+                  01. Student Details
+                </h4>
+
+                <div class="form-grid">
+
+                  <div class="form-group">
+                    <label for="studentName" class="form-label">
+                      Student Name *
+                    </label>
+
+                    <input
+                      id="studentName"
+                      name="studentName"
+                      type="text"
+                      placeholder="Full Name"
+                      autocomplete="name"
+                      class="form-control"
+                      required>
+                  </div>
+
+
+                  <div class="form-group">
+                    <label for="dob" class="form-label">
+                      Date of Birth *
+                    </label>
+
+                    <input
+                      id="dob"
+                      name="dob"
+                      type="date"
+                      class="form-control"
+                      required>
+                  </div>
+
+
+                  <div class="form-group">
+                    <label for="gender" class="form-label">
+                      Gender
+                    </label>
+
+                    <select
+                      id="gender"
+                      name="gender"
+                      class="form-control">
+
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                      <option value="Other">Other</option>
+
+                    </select>
+                  </div>
+
+
+                  <div class="form-group">
+                    <label for="className" class="form-label">
+                      Class Applying For
+                    </label>
+
+                    <select
+                      id="className"
+                      name="className"
+                      class="form-control">
+
+                      <option value="Class 1">Class 1</option>
+                      <option value="Class 2">Class 2</option>
+                      <option value="Class 3">Class 3</option>
+                      <option value="Class 4">Class 4</option>
+                      <option value="Class 5">Class 5</option>
+                      <option value="Class 6">Class 6</option>
+                      <option value="Class 7">Class 7</option>
+                      <option value="Class 8">Class 8</option>
+                      <option value="Class 9">Class 9</option>
+                      <option value="Class 10">Class 10</option>
+
+                    </select>
+                  </div>
+
+                </div>
+
+              </div>
+
+
+              <div class="form-divider"></div>
+
+
+              <!-- GUARDIAN DETAILS -->
+              <div>
+
+                <h4 class="form-section-title">
+                  02. Parent / Guardian Details
+                </h4>
+
+                <div class="form-grid">
+
+                  <div class="form-group">
+                    <label for="fatherName" class="form-label">
+                      Father's Name *
+                    </label>
+
+                    <input
+                      id="fatherName"
+                      name="fatherName"
+                      type="text"
+                      placeholder="Father's Name"
+                      class="form-control"
+                      required>
+                  </div>
+
+
+                  <div class="form-group">
+                    <label for="motherName" class="form-label">
+                      Mother's Name
+                    </label>
+
+                    <input
+                      id="motherName"
+                      name="motherName"
+                      type="text"
+                      placeholder="Mother's Name"
+                      class="form-control">
+                  </div>
+
+
+                  <div class="form-group">
+                    <label for="phone" class="form-label">
+                      Phone Number *
+                    </label>
+
+                    <input
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      placeholder="Phone Number"
+                      autocomplete="tel"
+                      class="form-control"
+                      required>
+                  </div>
+
+
+                  <div class="form-group">
+                    <label for="email" class="form-label">
+                      Email *
+                    </label>
+
+                    <input
+                      id="email"
+                      name="email"
+                      type="email"
+                      placeholder="Email Address"
+                      autocomplete="email"
+                      class="form-control"
+                      required>
+                  </div>
+
+
+                  <div class="form-group full-width">
+                    <label for="address" class="form-label">
+                      Address
+                    </label>
+
+                    <textarea
+                      id="address"
+                      name="address"
+                      rows="4"
+                      class="form-control"
+                      placeholder="Full Address"></textarea>
+                  </div>
+
+                </div>
+
+              </div>
+
+
+              <!-- Preserve original message element for admissions.js -->
+              <div id="message" class="empty:hidden" role="status" aria-live="polite"></div>
+
+
+              <div>
+                <button type="submit" class="submit-btn">
+                  Submit Admission Application →
                 </button>
 
-
-                <ul
-                    tabindex="0"
-                    class="menu menu-sm dropdown-content mt-3 z-[1] p-3 shadow-xl bg-white rounded-2xl w-64 border border-slate-100">
-
-                    <li><a href="index.html">Home</a></li>
-
-                    <li><a href="about.html">About</a></li>
-
-                    <li><a href="notice.html">Notice</a></li>
-
-                    <li><a href="announcement.html">Announcement</a></li>
-
-                    <li><a href="curriculum.html">Curriculum</a></li>
-
-                    <li>
-                        <a
-                            href="admission.html"
-                            class="text-blue-600 font-semibold">
-                            Admission
-                        </a>
-                    </li>
-
-                    <li><a href="events.html">Events</a></li>
-
-
-                </ul>
-
-            </div>
-
-
-            <!-- Logo -->
-
-            <a
-                href="index.html"
-                class="btn btn-ghost normal-case text-lg sm:text-xl font-bold gap-2">
-
-                <span
-                    class="flex items-center justify-center w-10 h-10 rounded-xl bg-blue-600 text-white font-bold">
-
-                    U
-
-                </span>
-
-                <span class="hidden sm:inline">
-                    Udayon School
-                </span>
-
-            </a>
-
-        </div>
-
-
-        <!-- Desktop Navigation -->
-
-        <nav class="navbar-center hidden lg:flex">
-
-            <ul class="menu menu-horizontal gap-1">
-
-                <li>
-                    <a
-                        href="index.html"
-                        class="nav-link rounded-lg font-medium">
-                        Home
-                    </a>
-                </li>
-
-                <li>
-                    <a
-                        href="about.html"
-                        class="nav-link rounded-lg font-medium">
-                        About
-                    </a>
-                </li>
-
-                <li>
-                    <a
-                        href="notice.html"
-                        class="nav-link rounded-lg font-medium">
-                        Notice
-                    </a>
-                </li>
-
-                <li>
-                    <a
-                        href="announcement.html"
-                        class="nav-link rounded-lg font-medium">
-                        Announcement
-                    </a>
-                </li>
-
-                <li>
-                    <a
-                        href="curriculum.html"
-                        class="nav-link rounded-lg font-medium">
-                        Curriculum
-                    </a>
-                </li>
-
-                <li>
-                    <a
-                        href="admission.html"
-                        class="rounded-lg font-semibold text-blue-600 bg-blue-50">
-                        Admission
-                    </a>
-                </li>
-
-                <li>
-                    <a
-                        href="events.html"
-                        class="nav-link rounded-lg font-medium">
-                        Events
-                    </a>
-                </li>
-
-
-            </ul>
-
-        </nav>
-
-
-        <div class="navbar-end">
-
-            <a
-                href="admin.html"
-                class="btn btn-primary rounded-xl px-5 shadow-md shadow-blue-600/20">
-
-                Admin Portal
-
-            </a>
-
-        </div>
-
-    </div>
-
-</header>
-
-
-
-<!-- ========================================================= -->
-<!-- HERO -->
-<!-- ========================================================= -->
-
-<section class="hero-pattern text-white relative overflow-hidden">
-
-    <div
-        class="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-emerald-400/10">
-    </div>
-
-    <div
-        class="absolute -bottom-40 -left-32 w-[500px] h-[500px] rounded-full bg-blue-400/10">
-    </div>
-
-
-    <div class="relative max-w-7xl mx-auto px-5">
-
-        <div class="py-24 sm:py-28 text-center">
-
-            <p
-                class="text-sm font-bold uppercase tracking-[.15em] text-emerald-200">
-
-                Admissions 2026
-
-            </p>
-
-
-            <h1
-                class="heading-font text-5xl sm:text-6xl lg:text-7xl font-bold mt-4">
-
-                Admission Open
-
-            </h1>
-
-
-            <p
-                class="text-lg sm:text-xl text-slate-200 mt-6">
-
-                Begin your child's educational journey at Udayon School.
-
-            </p>
-
-
-            <div
-                class="flex justify-center flex-wrap gap-3 mt-7">
-
-                <span
-                    class="badge badge-lg bg-white/10 border-white/20 text-white px-5 py-4">
-
-                    January – March
-
-                </span>
-
-                <span
-                    class="badge badge-lg bg-white/10 border-white/20 text-white px-5 py-4">
-
-                    Classes 1 – 10
-
-                </span>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- ========================================================= -->
-<!-- ADMISSION INFO -->
-<!-- ========================================================= -->
-
-<section class="py-16 bg-white">
-
-    <div class="max-w-7xl mx-auto px-5">
-
-        <div class="grid md:grid-cols-3 gap-6">
-
-
-            <div
-                class="info-card bg-slate-50 border border-slate-100 rounded-2xl p-7">
-
-                <div
-                    class="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center text-xl">
-
-                    📅
-
-                </div>
-
-                <h3
-                    class="font-bold text-xl mt-5">
-
-                    Admission Period
-
-                </h3>
-
-                <p class="text-slate-500 mt-2">
-
-                    Applications are accepted from January to March.
-
+                <p class="form-note">
+                  By submitting this form, you confirm that the
+                  information provided is accurate.
                 </p>
+              </div>
 
-            </div>
+            </form>
 
-
-            <div
-                class="info-card bg-slate-50 border border-slate-100 rounded-2xl p-7">
-
-                <div
-                    class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl">
-
-                    🎓
-
-                </div>
-
-                <h3
-                    class="font-bold text-xl mt-5">
-
-                    Classes Available
-
-                </h3>
-
-                <p class="text-slate-500 mt-2">
-
-                    Applications are currently available for Classes 1–10.
-
-                </p>
-
-            </div>
-
-
-            <div
-                class="info-card bg-slate-50 border border-slate-100 rounded-2xl p-7">
-
-                <div
-                    class="w-12 h-12 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center text-xl">
-
-                    📋
-
-                </div>
-
-                <h3
-                    class="font-bold text-xl mt-5">
-
-                    Easy Application
-
-                </h3>
-
-                <p class="text-slate-500 mt-2">
-
-                    Complete the online application form below.
-
-                </p>
-
-            </div>
-
+          </div>
 
         </div>
 
-    </div>
+      </div>
 
-</section>
-
-
-
-<!-- ========================================================= -->
-<!-- APPLICATION FORM -->
-<!-- ========================================================= -->
-
-<section
-    id="application"
-    class="py-24 bg-slate-50">
+    </section>
 
 
-    <div class="max-w-5xl mx-auto px-5">
+    <!-- NEXT STEPS -->
+    <section class="section">
+      <div class="container">
 
-
-        <div
-            class="text-center max-w-2xl mx-auto mb-12">
-
-            <p
-                class="text-sm font-bold uppercase tracking-[.15em] text-blue-600">
-
-                Online Application
-
-            </p>
-
-            <h2
-                class="heading-font text-4xl sm:text-5xl font-bold text-slate-900 mt-3">
-
-                Student Admission Form
-
-            </h2>
-
-            <p
-                class="text-slate-500 text-lg mt-5">
-
-                Please provide accurate information. Our school
-                team will review your application.
-
-            </p>
-
+        <div class="section-heading reveal">
+          <span class="eyebrow">After Applying</span>
+          <h2>What Happens <span class="gradient-text">Next?</span></h2>
+          <p class="section-description">
+            Here is what to expect after submitting your application.
+          </p>
         </div>
 
-
-
-        <div
-            class="bg-white rounded-3xl border border-slate-100 form-card overflow-hidden">
-
-
-            <!-- Form Header -->
-
-            <div
-                class="bg-gradient-to-r from-blue-700 to-indigo-700 px-7 sm:px-10 py-7 text-white">
-
-                <h3
-                    class="text-2xl font-bold">
-
-                    Applicant Information
-
-                </h3>
-
-                <p
-                    class="text-blue-100 mt-1">
-
-                    Fields marked with * are required.
-
-                </p>
-
-            </div>
-
-
-
-            <div class="p-7 sm:p-10">
-
-
-                <form
-                    action="https://formspree.io/f/mvkpopzb"
-                    method="POST"
-                    id="admissionForm"
-                    class="space-y-8">
-
-
-                    <!-- Student Information -->
-
-                    <div>
-
-                        <h4
-                            class="text-lg font-bold text-slate-900 mb-5">
-
-                            Student Details
-
-                        </h4>
-
-
-                        <div
-                            class="grid md:grid-cols-2 gap-5">
-
-
-                            <!-- Student Name -->
-
-                            <div>
-
-                                <label
-                                    for="studentName"
-                                    class="label">
-
-                                    <span class="label-text font-semibold">
-                                        Student Name *
-                                    </span>
-
-                                </label>
-
-                                <input
-                                    id="studentName"
-                                    name="studentName"
-                                    type="text"
-                                    placeholder="Full Name"
-                                    autocomplete="name"
-                                    class="input input-bordered w-full rounded-xl"
-                                    required>
-
-                            </div>
-
-
-                            <!-- DOB -->
-
-                            <div>
-
-                                <label
-                                    for="dob"
-                                    class="label">
-
-                                    <span class="label-text font-semibold">
-                                        Date of Birth *
-                                    </span>
-
-                                </label>
-
-                                <input
-                                    id="dob"
-                                    name="dob"
-                                    type="date"
-                                    class="input input-bordered w-full rounded-xl"
-                                    required>
-
-                            </div>
-
-
-                            <!-- Gender -->
-
-                            <div>
-
-                                <label
-                                    for="gender"
-                                    class="label">
-
-                                    <span class="label-text font-semibold">
-                                        Gender
-                                    </span>
-
-                                </label>
-
-                                <select
-                                    id="gender"
-                                    name="gender"
-                                    class="select select-bordered w-full rounded-xl">
-
-                                    <option value="Male">
-                                        Male
-                                    </option>
-
-                                    <option value="Female">
-                                        Female
-                                    </option>
-
-                                    <option value="Other">
-                                        Other
-                                    </option>
-
-                                </select>
-
-                            </div>
-
-
-                            <!-- Class -->
-
-                            <div>
-
-                                <label
-                                    for="className"
-                                    class="label">
-
-                                    <span class="label-text font-semibold">
-                                        Class Applying For
-                                    </span>
-
-                                </label>
-
-                                <select
-                                    id="className"
-                                    name="className"
-                                    class="select select-bordered w-full rounded-xl">
-
-                                    <option value="Class 1">Class 1</option>
-                                    <option value="Class 2">Class 2</option>
-                                    <option value="Class 3">Class 3</option>
-                                    <option value="Class 4">Class 4</option>
-                                    <option value="Class 5">Class 5</option>
-                                    <option value="Class 6">Class 6</option>
-                                    <option value="Class 7">Class 7</option>
-                                    <option value="Class 8">Class 8</option>
-                                    <option value="Class 9">Class 9</option>
-                                    <option value="Class 10">Class 10</option>
-
-                                </select>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <div class="divider"></div>
-
-
-
-                    <!-- Parent Information -->
-
-                    <div>
-
-                        <h4
-                            class="text-lg font-bold text-slate-900 mb-5">
-
-                            Parent / Guardian Details
-
-                        </h4>
-
-
-                        <div
-                            class="grid md:grid-cols-2 gap-5">
-
-
-                            <!-- Father -->
-
-                            <div>
-
-                                <label
-                                    for="fatherName"
-                                    class="label">
-
-                                    <span class="label-text font-semibold">
-                                        Father's Name *
-                                    </span>
-
-                                </label>
-
-                                <input
-                                    id="fatherName"
-                                    name="fatherName"
-                                    type="text"
-                                    placeholder="Father's Name"
-                                    class="input input-bordered w-full rounded-xl"
-                                    required>
-
-                            </div>
-
-
-                            <!-- Mother -->
-
-                            <div>
-
-                                <label
-                                    for="motherName"
-                                    class="label">
-
-                                    <span class="label-text font-semibold">
-                                        Mother's Name
-                                    </span>
-
-                                </label>
-
-                                <input
-                                    id="motherName"
-                                    name="motherName"
-                                    type="text"
-                                    placeholder="Mother's Name"
-                                    class="input input-bordered w-full rounded-xl">
-
-                            </div>
-
-
-                            <!-- Phone -->
-
-                            <div>
-
-                                <label
-                                    for="phone"
-                                    class="label">
-
-                                    <span class="label-text font-semibold">
-                                        Phone Number *
-                                    </span>
-
-                                </label>
-
-                                <input
-                                    id="phone"
-                                    name="phone"
-                                    type="tel"
-                                    placeholder="Phone Number"
-                                    autocomplete="tel"
-                                    class="input input-bordered w-full rounded-xl"
-                                    required>
-
-                            </div>
-
-
-                            <!-- Email -->
-
-                            <div>
-
-                                <label
-                                    for="email"
-                                    class="label">
-
-                                    <span class="label-text font-semibold">
-                                        Email *
-                                    </span>
-
-                                </label>
-
-                                <input
-                                    id="email"
-                                    name="email"
-                                    type="email"
-                                    placeholder="Email Address"
-                                    autocomplete="email"
-                                    class="input input-bordered w-full rounded-xl"
-                                    required>
-
-                            </div>
-
-
-                            <!-- Address -->
-
-                            <div class="md:col-span-2">
-
-                                <label
-                                    for="address"
-                                    class="label">
-
-                                    <span class="label-text font-semibold">
-                                        Address
-                                    </span>
-
-                                </label>
-
-                                <textarea
-                                    id="address"
-                                    name="address"
-                                    rows="4"
-                                    class="textarea textarea-bordered w-full rounded-xl"
-                                    placeholder="Full Address"></textarea>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- Message -->
-
-                    <div
-                        id="message"
-                        class="empty:hidden">
-                    </div>
-
-
-
-                    <!-- Submit -->
-
-                    <div
-                        class="pt-2">
-
-
-                        <button
-                            type="submit"
-                            class="btn btn-primary btn-lg w-full rounded-xl shadow-lg shadow-blue-600/20">
-
-                            Submit Admission Application
-
-                        </button>
-
-
-                        <p
-                            class="text-center text-sm text-slate-400 mt-4">
-
-                            By submitting this form, you confirm that
-                            the information provided is accurate.
-
-                        </p>
-
-
-                    </div>
-
-
-                </form>
-
-
-            </div>
-
-
-        </div>
-
-
-    </div>
-
-
-</section>
-
-
-
-<!-- ========================================================= -->
-<!-- NEXT STEP -->
-<!-- ========================================================= -->
-
-<section class="py-20 bg-white">
-
-    <div class="max-w-4xl mx-auto px-5 text-center">
-
-        <div
-            class="w-16 h-16 mx-auto rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center text-3xl">
-
-            ✓
-
-        </div>
-
-
-        <h2
-            class="heading-font text-3xl sm:text-4xl font-bold text-slate-900 mt-6">
-
-            What Happens Next?
-
-        </h2>
-
-
-        <p
-            class="text-slate-500 text-lg mt-4 leading-7">
-
-            Once your application is submitted, the school team
-            can review the information and contact you regarding
-            the next steps in the admission process.
-
-        </p>
-
-
-    </div>
-
-</section>
-
-
-
-<!-- ========================================================= -->
-<!-- FOOTER -->
-<!-- ========================================================= -->
-
-<footer class="bg-slate-950 text-slate-300">
-
-
-    <div class="max-w-7xl mx-auto px-5 py-16">
-
-
-        <div
-            class="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
-
-
-            <div class="lg:col-span-2">
-
-
-                <div class="flex items-center gap-3">
-
-
-                    <div
-                        class="w-12 h-12 rounded-xl bg-blue-600 text-white flex items-center justify-center text-xl font-bold">
-
-                        U
-
-                    </div>
-
-
-                    <div>
-
-                        <h2
-                            class="text-xl font-bold text-white">
-
-                            Udayon School
-
-                        </h2>
-
-                        <p class="text-sm text-slate-400">
-                            Excellence in Education
-                        </p>
-
-                    </div>
-
-
-                </div>
-
-
-                <p
-                    class="mt-6 max-w-md leading-7 text-slate-400">
-
-                    Building knowledge, character, and leadership
-                    for tomorrow through quality education and
-                    meaningful learning experiences.
-
-                </p>
-
-
-            </div>
-
-
-
-            <div>
-
-                <h3
-                    class="font-bold text-white mb-5">
-
-                    Quick Links
-
-                </h3>
-
-
-                <ul class="space-y-3">
-
-                    <li>
-                        <a
-                            href="index.html"
-                            class="hover:text-white transition">
-                            Home
-                        </a>
-                    </li>
-
-                    <li>
-                        <a
-                            href="about.html"
-                            class="hover:text-white transition">
-                            About Us
-                        </a>
-                    </li>
-
-                    <li>
-                        <a
-                            href="curriculum.html"
-                            class="hover:text-white transition">
-                            Curriculum
-                        </a>
-                    </li>
-
-                    <li>
-                        <a
-                            href="admission.html"
-                            class="text-blue-400">
-                            Admissions
-                        </a>
-                    </li>
-
-                </ul>
-
-            </div>
-
-
-
-            <div>
-
-                <h3
-                    class="font-bold text-white mb-5">
-
-                    Information
-
-                </h3>
-
-
-                <ul class="space-y-3">
-
-                    <li>
-                        <a
-                            href="notice.html"
-                            class="hover:text-white transition">
-                            Notices
-                        </a>
-                    </li>
-
-                    <li>
-                        <a
-                            href="announcement.html"
-                            class="hover:text-white transition">
-                            Announcements
-                        </a>
-                    </li>
-
-                    <li>
-                        <a
-                            href="events.html"
-                            class="hover:text-white transition">
-                            Events
-                        </a>
-                    </li>
-
-
-                </ul>
-
-            </div>
-
-
-        </div>
-
-
-        <div
-            class="border-t border-slate-800 mt-12 pt-7 flex flex-col sm:flex-row justify-between gap-4 text-sm text-slate-500">
-
+        <div class="steps-grid">
+
+          <article class="step-card reveal">
+            <div class="step-number">01</div>
+            <h3>Submit Application</h3>
             <p>
-                © 2026 Udayon School. All rights reserved.
+              Complete the online form and submit the student's information.
             </p>
+          </article>
 
+          <article class="step-card reveal">
+            <div class="step-number">02</div>
+            <h3>Application Review</h3>
             <p>
-                Excellence • Discipline • Success
+              The school team can review the information you provide.
             </p>
+          </article>
+
+          <article class="step-card reveal">
+            <div class="step-number">03</div>
+            <h3>Next Steps</h3>
+            <p>
+              The school team can contact you regarding the next steps
+              in the admission process.
+            </p>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- CTA -->
+    <section class="section">
+      <div class="container">
+
+        <div class="cta-panel reveal">
+          <span class="eyebrow">Your Future Begins Here</span>
+
+          <h2>
+            Ready to Join
+            <span class="gradient-text">Udayon School?</span>
+          </h2>
+
+          <p>
+            Take the first step towards a journey of knowledge,
+            discovery and achievement.
+          </p>
+
+          <a href="#application" class="btn btn-primary">
+            Start Your Application →
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+
+      <div class="footer-grid">
+
+        <div class="footer-about">
+
+          <a href="index.html" class="brand">
+            <span class="brand-mark">U</span>
+            <span>
+              UDAYON SCHOOL
+              <small>Learn · Grow · Shine</small>
+            </span>
+          </a>
+
+          <p>
+            Building knowledge, character and leadership for tomorrow
+            through quality education and meaningful learning experiences.
+          </p>
 
         </div>
 
 
+        <div class="footer-links">
+          <h3>Quick Links</h3>
+          <a href="index.html">Home</a>
+          <a href="about.html">About Us</a>
+          <a href="curriculum.html">Curriculum</a>
+          <a href="admission.html" class="active">Admissions</a>
+        </div>
+
+
+        <div class="footer-links">
+          <h3>Information</h3>
+          <a href="notice.html">Notices</a>
+          <a href="announcement.html">Announcements</a>
+          <a href="events.html">Events</a>
+          <a href="admin.html">Admin Portal</a>
+        </div>
+
+      </div>
+
+
+      <div class="copyright">
+        © <span id="currentYear"></span> Udayon School.
+        All rights reserved.
+        <br>
+        Excellence · Discipline · Success
+      </div>
+
     </div>
+  </footer>
 
 
-</footer>
+  <!-- MOBILE NAVIGATION -->
+  <script>
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+      menuToggle.textContent = isOpen ? "✕" : "☰";
+    });
+
+    navLinks.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.textContent = "☰";
+      });
+    });
+  </script>
 
 
+  <!-- SCROLL ANIMATIONS -->
+  <script>
+    const revealItems = document.querySelectorAll(".reveal");
 
-<script src="js/admissions.js"></script>
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            obs.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.12
+      });
+
+      revealItems.forEach(item => observer.observe(item));
+    } else {
+      revealItems.forEach(item => item.classList.add("visible"));
+    }
+  </script>
+
+
+  <!-- AUTOMATIC FOOTER YEAR -->
+  <script>
+    document.getElementById("currentYear").textContent =
+      new Date().getFullYear();
+  </script>
+
+
+  <!-- ORIGINAL ADMISSION FORM SCRIPT -->
+  <script src="js/admissions.js"></script>
 
 </body>
-
 </html>
- 

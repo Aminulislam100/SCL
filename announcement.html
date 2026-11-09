@@ -1,1091 +1,889 @@
+
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0">
+    <title>Announcements | Udayon School</title>
+    <meta name="description" content="Stay connected with the latest announcements and updates from Udayon School.">
 
-    <title>
-        Announcements | Udayon School
-    </title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
+    <!-- DaisyUI -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet">
 
-    <!-- =====================================================
-         DAISYUI
-    ====================================================== -->
-
-    <link
-        href="https://cdn.jsdelivr.net/npm/daisyui@5"
-        rel="stylesheet"
-        type="text/css">
-
-
-    <!-- =====================================================
-         TAILWIND
-    ====================================================== -->
-
-    <script
-        src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">
-    </script>
-
-
-    <!-- =====================================================
-         GOOGLE FONTS
-    ====================================================== -->
-
-    <link
-        rel="preconnect"
-        href="https://fonts.googleapis.com">
-
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap"
-        rel="stylesheet">
-
-
-    <!-- =====================================================
-         PAGE STYLE
-    ====================================================== -->
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
+        :root {
+            --bg: #071225;
+            --bg-soft: #0b1b34;
+            --panel: #102440;
+            --blue: #398bff;
+            --cyan: #48e0f5;
+            --text: #f4f8ff;
+            --muted: #9aabc3;
+            --border: rgba(148, 184, 230, .14);
+        }
 
         * {
             scroll-behavior: smooth;
         }
 
-
         body {
-            font-family: "Inter", sans-serif;
+            font-family: "DM Sans", sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
         }
 
-
-        .heading-font {
-            font-family: "Playfair Display", serif;
+        h1, h2, h3, h4, .heading-font {
+            font-family: "Space Grotesk", sans-serif;
         }
 
+        a, button {
+            -webkit-tap-highlight-color: transparent;
+        }
 
-        .hero-pattern {
+        /* BACKGROUND */
 
+        .page-background {
             background:
-
-                linear-gradient(
-                    135deg,
-                    rgba(15, 23, 42, .97),
-                    rgba(30, 64, 175, .92)
-                ),
-
-                radial-gradient(
-                    circle at 15% 20%,
-                    rgba(255,255,255,.12),
-                    transparent 30%
-                ),
-
-                radial-gradient(
-                    circle at 85% 80%,
-                    rgba(255,255,255,.08),
-                    transparent 30%
-                );
-
+                radial-gradient(ellipse at 10% 5%, rgba(57,139,255,.12), transparent 35%),
+                radial-gradient(ellipse at 90% 35%, rgba(72,224,245,.07), transparent 35%),
+                var(--bg);
         }
 
+        .grid-background {
+            background-image:
+                linear-gradient(rgba(148,184,230,.035) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(148,184,230,.035) 1px, transparent 1px);
+            background-size: 48px 48px;
+        }
+
+        /* NAVBAR */
+
+       .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(5,16,33,.88);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.2rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .brand-mark {
+      width: 43px;
+      height: 43px;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      color: #061326;
+      background: linear-gradient(135deg, #58c9ff, #54eee2);
+      box-shadow: 0 0 25px rgba(57,139,255,.3);
+    }
+
+    .brand small {
+      display: block;
+      color: var(--cyan);
+      font-family: "DM Sans", sans-serif;
+      font-size: .62rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 19px;
+    }
+
+    .nav-links a {
+      color: #c4d1e4;
+      font-size: .86rem;
+      font-weight: 600;
+      transition: color .2s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--cyan);
+    }
+
+    .nav-links .admin-link {
+      padding: 10px 16px;
+      color: var(--cyan);
+      border: 1px solid rgba(72,224,245,.4);
+      border-radius: 10px;
+    }
+
+    .menu-toggle {
+      display: none;
+      width: 43px;
+      height: 42px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: white;
+      background: var(--panel);
+      font-size: 1.3rem;
+      cursor: pointer;
+    }
+
+        /* BUTTONS */
+
+        .primary-btn {
+            background: linear-gradient(110deg, #2876ed, #398bff 55%, #48c9f5);
+            color: white;
+            border: 0;
+            box-shadow: 0 8px 28px rgba(57,139,255,.22);
+            transition: .3s ease;
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(57,139,255,.35);
+            filter: brightness(1.08);
+        }
+
+        .outline-btn {
+            border: 1px solid rgba(72,224,245,.35);
+            background: rgba(72,224,245,.05);
+            color: #d9faff;
+            transition: .3s ease;
+        }
+
+        .outline-btn:hover {
+            background: rgba(72,224,245,.13);
+            border-color: var(--cyan);
+        }
+
+        /* TEXT */
+
+        .gradient-text {
+            background: linear-gradient(100deg, #ffffff 5%, #48e0f5 55%, #398bff 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
 
         .section-label {
-            letter-spacing: .15em;
+            color: var(--cyan);
+            letter-spacing: .2em;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
         }
 
-
-        .nav-link {
-
-            transition:
-                color .2s ease,
-                background-color .2s ease;
-
+        .section-description {
+            color: var(--muted);
+            line-height: 1.9;
         }
 
-
-        .nav-link:hover {
-
-            color: #2563eb;
-            background: #eff6ff;
-
+        .gradient-line {
+            width: 52px;
+            height: 3px;
+            border-radius: 20px;
+            background: linear-gradient(90deg, var(--blue), var(--cyan));
         }
 
+        /* HERO */
 
-        .announcement-card {
-
-            transition:
-                transform .25s ease,
-                box-shadow .25s ease;
-
+        .hero-section {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            background:
+                linear-gradient(100deg, rgba(7,18,37,.97), rgba(8,29,57,.91)),
+                url("https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1800&q=85");
+            background-size: cover;
+            background-position: center;
         }
 
+        .hero-glow {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(75px);
+            pointer-events: none;
+            z-index: -1;
+        }
 
-        .announcement-card:hover {
+        .hero-glass {
+            background: rgba(72,224,245,.06);
+            border: 1px solid rgba(72,224,245,.18);
+            backdrop-filter: blur(12px);
+        }
 
+        /* GLASS PANELS */
+
+        .glass-panel {
+            background: linear-gradient(145deg, rgba(17,39,68,.88), rgba(10,27,50,.92));
+            border: 1px solid var(--border);
+            box-shadow: 0 15px 45px rgba(0,0,0,.13);
+            backdrop-filter: blur(14px);
+        }
+
+        .glass-panel-hover {
+            transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+        }
+
+        .glass-panel-hover:hover {
+            transform: translateY(-6px);
+            border-color: rgba(72,224,245,.35);
+            box-shadow: 0 20px 45px rgba(0,0,0,.22), 0 0 25px rgba(57,139,255,.07);
+        }
+
+        .icon-panel {
+            background: linear-gradient(135deg, rgba(57,139,255,.18), rgba(72,224,245,.09));
+            border: 1px solid rgba(72,224,245,.17);
+            color: var(--cyan);
+        }
+
+        /* ANNOUNCEMENT CARDS */
+
+        #announcementContainer {
+            align-items: stretch;
+        }
+
+        #announcementContainer > * {
+            min-width: 0;
+        }
+
+        #announcementContainer .announcement-card,
+        #announcementContainer .card {
+            background: linear-gradient(145deg, #112744, #0b1c35);
+            color: var(--text);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            box-shadow: 0 12px 35px rgba(0,0,0,.15);
+            transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+        }
+
+        #announcementContainer .announcement-card:hover,
+        #announcementContainer .card:hover {
             transform: translateY(-5px);
-
-            box-shadow:
-                0 20px 40px rgba(15, 23, 42, .10);
-
+            border-color: rgba(72,224,245,.35);
+            box-shadow: 0 18px 40px rgba(0,0,0,.24);
         }
 
-
-        .announcement-icon {
-
-            transition:
-                transform .25s ease;
-
+        #announcementContainer h1,
+        #announcementContainer h2,
+        #announcementContainer h3,
+        #announcementContainer h4 {
+            color: #f4f8ff;
         }
 
-
-        .announcement-card:hover
-        .announcement-icon {
-
-            transform: scale(1.08);
-
+        #announcementContainer p {
+            color: #aabbd2;
         }
 
+        #announcementContainer a {
+            color: var(--cyan);
+        }
+
+        #announcementContainer button {
+            transition: .25s ease;
+        }
+
+        /* IMAGE */
+
+        .image-frame {
+            border: 1px solid rgba(72,224,245,.25);
+            box-shadow: 0 0 35px rgba(57,139,255,.12);
+            overflow: hidden;
+        }
+
+        .image-frame img {
+            transition: transform .6s ease;
+        }
+
+        .image-frame:hover img {
+            transform: scale(1.04);
+        }
+
+        /* CTA */
+
+        .cta-panel {
+            background:
+                radial-gradient(circle at 10% 10%, rgba(72,224,245,.12), transparent 35%),
+                radial-gradient(circle at 90% 90%, rgba(57,139,255,.17), transparent 35%),
+                linear-gradient(135deg, #10294b, #0a1a32);
+            border: 1px solid rgba(72,224,245,.2);
+        }
+
+        /* FOOTER */
+
+        .footer-link {
+            color: #91a4bd;
+            transition: .25s ease;
+        }
+
+        .footer-link:hover {
+            color: var(--cyan);
+            padding-left: 4px;
+        }
+
+        /* ANIMATIONS */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity .7s ease, transform .7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .float-animation {
+            animation: float 7s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: .01ms !important;
+            }
+
+            .reveal {
+                opacity: 1;
+                transform: none;
+            }
+        }
     </style>
-
 </head>
 
-
-<body class="bg-slate-50 text-slate-800">
-
-
-<!-- =========================================================
-     NAVBAR
-========================================================= -->
-
-<header
-    class="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur-md">
-
-    <div
-        class="navbar max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-
-        <!-- MOBILE / LOGO -->
-
-        <div class="navbar-start">
-
-
-            <div class="dropdown">
-
-
-                <button
-                    tabindex="0"
-                    class="btn btn-ghost lg:hidden"
-                    aria-label="Open navigation menu">
-
-
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="h-6 w-6"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor">
-
-
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M4 6h16M4 12h16M4 18h16" />
-
-
-                    </svg>
-
-
-                </button>
-
-
-                <ul
-                    tabindex="0"
-                    class="menu menu-sm dropdown-content mt-3 z-[1] p-3 shadow-xl bg-white rounded-2xl w-64 border border-slate-100">
-
-
-                    <li>
-                        <a href="index.html">
-                            Home
-                        </a>
-                    </li>
-
-
-                    <li>
-                        <a href="about.html">
-                            About
-                        </a>
-                    </li>
-
-
-                    <li>
-                        <a href="notice.html">
-                            Notice
-                        </a>
-                    </li>
-
-
-                    <li>
-                        <a
-                            href="announcement.html"
-                            class="text-blue-600 font-semibold">
-
-                            Announcement
-
-                        </a>
-                    </li>
-
-
-                    <li>
-                        <a href="curriculum.html">
-                            Curriculum
-                        </a>
-                    </li>
-
-
-                    <li>
-                        <a href="admission.html">
-                            Admission
-                        </a>
-                    </li>
-
-
-                    <li>
-                        <a href="events.html">
-                            Events
-                        </a>
-                    </li>
-
-
-                </ul>
-
-            </div>
-
-
-            <a
-                href="index.html"
-                class="btn btn-ghost normal-case text-lg sm:text-xl font-bold gap-2">
-
-
-                <span
-                    class="flex items-center justify-center w-10 h-10 rounded-xl bg-blue-600 text-white font-bold">
-
-                    U
-
-                </span>
-
-
-                <span class="hidden sm:inline">
-
-                    Udayon School
-
-                </span>
-
-
-            </a>
-
-        </div>
-
-
-        <!-- DESKTOP NAVIGATION -->
-
-        <nav class="navbar-center hidden lg:flex">
-
-            <ul class="menu menu-horizontal gap-1">
-
-
-                <li>
-
-                    <a
-                        href="index.html"
-                        class="nav-link rounded-lg font-medium">
-
-                        Home
-
-                    </a>
-
-                </li>
-
-
-                <li>
-
-                    <a
-                        href="about.html"
-                        class="nav-link rounded-lg font-medium">
-
-                        About
-
-                    </a>
-
-                </li>
-
-
-                <li>
-
-                    <a
-                        href="notice.html"
-                        class="nav-link rounded-lg font-medium">
-
-                        Notice
-
-                    </a>
-
-                </li>
-
-
-                <li>
-
-                    <a
-                        href="announcement.html"
-                        class="rounded-lg font-semibold text-blue-600 bg-blue-50">
-
-                        Announcement
-
-                    </a>
-
-                </li>
-
-
-                <li>
-
-                    <a
-                        href="curriculum.html"
-                        class="nav-link rounded-lg font-medium">
-
-                        Curriculum
-
-                    </a>
-
-                </li>
-
-
-                <li>
-
-                    <a
-                        href="admission.html"
-                        class="nav-link rounded-lg font-medium">
-
-                        Admission
-
-                    </a>
-
-                </li>
-
-
-                <li>
-
-                    <a
-                        href="events.html"
-                        class="nav-link rounded-lg font-medium">
-
-                        Events
-
-                    </a>
-
-                </li>
-
-
-            </ul>
-
-        </nav>
-
-
-        <!-- ADMIN -->
-
-        <div class="navbar-end">
-
-            <a
-                href="admin.html"
-                class="btn btn-primary rounded-xl px-5 shadow-md shadow-blue-600/20">
-
-                Admin Portal
-
-            </a>
-
-        </div>
-
+<body class="page-background">
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+    <div class="container nav-inner">
+
+      <a href="index.html" class="brand">
+        <span class="brand-mark">U</span>
+        <span>
+          UDAYON SCHOOL
+          <small>Learn · Grow · Shine</small>
+        </span>
+      </a>
+
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="navLinks">
+        ☰
+      </button>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="notice.html">Notice</a>
+        <a href="announcement.html" class="active">Announcement</a>
+        <a href="curriculum.html">Curriculum</a>
+        <a href="admission.html">Admission</a>
+        <a href="events.html">Events</a>
+        <a href="admin.html" class="admin-link">Admin Portal ↗</a>
+      </nav>
 
     </div>
-
-</header>
-
-
-<!-- =========================================================
-     HERO
-========================================================= -->
-
-<section
-    class="hero-pattern text-white relative overflow-hidden">
+  </header>
 
 
-    <div
-        class="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-blue-400/10">
-    </div>
+    <!-- HERO -->
+    <section class="hero-section">
 
+        <div class="grid-background absolute inset-0 opacity-60"></div>
 
-    <div
-        class="absolute -bottom-40 -left-32 w-[500px] h-[500px] rounded-full bg-indigo-400/10">
-    </div>
+        <div class="hero-glow bg-blue-500/20 w-96 h-96 -top-40 -right-20"></div>
+        <div class="hero-glow bg-cyan-400/10 w-80 h-80 -bottom-40 -left-20"></div>
 
+        <div class="relative max-w-7xl mx-auto px-5 py-24 sm:py-32 lg:py-36">
 
-    <div
-        class="relative max-w-7xl mx-auto px-5">
+            <div class="max-w-4xl mx-auto text-center reveal">
 
+                <div class="inline-flex items-center gap-3 hero-glass rounded-full px-5 py-2.5 text-xs sm:text-sm font-bold tracking-widest text-cyan-200 mb-7">
+                    <span class="w-2 h-2 rounded-full bg-cyan-300 animate-pulse"></span>
+                    STAY CONNECTED
+                </div>
 
-        <div class="py-28 text-center">
+                <h1 class="heading-font text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight">
+                    School
+                    <span class="gradient-text">Announcements</span>
+                </h1>
 
-
-            <p
-                class="section-label text-sm font-bold uppercase text-blue-200">
-
-                Stay Connected
-
-            </p>
-
-
-            <h1
-                class="heading-font text-5xl sm:text-6xl lg:text-7xl font-bold mt-4">
-
-                School Announcements
-
-            </h1>
-
-
-            <p
-                class="max-w-2xl mx-auto mt-6 text-lg sm:text-xl text-slate-200 leading-relaxed">
-
-                Stay informed about important updates,
-                activities, achievements, and announcements
-                from Udayon School.
-
-            </p>
-
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     ANNOUNCEMENTS
-========================================================= -->
-
-<section class="py-24 bg-slate-50">
-
-    <div class="max-w-7xl mx-auto px-5">
-
-
-        <!-- HEADING -->
-
-        <div
-            class="flex flex-col sm:flex-row sm:items-end justify-between gap-5 mb-10">
-
-
-            <div>
-
-                <p
-                    class="section-label text-sm font-bold uppercase text-blue-600">
-
-                    School Updates
-
+                <p class="max-w-2xl mx-auto mt-7 text-base sm:text-lg text-slate-300 leading-8">
+                    Stay informed about important updates, activities, achievements, and announcements from Udayon School.
                 </p>
 
+                <div class="flex flex-wrap justify-center gap-4 mt-9">
+                    <a href="#latest" class="btn primary-btn rounded-xl px-7">
+                        Explore Announcements
+                        <span aria-hidden="true">↓</span>
+                    </a>
 
-                <h2
-                    class="heading-font text-4xl sm:text-5xl font-bold text-slate-900 mt-2">
+                    <a href="notice.html" class="btn outline-btn rounded-xl px-7">
+                        School Notices
+                    </a>
+                </div>
 
-                    Latest Announcements
-
-                </h2>
-
-            </div>
-
-
-            <div
-                class="flex items-center gap-2 text-sm text-slate-500">
-
-                <span
-                    class="w-2 h-2 rounded-full bg-green-500">
-                </span>
-
-                Updated regularly
-
-            </div>
-
-
-        </div>
-
-
-        <!-- =================================================
-             IMPORTANT:
-             JAVASCRIPT WILL REPLACE THIS CONTENT
-        ================================================== -->
-
-        <div
-            id="announcementContainer"
-            class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-
-
-            <!-- Loading -->
-
-            <div class="sm:col-span-2 lg:col-span-3">
-
-                <div
-                    class="bg-white rounded-2xl border border-slate-100 shadow-sm p-10 text-center">
-
-
-                    <div class="text-4xl mb-4">
-                        🔔
-                    </div>
-
-
-                    <h3
-                        class="text-xl font-bold text-slate-800">
-
-                        Loading announcements...
-
-                    </h3>
-
-
-                    <p
-                        class="text-slate-500 mt-2">
-
-                        Please wait while we load the latest
-                        school announcements.
-
-                    </p>
-
-
+                <div class="flex flex-wrap justify-center gap-3 mt-10">
+                    <span class="hero-glass rounded-full px-4 py-2 text-xs text-slate-200">Academic Updates</span>
+                    <span class="hero-glass rounded-full px-4 py-2 text-xs text-slate-200">School Activities</span>
+                    <span class="hero-glass rounded-full px-4 py-2 text-xs text-slate-200">Important News</span>
                 </div>
 
             </div>
-
-
         </div>
+    </section>
 
 
-        <!-- INFORMATION -->
+    <!-- ANNOUNCEMENTS -->
+    <section id="latest" class="py-20 sm:py-24 px-5">
 
-        <div
-            class="mt-14 bg-white rounded-2xl border border-slate-100 p-7 sm:p-8">
+        <div class="max-w-7xl mx-auto">
 
-
-            <div
-                class="flex flex-col sm:flex-row gap-5 items-start">
-
-
-                <div
-                    class="w-12 h-12 shrink-0 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center text-xl">
-
-                    ℹ️
-
-                </div>
-
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12 reveal">
 
                 <div>
+                    <p class="section-label">SCHOOL UPDATES</p>
 
+                    <div class="gradient-line mt-4"></div>
 
-                    <h3
-                        class="font-bold text-lg text-slate-900">
+                    <h2 class="heading-font text-3xl sm:text-5xl font-bold text-white mt-5">
+                        Latest Announcements
+                    </h2>
 
-                        Stay Informed
-
-                    </h3>
-
-
-                    <p
-                        class="text-slate-500 mt-2 leading-7">
-
-                        School announcements may include information
-                        about academic activities, special programs,
-                        competitions, holidays, events, and other
-                        important updates.
-
+                    <p class="section-description mt-4 max-w-xl">
+                        Important information, school activities, and the latest updates from our community.
                     </p>
+                </div>
 
-
+                <div class="inline-flex items-center gap-3 glass-panel rounded-full px-5 py-3">
+                    <span class="relative flex h-3 w-3">
+                        <span class="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60 animate-ping"></span>
+                        <span class="relative inline-flex h-3 w-3 rounded-full bg-emerald-400"></span>
+                    </span>
+                    <span class="text-sm text-slate-300 font-semibold">Updated regularly</span>
                 </div>
 
             </div>
 
-        </div>
 
+            <!-- KEEP THIS ID: announcements.js USES IT -->
+            <div id="announcementContainer" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
-    </div>
+                <!-- Loading State -->
+                <div class="sm:col-span-2 lg:col-span-3">
+                    <div class="glass-panel rounded-3xl p-10 sm:p-14 text-center">
 
-</section>
+                        <div class="icon-panel w-16 h-16 mx-auto rounded-2xl flex items-center justify-center text-3xl mb-6">
+                            🔔
+                        </div>
 
+                        <h3 class="text-xl font-bold text-white">
+                            Loading announcements...
+                        </h3>
 
-<!-- =========================================================
-     QUICK LINKS
-========================================================= -->
-
-<section class="py-24 bg-white px-5">
-
-    <div class="max-w-7xl mx-auto">
-
-
-        <div
-            class="text-center max-w-3xl mx-auto mb-12">
-
-
-            <p
-                class="section-label text-sm font-bold uppercase text-blue-600">
-
-                Explore More
-
-            </p>
-
-
-            <h2
-                class="heading-font text-4xl sm:text-5xl font-bold text-slate-900 mt-3">
-
-                Explore Udayon School
-
-            </h2>
-
-
-            <p
-                class="text-slate-500 text-lg mt-5">
-
-                Find more information about school life,
-                academics, and opportunities.
-
-            </p>
-
-
-        </div>
-
-
-        <div
-            class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-
-
-            <!-- NOTICE -->
-
-            <a
-                href="notice.html"
-                class="group bg-slate-50 rounded-2xl p-7 border border-slate-100 hover:shadow-xl transition">
-
-
-                <div
-                    class="w-14 h-14 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center text-2xl group-hover:scale-105 transition">
-
-                    📢
-
-                </div>
-
-
-                <h3
-                    class="font-bold text-xl text-slate-900 mt-6">
-
-                    School Notices
-
-                </h3>
-
-
-                <p
-                    class="text-slate-500 mt-2 leading-7">
-
-                    Read important notices and school updates.
-
-                </p>
-
-
-                <div
-                    class="text-blue-600 font-semibold mt-5">
-
-                    View Notices →
-
-                </div>
-
-
-            </a>
-
-
-            <!-- EVENTS -->
-
-            <a
-                href="events.html"
-                class="group bg-slate-50 rounded-2xl p-7 border border-slate-100 hover:shadow-xl transition">
-
-
-                <div
-                    class="w-14 h-14 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-2xl group-hover:scale-105 transition">
-
-                    📅
-
-                </div>
-
-
-                <h3
-                    class="font-bold text-xl text-slate-900 mt-6">
-
-                    Upcoming Events
-
-                </h3>
-
-
-                <p
-                    class="text-slate-500 mt-2 leading-7">
-
-                    Discover upcoming activities and events.
-
-                </p>
-
-
-                <div
-                    class="text-blue-600 font-semibold mt-5">
-
-                    View Events →
-
-                </div>
-
-
-            </a>
-
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     CTA
-========================================================= -->
-
-<section class="py-24 px-5 bg-slate-50">
-
-    <div class="max-w-7xl mx-auto">
-
-
-        <div
-            class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-700 to-indigo-800 text-white">
-
-
-            <div
-                class="absolute -right-20 -top-20 w-72 h-72 rounded-full bg-white/10">
-            </div>
-
-
-            <div
-                class="absolute -left-20 -bottom-24 w-80 h-80 rounded-full bg-white/5">
-            </div>
-
-
-            <div
-                class="relative px-7 sm:px-12 lg:px-20 py-14 text-center">
-
-
-                <p
-                    class="section-label text-sm font-bold uppercase text-blue-200">
-
-                    Udayon School
-
-                </p>
-
-
-                <h2
-                    class="heading-font text-4xl sm:text-5xl font-bold mt-3">
-
-                    Need More Information?
-
-                </h2>
-
-
-                <p
-                    class="max-w-2xl mx-auto mt-5 text-lg text-blue-100">
-
-                    Explore our school, discover upcoming events,
-                    or learn more about admissions.
-
-                </p>
-
-
-                <div
-                    class="flex justify-center flex-wrap gap-4 mt-8">
-
-
-                    <a
-                        href="about.html"
-                        class="btn btn-lg bg-white text-blue-700 border-0 hover:bg-slate-100 rounded-xl">
-
-                        About Our School
-
-                    </a>
-
-
-                    <a
-                        href="admission.html"
-                        class="btn btn-lg btn-outline border-white text-white hover:bg-white hover:text-blue-700 rounded-xl">
-
-                        Admissions
-
-                    </a>
-
-
-                </div>
-
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     FOOTER
-========================================================= -->
-
-<footer class="bg-slate-950 text-slate-300">
-
-    <div class="max-w-7xl mx-auto px-5 py-16">
-
-
-        <div
-            class="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
-
-
-            <div class="lg:col-span-2">
-
-
-                <div class="flex items-center gap-3">
-
-
-                    <div
-                        class="w-12 h-12 rounded-xl bg-blue-600 text-white flex items-center justify-center text-xl font-bold">
-
-                        U
-
-                    </div>
-
-
-                    <div>
-
-                        <h2
-                            class="text-xl font-bold text-white">
-
-                            Udayon School
-
-                        </h2>
-
-
-                        <p
-                            class="text-sm text-slate-400">
-
-                            Excellence in Education
-
+                        <p class="section-description mt-3">
+                            Please wait while we load the latest school announcements.
                         </p>
 
+                        <span class="loading loading-dots loading-lg text-cyan-300 mt-5"></span>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- INFORMATION -->
+            <div class="glass-panel glass-panel-hover rounded-3xl p-7 sm:p-9 mt-14 reveal">
+
+                <div class="flex flex-col sm:flex-row gap-6 items-start">
+
+                    <div class="icon-panel w-14 h-14 shrink-0 rounded-2xl flex items-center justify-center text-2xl">
+                        ℹ
+                    </div>
+
+                    <div>
+                        <p class="section-label">IMPORTANT INFORMATION</p>
+
+                        <h3 class="heading-font text-2xl font-bold text-white mt-3">
+                            Stay Informed, Stay Connected
+                        </h3>
+
+                        <p class="section-description mt-3">
+                            School announcements may include information about academic activities, special programs, competitions, holidays, events, and other important updates. Check this page regularly to stay connected with Udayon School.
+                        </p>
                     </div>
 
                 </div>
 
+            </div>
 
-                <p
-                    class="mt-6 max-w-md leading-7 text-slate-400">
+        </div>
+    </section>
 
-                    Building knowledge, character, and leadership
-                    for tomorrow. Stay connected with the latest
-                    information from Udayon School.
 
+    <!-- SCHOOL LIFE -->
+    <section class="py-20 sm:py-24 border-y border-white/5 bg-[#09182d]">
+
+        <div class="max-w-7xl mx-auto px-5">
+
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+                <div class="reveal">
+
+                    <p class="section-label">LIFE AT UDAYON</p>
+
+                    <div class="gradient-line mt-4"></div>
+
+                    <h2 class="heading-font text-3xl sm:text-5xl font-bold text-white mt-6 leading-tight">
+                        Every Update Is Part of Our
+                        <span class="gradient-text">Journey.</span>
+                    </h2>
+
+                    <p class="section-description mt-6">
+                        From classroom activities to special celebrations, every school moment helps build a stronger learning community. Keep following our announcements to stay connected with everything happening at Udayon School.
+                    </p>
+
+                    <a href="events.html" class="inline-flex items-center gap-3 mt-8 text-cyan-300 font-bold hover:text-white transition">
+                        Discover School Events
+                        <span class="text-xl">→</span>
+                    </a>
+
+                </div>
+
+
+                <div class="relative reveal">
+
+                    <div class="absolute -inset-3 rounded-3xl bg-gradient-to-br from-blue-500/20 to-cyan-400/10 blur-2xl"></div>
+
+                    <div class="image-frame relative rounded-3xl">
+                        <img
+                            src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1100&q=85"
+                            alt="Students learning together in a classroom"
+                            class="w-full h-72 sm:h-96 object-cover"
+                            loading="lazy">
+                    </div>
+
+                    <div class="absolute -bottom-6 -left-3 sm:-left-6 glass-panel rounded-2xl px-6 py-4 shadow-xl">
+                        <p class="section-label">UDAYON SCHOOL</p>
+                        <p class="text-white font-bold mt-2">Learn • Grow • Achieve</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- QUICK LINKS -->
+    <section class="py-20 sm:py-24 px-5">
+
+        <div class="max-w-7xl mx-auto">
+
+            <div class="text-center max-w-3xl mx-auto mb-14 reveal">
+
+                <p class="section-label">EXPLORE MORE</p>
+
+                <div class="gradient-line mx-auto mt-4"></div>
+
+                <h2 class="heading-font text-3xl sm:text-5xl font-bold text-white mt-5">
+                    Explore Udayon School
+                </h2>
+
+                <p class="section-description mt-5">
+                    Discover more about school life, academics, and opportunities.
                 </p>
 
             </div>
 
 
-            <div>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
-                <h3
-                    class="font-bold text-white mb-5">
+                <!-- NOTICE -->
+                <a href="notice.html" class="glass-panel glass-panel-hover rounded-3xl p-8 group reveal">
 
-                    Quick Links
+                    <div class="icon-panel w-16 h-16 rounded-2xl flex items-center justify-center text-3xl transition group-hover:scale-110">
+                        📢
+                    </div>
 
-                </h3>
+                    <h3 class="heading-font text-xl font-bold text-white mt-7">
+                        School Notices
+                    </h3>
+
+                    <p class="section-description mt-3">
+                        Read important notices, official information, and school updates.
+                    </p>
+
+                    <div class="flex items-center gap-2 text-cyan-300 font-bold mt-7">
+                        View Notices
+                        <span class="transition-transform group-hover:translate-x-2">→</span>
+                    </div>
+
+                </a>
 
 
-                <ul class="space-y-3">
+                <!-- EVENTS -->
+                <a href="events.html" class="glass-panel glass-panel-hover rounded-3xl p-8 group reveal">
+
+                    <div class="icon-panel w-16 h-16 rounded-2xl flex items-center justify-center text-3xl transition group-hover:scale-110">
+                        📅
+                    </div>
+
+                    <h3 class="heading-font text-xl font-bold text-white mt-7">
+                        Upcoming Events
+                    </h3>
+
+                    <p class="section-description mt-3">
+                        Discover school activities, celebrations, and upcoming events.
+                    </p>
+
+                    <div class="flex items-center gap-2 text-cyan-300 font-bold mt-7">
+                        View Events
+                        <span class="transition-transform group-hover:translate-x-2">→</span>
+                    </div>
+
+                </a>
 
 
-                    <li>
-                        <a
-                            href="index.html"
-                            class="hover:text-white transition">
+                <!-- CURRICULUM -->
+                <a href="curriculum.html" class="glass-panel glass-panel-hover rounded-3xl p-8 group reveal">
 
-                            Home
+                    <div class="icon-panel w-16 h-16 rounded-2xl flex items-center justify-center text-3xl transition group-hover:scale-110">
+                        📚
+                    </div>
 
+                    <h3 class="heading-font text-xl font-bold text-white mt-7">
+                        Our Curriculum
+                    </h3>
+
+                    <p class="section-description mt-3">
+                        Explore our academic approach and learning opportunities.
+                    </p>
+
+                    <div class="flex items-center gap-2 text-cyan-300 font-bold mt-7">
+                        Explore Curriculum
+                        <span class="transition-transform group-hover:translate-x-2">→</span>
+                    </div>
+
+                </a>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- CTA -->
+    <section class="py-16 sm:py-20 px-5">
+
+        <div class="max-w-7xl mx-auto">
+
+            <div class="cta-panel relative overflow-hidden rounded-[2rem]">
+
+                <div class="grid-background absolute inset-0 opacity-40"></div>
+
+                <div class="hero-glow bg-blue-500/15 w-80 h-80 -top-40 -right-20"></div>
+                <div class="hero-glow bg-cyan-400/10 w-80 h-80 -bottom-40 -left-20"></div>
+
+                <div class="relative text-center px-7 sm:px-12 lg:px-20 py-16 sm:py-20">
+
+                    <p class="section-label">UDAYON SCHOOL</p>
+
+                    <h2 class="heading-font text-3xl sm:text-5xl font-bold text-white mt-5">
+                        Need More Information?
+                    </h2>
+
+                    <p class="section-description max-w-2xl mx-auto mt-5">
+                        Explore our school, discover upcoming events, or learn more about admission opportunities at Udayon School.
+                    </p>
+
+                    <div class="flex flex-wrap justify-center gap-4 mt-9">
+
+                        <a href="about.html" class="btn primary-btn rounded-xl px-7">
+                            About Our School
                         </a>
-                    </li>
 
-
-                    <li>
-                        <a
-                            href="about.html"
-                            class="hover:text-white transition">
-
-                            About Us
-
-                        </a>
-                    </li>
-
-
-                    <li>
-                        <a
-                            href="curriculum.html"
-                            class="hover:text-white transition">
-
-                            Curriculum
-
-                        </a>
-                    </li>
-
-
-                    <li>
-                        <a
-                            href="admission.html"
-                            class="hover:text-white transition">
-
+                        <a href="admission.html" class="btn outline-btn rounded-xl px-7">
                             Admissions
-
                         </a>
-                    </li>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
 
 
-                </ul>
+    <!-- FOOTER -->
+    <footer class="bg-[#050e1d] border-t border-white/10">
+
+        <div class="max-w-7xl mx-auto px-5 py-16">
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+
+                <!-- BRAND -->
+                <div class="lg:col-span-2">
+
+                    <a href="index.html" class="flex items-center gap-3 w-fit">
+
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-400 text-white flex items-center justify-center text-xl font-bold shadow-lg shadow-blue-500/20">
+                            U
+                        </div>
+
+                        <div>
+                            <h2 class="text-xl font-bold text-white">
+                                Udayon School
+                            </h2>
+
+                            <p class="text-sm text-cyan-300">
+                                Excellence in Education
+                            </p>
+                        </div>
+
+                    </a>
+
+                    <p class="mt-6 max-w-md text-slate-400 leading-8">
+                        Building knowledge, character, and leadership for tomorrow. Stay connected with the latest information from Udayon School.
+                    </p>
+
+                    <div class="flex gap-2 mt-7">
+                        <span class="w-10 h-1 rounded-full bg-blue-500"></span>
+                        <span class="w-10 h-1 rounded-full bg-cyan-400"></span>
+                        <span class="w-10 h-1 rounded-full bg-indigo-500"></span>
+                    </div>
+
+                </div>
+
+
+                <!-- QUICK LINKS -->
+                <div>
+
+                    <h3 class="font-bold text-white mb-6">
+                        Quick Links
+                    </h3>
+
+                    <ul class="space-y-4">
+                        <li><a href="index.html" class="footer-link">Home</a></li>
+                        <li><a href="about.html" class="footer-link">About Us</a></li>
+                        <li><a href="curriculum.html" class="footer-link">Curriculum</a></li>
+                        <li><a href="admission.html" class="footer-link">Admissions</a></li>
+                    </ul>
+
+                </div>
+
+
+                <!-- INFORMATION -->
+                <div>
+
+                    <h3 class="font-bold text-white mb-6">
+                        Information
+                    </h3>
+
+                    <ul class="space-y-4">
+                        <li><a href="notice.html" class="footer-link">Notices</a></li>
+                        <li><a href="announcement.html" class="text-cyan-300 font-semibold">Announcements</a></li>
+                        <li><a href="events.html" class="footer-link">Events</a></li>
+                    </ul>
+
+                </div>
 
             </div>
 
 
-            <div>
+            <div class="border-t border-white/10 mt-14 pt-7 flex flex-col sm:flex-row justify-between gap-4 text-sm text-slate-500">
 
-                <h3
-                    class="font-bold text-white mb-5">
+                <p>
+                    © 2026 Udayon School. All rights reserved.
+                </p>
 
-                    Information
-
-                </h3>
-
-
-                <ul class="space-y-3">
-
-
-                    <li>
-
-                        <a
-                            href="notice.html"
-                            class="hover:text-white transition">
-
-                            Notices
-
-                        </a>
-
-                    </li>
-
-
-                    <li>
-
-                        <a
-                            href="announcement.html"
-                            class="text-blue-400">
-
-                            Announcements
-
-                        </a>
-
-                    </li>
-
-
-                    <li>
-
-                        <a
-                            href="events.html"
-                            class="hover:text-white transition">
-
-                            Events
-
-                        </a>
-
-                    </li>
-
-
-                </ul>
+                <p class="tracking-wide">
+                    Excellence <span class="text-cyan-400">•</span>
+                    Discipline <span class="text-cyan-400">•</span>
+                    Success
+                </p>
 
             </div>
 
         </div>
+    </footer>
 
 
-        <div
-            class="border-t border-slate-800 mt-12 pt-7 flex flex-col sm:flex-row justify-between gap-4 text-sm text-slate-500">
+    <!-- SCROLL REVEAL -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const elements = document.querySelectorAll(".reveal");
+
+            if (!("IntersectionObserver" in window)) {
+                elements.forEach(element => element.classList.add("visible"));
+                return;
+            }
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.12
+            });
+
+            elements.forEach(element => observer.observe(element));
+        });
+    </script>
 
 
-            <p>
-                © 2026 Udayon School. All rights reserved.
-            </p>
+    <!-- FIREBASE: KEEP ORIGINAL SCRIPTS -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
-
-            <p>
-                Excellence • Discipline • Success
-            </p>
-
-
-        </div>
-
-    </div>
-
-</footer>
-
-
-<!-- =========================================================
-     FIREBASE
-========================================================= -->
-
-<script
-    src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js">
-</script>
-
-
-<script
-    src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js">
-</script>
-
-
-<!-- =========================================================
-     FIREBASE CONFIG
-========================================================= -->
-
-<script src="./js/firebase-config.js"></script>
-
-
-<!-- =========================================================
-     STORAGE
-========================================================= -->
-
-<script src="./js/storage.js"></script>
-
-
-<!-- =========================================================
-     ANNOUNCEMENTS PAGE JAVASCRIPT
-========================================================= -->
-
-<script src="./js/announcements.js"></script>
-
+    <script src="js/firebase-config.js"></script>
+    <script src="js/announcements.js"></script>
 
 </body>
-
 </html>

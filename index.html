@@ -1,218 +1,716 @@
+
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#071225">
 
     <title>Udayon School | Excellence in Education</title>
 
     <!-- Tailwind + DaisyUI -->
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-    <!-- Google Font -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
-        * {
-            scroll-behavior: smooth;
-        }
+        
+/* =========================================
+   FUTURISTIC ELITE ANIMATION SYSTEM
+========================================= */
 
-        body {
-            font-family: "Inter", sans-serif;
-        }
+:root {
+    --glow-cyan: rgba(72,224,245,.35);
+    --glow-blue: rgba(57,139,255,.30);
+}
 
-        .heading-font {
-            font-family: "Playfair Display", serif;
-        }
+/* Smooth page appearance */
+body {
+    overflow-x: hidden;
+    animation: pageAppear .8s ease both;
+}
 
-        .hero-pattern {
-            background:
-                linear-gradient(135deg, rgba(15, 23, 42, .94), rgba(30, 64, 175, .88)),
-                radial-gradient(circle at 20% 20%, rgba(255,255,255,.12), transparent 30%),
-                radial-gradient(circle at 80% 80%, rgba(255,255,255,.08), transparent 30%);
-        }
+@keyframes pageAppear {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
 
-        .section-label {
-            letter-spacing: .15em;
-        }
+/* Scroll reveal */
+.reveal {
+    opacity: 0;
+    transform: translateY(45px);
+    transition:
+        opacity .85s cubic-bezier(.2,.7,.2,1),
+        transform .85s cubic-bezier(.2,.7,.2,1);
+}
 
-        .glass {
-            background: rgba(255, 255, 255, .10);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, .15);
-        }
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
 
-        .hover-lift {
-            transition: transform .25s ease, box-shadow .25s ease;
-        }
+.reveal-left {
+    opacity: 0;
+    transform: translateX(-55px);
+    transition: .9s ease;
+}
 
-        .hover-lift:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(15, 23, 42, .10);
-        }
+.reveal-left.active {
+    opacity: 1;
+    transform: translateX(0);
+}
 
-        .nav-link {
-            transition: color .2s ease, background-color .2s ease;
-        }
+.reveal-right {
+    opacity: 0;
+    transform: translateX(55px);
+    transition: .9s ease;
+}
 
-        .nav-link:hover {
-            color: #2563eb;
-            background: #eff6ff;
-        }
+.reveal-right.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Hero animated background */
+.hero-section {
+    position: relative;
+    isolation: isolate;
+}
+
+.hero-section::before,
+.hero-section::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.hero-section::before {
+    width: 420px;
+    height: 420px;
+    top: 5%;
+    left: -180px;
+    border: 1px solid rgba(72,224,245,.2);
+    box-shadow:
+        0 0 60px var(--glow-cyan),
+        inset 0 0 60px rgba(72,224,245,.06);
+    animation: orbitFloat 12s ease-in-out infinite;
+}
+
+.hero-section::after {
+    width: 300px;
+    height: 300px;
+    right: -100px;
+    bottom: 5%;
+    border: 1px solid rgba(57,139,255,.25);
+    box-shadow: 0 0 80px var(--glow-blue);
+    animation: orbitFloat 9s ease-in-out infinite reverse;
+}
+
+@keyframes orbitFloat {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-35px) rotate(12deg); }
+}
+
+/* Animated hero heading */
+.hero-section h1 {
+    animation: heroText .9s .15s ease both;
+}
+
+.hero-section p {
+    animation: heroText .9s .3s ease both;
+}
+
+.hero-section .btn {
+    animation: heroText .9s .45s ease both;
+}
+
+@keyframes heroText {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hero photo floating effect */
+.hero-section .relative.rounded-3xl {
+    animation: photoFloat 6s ease-in-out infinite;
+    box-shadow: 0 25px 80px rgba(0,0,0,.4);
+}
+
+@keyframes photoFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+
+/* Glowing cards */
+.content-card,
+.stat-card,
+.principal-card,
+.gallery-card,
+.notice-card {
+    position: relative;
+    transition:
+        transform .4s ease,
+        border-color .4s ease,
+        box-shadow .4s ease;
+}
+
+.content-card:hover,
+.principal-card:hover,
+.notice-card:hover {
+    transform: translateY(-9px);
+    border-color: rgba(72,224,245,.65);
+    box-shadow:
+        0 15px 45px rgba(0,0,0,.3),
+        0 0 25px rgba(72,224,245,.10);
+}
+
+/* Gallery effects */
+.gallery-card {
+    transition: transform .45s ease, box-shadow .45s ease;
+}
+
+.gallery-card:hover {
+    transform: translateY(-9px);
+    box-shadow: 0 20px 45px rgba(0,0,0,.35);
+}
+
+.gallery-card img {
+    transition: transform .8s cubic-bezier(.2,.7,.2,1);
+}
+
+.gallery-card:hover img {
+    transform: scale(1.12);
+}
+
+.gallery-overlay {
+    transition: background .4s ease;
+}
+
+.gallery-card:hover .gallery-overlay {
+    background: linear-gradient(
+        to top,
+        rgba(3,12,26,.98),
+        rgba(3,12,26,.12) 85%
+    );
+}
+
+/* Statistics */
+.stat-card {
+    backdrop-filter: blur(18px);
+    box-shadow: 0 20px 60px rgba(0,0,0,.25);
+}
+
+.stat-card > div {
+    transition: background .3s ease;
+}
+
+.stat-card > div:hover {
+    background: rgba(72,224,245,.07);
+}
+
+/* Animated number glow */
+.stat-card p:last-child {
+    text-shadow: 0 0 20px rgba(72,224,245,.3);
+}
+
+/* Section heading underline */
+.section-label {
+    display: inline-block;
+    position: relative;
+}
+
+.section-label::after {
+    content: "";
+    display: block;
+    width: 35px;
+    height: 2px;
+    margin-top: 7px;
+    background: linear-gradient(90deg,var(--blue),var(--cyan));
+    border-radius: 10px;
+    transition: width .4s ease;
+}
+
+section:hover .section-label::after {
+    width: 65px;
+}
+
+/* Buttons */
+.btn {
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease,
+        filter .3s ease !important;
+}
+
+.btn-primary:hover {
+    box-shadow: 0 0 25px rgba(72,224,245,.35);
+}
+
+.btn-outline:hover,
+.admin-btn:hover {
+    box-shadow: 0 0 22px rgba(72,224,245,.2);
+}
+
+/* Navbar */
+.glass-nav {
+    transition: background .3s ease, box-shadow .3s ease;
+}
+
+.glass-nav.scrolled {
+    background: rgba(4,12,25,.97);
+    box-shadow: 0 10px 35px rgba(0,0,0,.25);
+}
+
+/* CTA glow */
+.cta-box {
+    box-shadow: 0 20px 70px rgba(0,0,0,.2);
+    transition: box-shadow .4s ease;
+}
+
+.cta-box:hover {
+    box-shadow:
+        0 20px 70px rgba(0,0,0,.3),
+        0 0 35px rgba(72,224,245,.12);
+}
+
+/* Footer links */
+footer a {
+    display: inline-block;
+    transition: color .25s ease, transform .25s ease;
+}
+
+footer a:hover {
+    transform: translateX(5px);
+}
+
+/* Subtle animated grid */
+.hero-grid {
+    animation: gridGlow 8s ease-in-out infinite alternate;
+}
+
+@keyframes gridGlow {
+    from { opacity: .35; }
+    to { opacity: .85; }
+}
+
+/* Accessibility: respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+    }
+
+    .reveal,
+    .reveal-left,
+    .reveal-right {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+
+/* =========================================
+   UDAYON - FUTURISTIC GLASS NAVBAR
+========================================= */
+
+.glass-nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    min-height: 78px;
+    background: rgba(7, 18, 37, .88);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(72, 224, 245, .13);
+    transition: background .35s ease, box-shadow .35s ease;
+}
+
+.glass-nav.scrolled {
+    background: rgba(4, 12, 27, .97);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, .35);
+    border-bottom-color: rgba(72, 224, 245, .25);
+}
+
+.nav-inner {
+    max-width: 1450px;
+    min-height: 78px;
+    margin: auto;
+    padding: 0 35px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+/* BRAND */
+
+.brand-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+.brand-logo {
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #398bff, #48e0f5);
+    color: #071225;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 27px;
+    font-weight: 800;
+    box-shadow: 0 0 25px rgba(72, 224, 245, .3);
+    transition: transform .35s ease, box-shadow .35s ease;
+}
+
+.brand-link:hover .brand-logo {
+    transform: rotate(-8deg) scale(1.08);
+    box-shadow: 0 0 35px rgba(72, 224, 245, .5);
+}
+
+.brand-name {
+    display: block;
+    color: #fff;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 17px;
+    font-weight: 800;
+    letter-spacing: .5px;
+    line-height: 1.2;
+}
+
+.brand-tagline {
+    display: block;
+    color: #91a8c5;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 4px;
+}
+
+/* DESKTOP LINKS */
+
+.desktop-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.nav-link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    padding: 11px 13px;
+    color: #a8b8ce;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 10px;
+    transition: color .3s ease, background .3s ease;
+}
+
+.nav-link::after {
+    content: "";
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    border-radius: 5px;
+    background: linear-gradient(90deg, #398bff, #48e0f5);
+    transform: translateX(-50%);
+    transition: width .3s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: #48e0f5;
+    background: rgba(72, 224, 245, .07);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 55%;
+}
+
+/* ADMIN BUTTON */
+
+.admin-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 11px 19px;
+    border: 1px solid rgba(72, 224, 245, .55);
+    border-radius: 12px;
+    background: linear-gradient(
+        135deg,
+        rgba(57, 139, 255, .15),
+        rgba(72, 224, 245, .10)
+    );
+    color: #48e0f5;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: all .3s ease;
+}
+
+.admin-btn:hover {
+    color: #071225;
+    background: linear-gradient(135deg, #398bff, #48e0f5);
+    border-color: transparent;
+    box-shadow: 0 0 25px rgba(72, 224, 245, .35);
+    transform: translateY(-2px);
+}
+
+/* MOBILE MENU BUTTON */
+
+.mobile-menu-btn {
+    display: none;
+    width: 43px;
+    height: 43px;
+    border: 1px solid rgba(72, 224, 245, .3);
+    border-radius: 12px;
+    background: rgba(72, 224, 245, .07);
+    color: #48e0f5;
+    font-size: 23px;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+.mobile-menu-btn:hover {
+    background: rgba(72, 224, 245, .15);
+    box-shadow: 0 0 20px rgba(72, 224, 245, .15);
+}
+
+/* MOBILE NAVIGATION PANEL */
+
+.mobile-nav {
+    display: none;
+    position: absolute;
+    top: calc(100% + 1px);
+    left: 0;
+    width: 100%;
+    padding: 15px 22px 22px;
+    background: rgba(7, 18, 37, .98);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(72, 224, 245, .2);
+    box-shadow: 0 20px 35px rgba(0, 0, 0, .3);
+}
+
+.mobile-nav.open {
+    display: block;
+    animation: mobileNavIn .3s ease both;
+}
+
+@keyframes mobileNavIn {
+    from {
+        opacity: 0;
+        transform: translateY(-12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.mobile-nav a {
+    display: block;
+    padding: 13px 15px;
+    margin: 4px 0;
+    border-radius: 10px;
+    color: #a8b8ce;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all .25s ease;
+}
+
+.mobile-nav a:hover,
+.mobile-nav a.active {
+    color: #48e0f5;
+    background: rgba(72, 224, 245, .09);
+    padding-left: 22px;
+}
+
+.mobile-nav .mobile-admin {
+    margin-top: 12px;
+    text-align: center;
+    border: 1px solid rgba(72, 224, 245, .4);
+    color: #48e0f5;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1100px) {
+    .nav-inner {
+        padding: 0 20px;
+    }
+
+    .desktop-nav {
+        gap: 0;
+    }
+
+    .nav-link {
+        padding: 10px 8px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 1023px) {
+    .desktop-nav,
+    .desktop-admin {
+        display: none;
+    }
+
+    .mobile-menu-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .nav-inner {
+        min-height: 72px;
+    }
+
+    .glass-nav {
+        min-height: 72px;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-inner {
+        padding: 0 15px;
+    }
+
+    .brand-logo {
+        width: 41px;
+        height: 41px;
+        font-size: 24px;
+    }
+
+    .brand-name {
+        font-size: 15px;
+    }
+
+    .brand-tagline {
+        font-size: 9px;
+        letter-spacing: 1.5px;
+    }
+}
+
+
     </style>
 </head>
 
-<body class="bg-slate-50 text-slate-800">
+<body>
 
 <!-- ========================================================= -->
 <!-- NAVBAR -->
 <!-- ========================================================= -->
 
-<header class="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur-md">
 
-    <div class="navbar max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<!-- FUTURISTIC UDAYON NAVBAR -->
 
-        <!-- Mobile menu -->
-        <div class="navbar-start">
+<header class="glass-nav">
 
-            <div class="dropdown">
+    <div class="nav-inner">
 
-                <button tabindex="0"
-                    class="btn btn-ghost lg:hidden"
-                    aria-label="Open navigation menu">
-                    <svg xmlns="http://www.w3.org/2000/svg"
-                        class="h-6 w-6"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
-                </button>
+        <!-- BRAND -->
+        <a href="index.html" class="brand-link">
 
-                <ul tabindex="0"
-                    class="menu menu-sm dropdown-content mt-3 z-[1] p-3 shadow-xl bg-white rounded-2xl w-64 border border-slate-100">
+            <span class="brand-logo">U</span>
 
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="notice.html">Notice</a></li>
-                    <li><a href="announcement.html">Announcement</a></li>
-                    <li><a href="curriculum.html">Curriculum</a></li>
-                    <li><a href="admission.html">Admission</a></li>
-                    <li><a href="events.html">Events</a></li>
+            <span>
+                <span class="brand-name">UDAYON SCHOOL</span>
+                <span class="brand-tagline">Learn · Grow · Shine</span>
+            </span>
 
-                </ul>
+        </a>
 
-            </div>
+        <!-- DESKTOP NAVIGATION -->
+        <nav class="desktop-nav">
 
-            <!-- Logo -->
-            <a href="index.html"
-                class="btn btn-ghost normal-case text-lg sm:text-xl font-bold gap-2">
-
-                <span class="flex items-center justify-center w-10 h-10 rounded-xl bg-blue-600 text-white text-lg">
-                    U
-                </span>
-
-                <span class="hidden sm:inline">
-                    Udayon School
-                </span>
-
-            </a>
-
-        </div>
-
-        <!-- Desktop Navigation -->
-        <nav class="navbar-center hidden lg:flex">
-
-            <ul class="menu menu-horizontal gap-1">
-
-                <li>
-                    <a href="index.html" class="nav-link rounded-lg font-medium">
-                        Home
-                    </a>
-                </li>
-
-                <li>
-                    <a href="about.html" class="nav-link rounded-lg font-medium">
-                        About
-                    </a>
-                </li>
-
-                <li>
-                    <a href="notice.html" class="nav-link rounded-lg font-medium">
-                        Notice
-                    </a>
-                </li>
-
-                <li>
-                    <a href="announcement.html" class="nav-link rounded-lg font-medium">
-                        Announcement
-                    </a>
-                </li>
-
-                <li>
-                    <a href="curriculum.html" class="nav-link rounded-lg font-medium">
-                        Curriculum
-                    </a>
-                </li>
-
-                <li>
-                    <a href="admission.html" class="nav-link rounded-lg font-medium">
-                        Admission
-                    </a>
-                </li>
-
-                <li>
-                    <a href="events.html" class="nav-link rounded-lg font-medium">
-                        Events
-                    </a>
-                </li>
-
-
-            </ul>
+            <a href="index.html" class="nav-link active">Home</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="notice.html" class="nav-link">Notice</a>
+            <a href="announcement.html" class="nav-link">Announcement</a>
+            <a href="curriculum.html" class="nav-link">Curriculum</a>
+            <a href="admission.html" class="nav-link">Admission</a>
+            <a href="events.html" class="nav-link">Events</a>
 
         </nav>
 
-        <!-- Admin -->
-        <div class="navbar-end">
-
-            <a href="admin.html"
-                class="btn btn-primary rounded-xl px-5 shadow-md shadow-blue-600/20">
-
-                Admin Portal
-
+        <!-- ADMIN -->
+        <div class="desktop-admin">
+            <a href="admin.html" class="admin-btn">
+                Admin Portal ↗
             </a>
-
         </div>
+
+        <!-- MOBILE MENU BUTTON -->
+        <button
+            class="mobile-menu-btn"
+            id="mobileMenuBtn"
+            aria-label="Open navigation menu"
+            aria-expanded="false"
+            aria-controls="mobileNav">
+            ☰
+        </button>
 
     </div>
 
+    <!-- MOBILE NAVIGATION -->
+    <nav class="mobile-nav" id="mobileNav">
+
+        <a href="index.html" class="active">Home</a>
+        <a href="about.html">About</a>
+        <a href="notice.html">Notice</a>
+        <a href="announcement.html">Announcement</a>
+        <a href="curriculum.html">Curriculum</a>
+        <a href="admission.html">Admission</a>
+        <a href="events.html">Events</a>
+        <a href="admin.html" class="mobile-admin">Admin Portal ↗</a>
+
+    </nav>
+
 </header>
+
 
 
 <!-- ========================================================= -->
 <!-- HERO -->
 <!-- ========================================================= -->
 
-<section class="hero min-h-[680px] hero-pattern text-white relative overflow-hidden">
+<section class="hero-section relative min-h-[680px] overflow-hidden text-white">
 
-    <!-- Decorative circles -->
-    <div class="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-blue-400/10"></div>
-    <div class="absolute -bottom-40 -left-32 w-[500px] h-[500px] rounded-full bg-indigo-400/10"></div>
+    <div class="absolute inset-0 hero-grid"></div>
 
-    <div class="hero-content w-full max-w-7xl mx-auto px-6 py-24">
+    <div class="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 py-24">
 
-        <div class="grid lg:grid-cols-2 gap-14 items-center w-full">
+        <div class="grid lg:grid-cols-2 gap-14 items-center">
 
-            <!-- Hero text -->
             <div class="text-center lg:text-left">
 
                 <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-medium mb-7">
@@ -223,10 +721,10 @@
 
                 </div>
 
-                <h1 class="heading-font text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight">
+                <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-tight">
 
                     Inspiring Minds.
-                    <span class="text-blue-300">
+                    <span class="text-cyan-300">
                         Shaping Futures.
                     </span>
 
@@ -243,17 +741,13 @@
                 <div class="flex flex-wrap justify-center lg:justify-start gap-4 mt-9">
 
                     <a href="admission.html"
-                        class="btn btn-lg bg-white text-blue-700 border-0 hover:bg-slate-100 rounded-xl px-7">
-
+                        class="btn btn-lg btn-primary rounded-xl px-7">
                         Apply for Admission
-
                     </a>
 
                     <a href="about.html"
-                        class="btn btn-lg btn-outline border-white text-white hover:bg-white hover:text-blue-700 rounded-xl px-7">
-
+                        class="btn btn-lg btn-outline rounded-xl px-7">
                         Discover Our School
-
                     </a>
 
                 </div>
@@ -261,88 +755,48 @@
             </div>
 
 
-            <!-- Hero information card -->
-            <div class="hidden lg:block">
+            <!-- HERO PHOTO -->
 
-                <div class="glass rounded-3xl p-8 shadow-2xl max-w-md ml-auto">
+            <div class="relative max-w-lg mx-auto w-full">
 
-                    <div class="flex items-center gap-4 mb-8">
+                <div class="absolute -inset-4 rounded-[35px] bg-cyan-400/10 blur-2xl"></div>
 
-                        <div class="w-14 h-14 rounded-2xl bg-white text-blue-700 flex items-center justify-center text-2xl font-bold">
-                            U
-                        </div>
+                <div class="relative rounded-3xl overflow-hidden border border-white/20 shadow-2xl">
 
-                        <div>
+                    <img
+                        src="./src/WhatsApp Image 2026-11-09 at 3.27.38 PM.jpeg"
+                        alt="Students learning in a classroom"
+                        class="w-full h-[420px] object-cover">
 
-                            <h3 class="font-bold text-xl">
-                                Udayon School
-                            </h3>
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#071225]/90 via-transparent to-transparent"></div>
 
-                            <p class="text-slate-300 text-sm">
-                                Excellence in Education
-                            </p>
+                    <div class="absolute bottom-0 left-0 right-0 p-7">
 
-                        </div>
+                        <p class="text-cyan-300 text-sm font-bold uppercase tracking-widest">
+                            Welcome to Udayon
+                        </p>
 
-                    </div>
+                        <h2 class="text-2xl sm:text-3xl font-bold text-white mt-2">
+                            A Place to Learn and Grow
+                        </h2>
 
-                    <div class="space-y-5">
-
-                        <div class="flex items-center gap-4">
-
-                            <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center">
-                                🎓
-                            </div>
-
-                            <div>
-                                <p class="font-semibold">Quality Education</p>
-                                <p class="text-sm text-slate-300">
-                                    Building strong foundations
-                                </p>
-                            </div>
-
-                        </div>
-
-                        <div class="flex items-center gap-4">
-
-                            <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center">
-                                🌱
-                            </div>
-
-                            <div>
-                                <p class="font-semibold">Character Building</p>
-                                <p class="text-sm text-slate-300">
-                                    Values for lifelong success
-                                </p>
-                            </div>
-
-                        </div>
-
-                        <div class="flex items-center gap-4">
-
-                            <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center">
-                                🚀
-                            </div>
-
-                            <div>
-                                <p class="font-semibold">Future Leadership</p>
-                                <p class="text-sm text-slate-300">
-                                    Empowering tomorrow's leaders
-                                </p>
-                            </div>
-
-                        </div>
+                        <p class="text-slate-200 mt-2">
+                            Inspiring the next generation.
+                        </p>
 
                     </div>
 
+                </div>
+
+                <div class="absolute -bottom-5 -left-5 glass rounded-2xl px-5 py-4 hidden sm:block">
+                    <p class="text-cyan-300 font-bold">🎓</p>
+                    <p class="text-white font-semibold text-sm">Learning Together</p>
                 </div>
 
             </div>
 
         </div>
-
     </div>
-
 </section>
 
 
@@ -350,64 +804,35 @@
 <!-- STATS -->
 <!-- ========================================================= -->
 
-<section class="relative -mt-10 z-10">
+<section class="relative -mt-10 z-20 px-5">
 
-    <div class="max-w-6xl mx-auto px-5">
+    <div class="max-w-6xl mx-auto">
 
-        <div class="grid grid-cols-2 lg:grid-cols-4 bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden">
+        <div class="grid grid-cols-2 lg:grid-cols-4 stat-card rounded-2xl shadow-xl overflow-hidden">
 
-            <div class="p-7 text-center border-b lg:border-b-0 lg:border-r border-slate-100">
-
-                <p class="text-sm font-semibold text-slate-500 uppercase tracking-wider">
-                    Students
-                </p>
-
-                <p class="text-4xl font-extrabold text-blue-600 mt-2">
-                    250+
-                </p>
-
+            <div class="p-7 text-center border-b lg:border-b-0 lg:border-r border-white/10">
+                <p class="text-sm font-semibold text-slate-400 uppercase tracking-wider">Students</p>
+                <p class="text-4xl font-extrabold text-cyan-300 mt-2">250+</p>
             </div>
 
-            <div class="p-7 text-center border-b lg:border-b-0 lg:border-r border-slate-100">
-
-                <p class="text-sm font-semibold text-slate-500 uppercase tracking-wider">
-                    Teachers
-                </p>
-
-                <p class="text-4xl font-extrabold text-emerald-600 mt-2">
-                    10
-                </p>
-
+            <div class="p-7 text-center border-b lg:border-b-0 lg:border-r border-white/10">
+                <p class="text-sm font-semibold text-slate-400 uppercase tracking-wider">Teachers</p>
+                <p class="text-4xl font-extrabold text-cyan-300 mt-2">10</p>
             </div>
 
-            <div class="p-7 text-center border-r border-slate-100">
-
-                <p class="text-sm font-semibold text-slate-500 uppercase tracking-wider">
-                    Pass Rate
-                </p>
-
-                <p class="text-4xl font-extrabold text-amber-500 mt-2">
-                    98%
-                </p>
-
+            <div class="p-7 text-center border-r border-white/10">
+                <p class="text-sm font-semibold text-slate-400 uppercase tracking-wider">Pass Rate</p>
+                <p class="text-4xl font-extrabold text-cyan-300 mt-2">98%</p>
             </div>
 
             <div class="p-7 text-center">
-
-                <p class="text-sm font-semibold text-slate-500 uppercase tracking-wider">
-                    Established
-                </p>
-
-                <p class="text-4xl font-extrabold text-slate-800 mt-2">
-                    2004
-                </p>
-
+                <p class="text-sm font-semibold text-slate-400 uppercase tracking-wider">Established</p>
+                <p class="text-4xl font-extrabold text-cyan-300 mt-2">2004</p>
             </div>
 
         </div>
 
     </div>
-
 </section>
 
 
@@ -415,7 +840,7 @@
 <!-- PRINCIPAL MESSAGE -->
 <!-- ========================================================= -->
 
-<section class="py-24 bg-slate-50">
+<section class="content-section py-24">
 
     <div class="max-w-6xl mx-auto px-5">
 
@@ -423,27 +848,25 @@
 
             <div class="lg:col-span-2">
 
-                <p class="section-label text-sm font-bold text-blue-600 uppercase">
+                <p class="section-label text-sm font-bold uppercase">
                     From the Principal
                 </p>
 
-                <h2 class="heading-font text-4xl sm:text-5xl font-bold text-slate-900 mt-3">
+                <h2 class="section-title text-4xl sm:text-5xl font-bold mt-3">
                     Education Beyond the Classroom
                 </h2>
 
-                <div class="w-16 h-1 bg-blue-600 mt-6 rounded-full"></div>
+                <div class="w-16 h-1 bg-cyan-400 mt-6 rounded-full"></div>
 
             </div>
 
             <div class="lg:col-span-3">
 
-                <div class="bg-white rounded-3xl p-8 sm:p-10 shadow-lg border border-slate-100">
+                <div class="principal-card rounded-3xl p-8 sm:p-10 shadow-lg">
 
-                    <div class="text-5xl text-blue-100 mb-3">
-                        “
-                    </div>
+                    <div class="text-5xl text-cyan-300 mb-3">“</div>
 
-                    <p class="text-lg text-slate-600 leading-8">
+                    <p class="text-lg text-slate-300 leading-8">
 
                         Welcome to Udayon School. Our mission is to provide
                         quality education that inspires students to become
@@ -452,7 +875,7 @@
 
                     </p>
 
-                    <p class="text-lg text-slate-600 leading-8 mt-5">
+                    <p class="text-lg text-slate-300 leading-8 mt-5">
 
                         We are committed to academic excellence, discipline,
                         creativity, and innovation while creating an environment
@@ -460,26 +883,182 @@
 
                     </p>
 
-                    <div class="mt-8 pt-6 border-t border-slate-100">
+                    <div class="mt-8 pt-6 border-t border-white/10">
 
-                        <p class="font-bold text-slate-900">
-                            Principal
-                        </p>
-
-                        <p class="text-sm text-slate-500">
-                            Udayon School
-                        </p>
+                        <p class="font-bold text-white">Principal</p>
+                        <p class="text-sm text-slate-400">Udayon School</p>
 
                     </div>
 
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ========================================================= -->
+<!-- NEW SCHOOL PHOTO GALLERY -->
+<!-- ========================================================= -->
+
+<section id="gallery" class="alternate-section py-24">
+
+    <div class="max-w-7xl mx-auto px-5">
+
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-5 mb-12">
+
+            <div>
+
+                <p class="section-label text-sm font-bold uppercase">
+                    Memories & Moments
+                </p>
+
+                <h2 class="section-title text-4xl sm:text-5xl font-bold mt-3">
+                    Our School Gallery
+                </h2>
+
+                <p class="section-muted mt-4 max-w-2xl leading-relaxed">
+                    Take a look at the learning, creativity, friendship,
+                    and activities that make life at Udayon School special.
+                </p>
+
+            </div>
+
+            <a href="events.html" class="btn btn-outline rounded-xl">
+                Explore School Events →
+            </a>
+
+        </div>
+
+
+        <!-- GALLERY GRID -->
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+
+            <!-- PHOTO 1 -->
+
+            <div class="gallery-card large">
+
+                <img
+                    src="./src/WhatsApp Image 2026-11-09 at 3.27.38 PM.jpeg"
+                    alt="Students studying in classroom"
+                    loading="lazy">
+
+                <div class="gallery-overlay">
+                    <div>
+                        <h3>Classroom Learning</h3>
+                        <p>Growing through knowledge</p>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- PHOTO 2 -->
+
+            <div class="gallery-card">
+
+                <img
+                    src="./src/WhatsApp Image 2026-11-09 at 3.27.37 PM (1).jpeg"
+                    alt="Students learning together"
+                    loading="lazy">
+
+                <div class="gallery-overlay">
+                    <div>
+                        <h3>Learning Together</h3>
+                        <p>Sharing ideas and experiences</p>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- PHOTO 3 -->
+
+            <div class="gallery-card">
+
+                <img
+                    src="./src/WhatsApp Image 2026-11-09 at 3.27.35 PM (1).jpeg"
+                    alt="Teacher helping students"
+                    loading="lazy">
+
+                <div class="gallery-overlay">
+                    <div>
+                        <h3>Teacher & Students</h3>
+                        <p>Guidance for a brighter future</p>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- PHOTO 4 -->
+
+            <div class="gallery-card">
+
+                <img
+                    src="./src/WhatsApp Image 2026-11-09 at 3.27.37 PM.jpeg"
+                    alt="Students participating in activities"
+                    loading="lazy">
+
+                <div class="gallery-overlay">
+                    <div>
+                        <h3>Student Activities</h3>
+                        <p>Learning beyond textbooks</p>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- PHOTO 5 -->
+
+            <div class="gallery-card">
+
+                <img
+                    src="./src/WhatsApp Image 2026-11-09 at 3.27.35 PM.jpeg"
+                    alt="Students working together"
+                    loading="lazy">
+
+                <div class="gallery-overlay">
+                    <div>
+                        <h3>Friendship & Teamwork</h3>
+                        <p>Building memories together</p>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- PHOTO 6 -->
+
+            <div class="gallery-card">
+
+                <img
+                    src="./src/WhatsApp Image 2026-11-09 at 3.27.36 PM.jpeg"
+                    alt="Student reading a book"
+                    loading="lazy">
+
+                <div class="gallery-overlay">
+                    <div>
+                        <h3>Reading & Creativity</h3>
+                        <p>Discovering new possibilities</p>
+                    </div>
                 </div>
 
             </div>
 
         </div>
 
-    </div>
 
+        <div class="text-center mt-10">
+            <p class="text-sm text-slate-400">
+                Photo gallery · Udayon School
+            </p>
+        </div>
+
+    </div>
 </section>
 
 
@@ -487,59 +1066,35 @@
 <!-- NOTICES -->
 <!-- ========================================================= -->
 
-<section class="py-24 bg-white">
+<section class="content-section py-24">
 
     <div class="max-w-7xl mx-auto px-5">
 
         <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-5 mb-10">
 
             <div>
-
-                <p class="section-label text-sm font-bold text-blue-600 uppercase">
-                    Stay Updated
-                </p>
-
-                <h2 class="heading-font text-4xl sm:text-5xl font-bold text-slate-900 mt-2">
+                <p class="section-label text-sm font-bold uppercase">Stay Updated</p>
+                <h2 class="section-title text-4xl sm:text-5xl font-bold mt-2">
                     Latest Notices
                 </h2>
-
             </div>
 
-            <a href="notice.html"
-                class="btn btn-outline border-slate-300 rounded-xl">
+            <a href="notice.html" class="btn btn-outline rounded-xl">
                 View All Notices →
             </a>
 
         </div>
 
+        <div id="latestNotices" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-        <div id="latestNotices"
-            class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-            <div class="card bg-slate-50 border border-slate-100 hover-lift">
-
-                <div class="card-body">
-
-                    <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center text-xl">
-                        📢
-                    </div>
-
-                    <h3 class="card-title mt-3">
-                        No Notices Yet
-                    </h3>
-
-                    <p class="text-slate-500">
-                        Admin will publish notices here.
-                    </p>
-
-                </div>
-
+            <div class="content-card hover-lift p-7">
+                <div class="text-3xl">📢</div>
+                <h3 class="font-bold text-xl mt-4">No Notices Yet</h3>
+                <p class="section-muted mt-2">Admin will publish notices here.</p>
             </div>
 
         </div>
-
     </div>
-
 </section>
 
 
@@ -547,59 +1102,37 @@
 <!-- ANNOUNCEMENTS -->
 <!-- ========================================================= -->
 
-<section class="py-24 bg-slate-50">
+<section class="alternate-section py-24">
 
     <div class="max-w-7xl mx-auto px-5">
 
         <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-5 mb-10">
 
             <div>
-
-                <p class="section-label text-sm font-bold text-blue-600 uppercase">
-                    School Updates
-                </p>
-
-                <h2 class="heading-font text-4xl sm:text-5xl font-bold text-slate-900 mt-2">
+                <p class="section-label text-sm font-bold uppercase">School Updates</p>
+                <h2 class="section-title text-4xl sm:text-5xl font-bold mt-2">
                     Announcements
                 </h2>
-
             </div>
 
-            <a href="announcement.html"
-                class="btn btn-outline border-slate-300 rounded-xl">
+            <a href="announcement.html" class="btn btn-outline rounded-xl">
                 View All →
             </a>
 
         </div>
 
+        <div id="latestAnnouncements" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-        <div id="latestAnnouncements"
-            class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-            <div class="card bg-white border border-slate-100 shadow-sm hover-lift">
-
-                <div class="card-body">
-
-                    <div class="w-12 h-12 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center text-xl">
-                        🔔
-                    </div>
-
-                    <h3 class="card-title mt-3">
-                        No Announcements
-                    </h3>
-
-                    <p class="text-slate-500">
-                        Important school announcements will appear here.
-                    </p>
-
-                </div>
-
+            <div class="content-card hover-lift p-7">
+                <div class="text-3xl">🔔</div>
+                <h3 class="font-bold text-xl mt-4">No Announcements</h3>
+                <p class="section-muted mt-2">
+                    Important school announcements will appear here.
+                </p>
             </div>
 
         </div>
-
     </div>
-
 </section>
 
 
@@ -607,59 +1140,37 @@
 <!-- EVENTS -->
 <!-- ========================================================= -->
 
-<section class="py-24 bg-white">
+<section class="content-section py-24">
 
     <div class="max-w-7xl mx-auto px-5">
 
         <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-5 mb-10">
 
             <div>
-
-                <p class="section-label text-sm font-bold text-blue-600 uppercase">
-                    School Life
-                </p>
-
-                <h2 class="heading-font text-4xl sm:text-5xl font-bold text-slate-900 mt-2">
+                <p class="section-label text-sm font-bold uppercase">School Life</p>
+                <h2 class="section-title text-4xl sm:text-5xl font-bold mt-2">
                     Upcoming Events
                 </h2>
-
             </div>
 
-            <a href="events.html"
-                class="btn btn-outline border-slate-300 rounded-xl">
+            <a href="events.html" class="btn btn-outline rounded-xl">
                 View All Events →
             </a>
 
         </div>
 
+        <div id="latestEvents" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-        <div id="latestEvents"
-            class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-            <div class="card bg-slate-50 border border-slate-100 hover-lift">
-
-                <div class="card-body">
-
-                    <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl">
-                        📅
-                    </div>
-
-                    <h3 class="card-title mt-3">
-                        No Events
-                    </h3>
-
-                    <p class="text-slate-500">
-                        Upcoming school events will appear here.
-                    </p>
-
-                </div>
-
+            <div class="content-card hover-lift p-7">
+                <div class="text-3xl">📅</div>
+                <h3 class="font-bold text-xl mt-4">No Events</h3>
+                <p class="section-muted mt-2">
+                    Upcoming school events will appear here.
+                </p>
             </div>
 
         </div>
-
     </div>
-
 </section>
 
 
@@ -671,45 +1182,34 @@
 
     <div class="max-w-7xl mx-auto">
 
-        <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-700 to-indigo-800 text-white">
+        <div class="cta-box relative overflow-hidden rounded-3xl text-white">
 
-            <div class="absolute -right-20 -top-20 w-72 h-72 rounded-full bg-white/10"></div>
-            <div class="absolute -left-20 -bottom-24 w-80 h-80 rounded-full bg-white/5"></div>
+            <div class="absolute inset-0 hero-grid"></div>
 
-            <div class="relative px-7 sm:px-12 lg:px-20 py-16 text-center">
+            <div class="relative z-10 px-7 sm:px-12 lg:px-20 py-16 text-center">
 
-                <p class="section-label text-sm font-bold uppercase text-blue-200">
+                <p class="section-label text-sm font-bold uppercase">
                     Begin Your Journey
                 </p>
 
-                <h2 class="heading-font text-4xl sm:text-5xl lg:text-6xl font-bold mt-3">
+                <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold mt-3">
                     Admissions Are Open
                 </h2>
 
                 <p class="max-w-2xl mx-auto mt-5 text-lg text-blue-100 leading-relaxed">
-
                     Give your child an environment where curiosity is encouraged,
                     potential is developed, and every achievement matters.
-
                 </p>
 
                 <div class="mt-8">
-
-                    <a href="admission.html"
-                        class="btn btn-lg bg-white text-blue-700 border-0 hover:bg-slate-100 rounded-xl px-8">
-
+                    <a href="admission.html" class="btn btn-lg btn-primary rounded-xl px-8">
                         Apply Now →
-
                     </a>
-
                 </div>
 
             </div>
-
         </div>
-
     </div>
-
 </section>
 
 
@@ -717,149 +1217,1266 @@
 <!-- FOOTER -->
 <!-- ========================================================= -->
 
-<footer class="bg-slate-950 text-slate-300">
+<footer class="text-slate-300">
 
     <div class="max-w-7xl mx-auto px-5 py-16">
 
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
 
-            <!-- Brand -->
-
             <div class="lg:col-span-2">
 
                 <div class="flex items-center gap-3">
-
-                    <div class="w-12 h-12 rounded-xl bg-blue-600 text-white flex items-center justify-center text-xl font-bold">
-                        U
-                    </div>
+                    <div class="brand-logo">U</div>
 
                     <div>
+                        <h2 class="text-xl font-bold text-white">Udayon School</h2>
+                        <p class="text-sm text-slate-400">Learn · Grow · Shine</p>
+                    </div>
+                </div>
 
-                        <h2 class="text-xl font-bold text-white">
-                            Udayon School
+                <p class="mt-6 max-w-md leading-7 text-slate-400">
+                    Building knowledge, character, and leadership for tomorrow.
+                    We are committed to creating responsible, confident,
+                    and lifelong learners.
+                </p>
+
+            </div>
+
+
+            <div>
+                <h3 class="font-bold text-white mb-5">Quick Links</h3>
+
+                <ul class="space-y-3">
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="curriculum.html">Curriculum</a></li>
+                    <li><a href="admission.html">Admissions</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="#gallery">Photo Gallery</a></li>
+                </ul>
+            </div>
+
+
+            <div>
+                <h3 class="font-bold text-white mb-5">Information</h3>
+
+                <ul class="space-y-3">
+                    <li><a href="notice.html">Notices</a></li>
+                    <li><a href="announcement.html">Announcements</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="admin.html">Admin Portal</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+
+        <div class="border-t border-white/10 mt-12 pt-7 flex flex-col sm:flex-row justify-between gap-4 text-sm text-slate-500">
+
+            <p>© 2026 Udayon School. All rights reserved.</p>
+
+            <p>Learn · Grow · Shine</p>
+
+        </div>
+
+    </div>
+</footer>
+
+
+<!-- FIREBASE -->
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+<script src="js/firebase-config.js"></script>
+<script src="js/announcements.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/notices.js"></script>
+<script src="js/events.js"></script>
+
+
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#071225">
+
+    <title>Udayon School | Excellence in Education</title>
+
+    <!-- Tailwind + DaisyUI -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        
+/* =========================================
+   FUTURISTIC ELITE ANIMATION SYSTEM
+========================================= */
+
+:root {
+    --glow-cyan: rgba(72,224,245,.35);
+    --glow-blue: rgba(57,139,255,.30);
+}
+
+/* Smooth page appearance */
+body {
+    overflow-x: hidden;
+    animation: pageAppear .8s ease both;
+}
+
+@keyframes pageAppear {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Scroll reveal */
+.reveal {
+    opacity: 0;
+    transform: translateY(45px);
+    transition:
+        opacity .85s cubic-bezier(.2,.7,.2,1),
+        transform .85s cubic-bezier(.2,.7,.2,1);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.reveal-left {
+    opacity: 0;
+    transform: translateX(-55px);
+    transition: .9s ease;
+}
+
+.reveal-left.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.reveal-right {
+    opacity: 0;
+    transform: translateX(55px);
+    transition: .9s ease;
+}
+
+.reveal-right.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Hero animated background */
+.hero-section {
+    position: relative;
+    isolation: isolate;
+}
+
+.hero-section::before,
+.hero-section::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.hero-section::before {
+    width: 420px;
+    height: 420px;
+    top: 5%;
+    left: -180px;
+    border: 1px solid rgba(72,224,245,.2);
+    box-shadow:
+        0 0 60px var(--glow-cyan),
+        inset 0 0 60px rgba(72,224,245,.06);
+    animation: orbitFloat 12s ease-in-out infinite;
+}
+
+.hero-section::after {
+    width: 300px;
+    height: 300px;
+    right: -100px;
+    bottom: 5%;
+    border: 1px solid rgba(57,139,255,.25);
+    box-shadow: 0 0 80px var(--glow-blue);
+    animation: orbitFloat 9s ease-in-out infinite reverse;
+}
+
+@keyframes orbitFloat {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-35px) rotate(12deg); }
+}
+
+/* Animated hero heading */
+.hero-section h1 {
+    animation: heroText .9s .15s ease both;
+}
+
+.hero-section p {
+    animation: heroText .9s .3s ease both;
+}
+
+.hero-section .btn {
+    animation: heroText .9s .45s ease both;
+}
+
+@keyframes heroText {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hero photo floating effect */
+.hero-section .relative.rounded-3xl {
+    animation: photoFloat 6s ease-in-out infinite;
+    box-shadow: 0 25px 80px rgba(0,0,0,.4);
+}
+
+@keyframes photoFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+
+/* Glowing cards */
+.content-card,
+.stat-card,
+.principal-card,
+.gallery-card,
+.notice-card {
+    position: relative;
+    transition:
+        transform .4s ease,
+        border-color .4s ease,
+        box-shadow .4s ease;
+}
+
+.content-card:hover,
+.principal-card:hover,
+.notice-card:hover {
+    transform: translateY(-9px);
+    border-color: rgba(72,224,245,.65);
+    box-shadow:
+        0 15px 45px rgba(0,0,0,.3),
+        0 0 25px rgba(72,224,245,.10);
+}
+
+/* Gallery effects */
+.gallery-card {
+    transition: transform .45s ease, box-shadow .45s ease;
+}
+
+.gallery-card:hover {
+    transform: translateY(-9px);
+    box-shadow: 0 20px 45px rgba(0,0,0,.35);
+}
+
+.gallery-card img {
+    transition: transform .8s cubic-bezier(.2,.7,.2,1);
+}
+
+.gallery-card:hover img {
+    transform: scale(1.12);
+}
+
+.gallery-overlay {
+    transition: background .4s ease;
+}
+
+.gallery-card:hover .gallery-overlay {
+    background: linear-gradient(
+        to top,
+        rgba(3,12,26,.98),
+        rgba(3,12,26,.12) 85%
+    );
+}
+
+/* Statistics */
+.stat-card {
+    backdrop-filter: blur(18px);
+    box-shadow: 0 20px 60px rgba(0,0,0,.25);
+}
+
+.stat-card > div {
+    transition: background .3s ease;
+}
+
+.stat-card > div:hover {
+    background: rgba(72,224,245,.07);
+}
+
+/* Animated number glow */
+.stat-card p:last-child {
+    text-shadow: 0 0 20px rgba(72,224,245,.3);
+}
+
+/* Section heading underline */
+.section-label {
+    display: inline-block;
+    position: relative;
+}
+
+.section-label::after {
+    content: "";
+    display: block;
+    width: 35px;
+    height: 2px;
+    margin-top: 7px;
+    background: linear-gradient(90deg,var(--blue),var(--cyan));
+    border-radius: 10px;
+    transition: width .4s ease;
+}
+
+section:hover .section-label::after {
+    width: 65px;
+}
+
+/* Buttons */
+.btn {
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease,
+        filter .3s ease !important;
+}
+
+.btn-primary:hover {
+    box-shadow: 0 0 25px rgba(72,224,245,.35);
+}
+
+.btn-outline:hover,
+.admin-btn:hover {
+    box-shadow: 0 0 22px rgba(72,224,245,.2);
+}
+
+/* Navbar */
+.glass-nav {
+    transition: background .3s ease, box-shadow .3s ease;
+}
+
+.glass-nav.scrolled {
+    background: rgba(4,12,25,.97);
+    box-shadow: 0 10px 35px rgba(0,0,0,.25);
+}
+
+/* CTA glow */
+.cta-box {
+    box-shadow: 0 20px 70px rgba(0,0,0,.2);
+    transition: box-shadow .4s ease;
+}
+
+.cta-box:hover {
+    box-shadow:
+        0 20px 70px rgba(0,0,0,.3),
+        0 0 35px rgba(72,224,245,.12);
+}
+
+/* Footer links */
+footer a {
+    display: inline-block;
+    transition: color .25s ease, transform .25s ease;
+}
+
+footer a:hover {
+    transform: translateX(5px);
+}
+
+/* Subtle animated grid */
+.hero-grid {
+    animation: gridGlow 8s ease-in-out infinite alternate;
+}
+
+@keyframes gridGlow {
+    from { opacity: .35; }
+    to { opacity: .85; }
+}
+
+/* Accessibility: respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+    }
+
+    .reveal,
+    .reveal-left,
+    .reveal-right {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+    </style>
+</head>
+
+<body>
+
+<!-- ========================================================= -->
+<!-- NAVBAR -->
+<!-- ========================================================= -->
+
+<header class="glass-nav sticky top-0 z-50">
+
+    <div class="navbar max-w-[1400px] mx-auto px-4 lg:px-8">
+
+        <div class="navbar-start">
+
+            <div class="dropdown">
+
+                <button tabindex="0"
+                    class="btn btn-ghost lg:hidden text-xl"
+                    aria-label="Open navigation menu">
+                    ☰
+                </button>
+
+                <ul tabindex="0"
+                    class="menu menu-sm dropdown-content mt-3 z-[60] p-3 shadow-xl bg-[#0b1b33] border border-white/10 rounded-2xl w-64">
+
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="notice.html">Notice</a></li>
+                    <li><a href="announcement.html">Announcement</a></li>
+                    <li><a href="curriculum.html">Curriculum</a></li>
+                    <li><a href="admission.html">Admission</a></li>
+                    <li><a href="events.html">Events</a></li>
+
+                </ul>
+            </div>
+
+            <a href="index.html" class="btn btn-ghost normal-case px-2">
+
+                <span class="flex items-center gap-3">
+                    <span class="brand-logo">U</span>
+
+                    <span class="hidden sm:block text-left">
+                        <span class="block font-extrabold text-white leading-tight">
+                            UDAYON SCHOOL
+                        </span>
+
+                        <span class="block text-[10px] uppercase tracking-widest text-slate-400">
+                            Learn · Grow · Shine
+                        </span>
+                    </span>
+                </span>
+
+            </a>
+        </div>
+
+
+        <!-- DESKTOP NAVIGATION -->
+
+        <nav class="navbar-center hidden lg:flex">
+
+            <ul class="menu menu-horizontal gap-1">
+
+                <li><a href="index.html" class="nav-link active rounded-lg">Home</a></li>
+                <li><a href="about.html" class="nav-link rounded-lg">About</a></li>
+                <li><a href="notice.html" class="nav-link rounded-lg">Notice</a></li>
+                <li><a href="announcement.html" class="nav-link rounded-lg">Announcement</a></li>
+                <li><a href="curriculum.html" class="nav-link rounded-lg">Curriculum</a></li>
+                <li><a href="admission.html" class="nav-link rounded-lg">Admission</a></li>
+                <li><a href="events.html" class="nav-link rounded-lg">Events</a></li>
+
+            </ul>
+        </nav>
+
+
+        <div class="navbar-end">
+            <a href="admin.html" class="btn admin-btn rounded-xl px-5">
+                Admin Portal
+            </a>
+        </div>
+
+    </div>
+</header>
+
+
+<!-- ========================================================= -->
+<!-- HERO -->
+<!-- ========================================================= -->
+
+<section class="hero-section relative min-h-[680px] overflow-hidden text-white">
+
+    <div class="absolute inset-0 hero-grid"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 py-24">
+
+        <div class="grid lg:grid-cols-2 gap-14 items-center">
+
+            <div class="text-center lg:text-left">
+
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-medium mb-7">
+
+                    <span class="w-2 h-2 rounded-full bg-green-400"></span>
+
+                    Admissions are now open
+
+                </div>
+
+                <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-tight">
+
+                    Inspiring Minds.
+                    <span class="text-cyan-300">
+                        Shaping Futures.
+                    </span>
+
+                </h1>
+
+                <p class="mt-7 text-lg sm:text-xl text-slate-200 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+
+                    Welcome to Udayon School — a place where knowledge,
+                    character, creativity, and leadership come together
+                    to prepare students for a brighter tomorrow.
+
+                </p>
+
+                <div class="flex flex-wrap justify-center lg:justify-start gap-4 mt-9">
+
+                    <a href="admission.html"
+                        class="btn btn-lg btn-primary rounded-xl px-7">
+                        Apply for Admission
+                    </a>
+
+                    <a href="about.html"
+                        class="btn btn-lg btn-outline rounded-xl px-7">
+                        Discover Our School
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- HERO PHOTO -->
+
+            <div class="relative max-w-lg mx-auto w-full">
+
+                <div class="absolute -inset-4 rounded-[35px] bg-cyan-400/10 blur-2xl"></div>
+
+                <div class="relative rounded-3xl overflow-hidden border border-white/20 shadow-2xl">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1000&q=85"
+                        alt="Students learning in a classroom"
+                        class="w-full h-[420px] object-cover">
+
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#071225]/90 via-transparent to-transparent"></div>
+
+                    <div class="absolute bottom-0 left-0 right-0 p-7">
+
+                        <p class="text-cyan-300 text-sm font-bold uppercase tracking-widest">
+                            Welcome to Udayon
+                        </p>
+
+                        <h2 class="text-2xl sm:text-3xl font-bold text-white mt-2">
+                            A Place to Learn and Grow
                         </h2>
 
-                        <p class="text-sm text-slate-400">
-                            Excellence in Education
+                        <p class="text-slate-200 mt-2">
+                            Inspiring the next generation.
                         </p>
 
                     </div>
 
                 </div>
 
-                <p class="mt-6 max-w-md leading-7 text-slate-400">
+                <div class="absolute -bottom-5 -left-5 glass rounded-2xl px-5 py-4 hidden sm:block">
+                    <p class="text-cyan-300 font-bold">🎓</p>
+                    <p class="text-white font-semibold text-sm">Learning Together</p>
+                </div>
 
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ========================================================= -->
+<!-- STATS -->
+<!-- ========================================================= -->
+
+<section class="relative -mt-10 z-20 px-5">
+
+    <div class="max-w-6xl mx-auto">
+
+        <div class="grid grid-cols-2 lg:grid-cols-4 stat-card rounded-2xl shadow-xl overflow-hidden">
+
+            <div class="p-7 text-center border-b lg:border-b-0 lg:border-r border-white/10">
+                <p class="text-sm font-semibold text-slate-400 uppercase tracking-wider">Students</p>
+                <p class="text-4xl font-extrabold text-cyan-300 mt-2">250+</p>
+            </div>
+
+            <div class="p-7 text-center border-b lg:border-b-0 lg:border-r border-white/10">
+                <p class="text-sm font-semibold text-slate-400 uppercase tracking-wider">Teachers</p>
+                <p class="text-4xl font-extrabold text-cyan-300 mt-2">10</p>
+            </div>
+
+            <div class="p-7 text-center border-r border-white/10">
+                <p class="text-sm font-semibold text-slate-400 uppercase tracking-wider">Pass Rate</p>
+                <p class="text-4xl font-extrabold text-cyan-300 mt-2">98%</p>
+            </div>
+
+            <div class="p-7 text-center">
+                <p class="text-sm font-semibold text-slate-400 uppercase tracking-wider">Established</p>
+                <p class="text-4xl font-extrabold text-cyan-300 mt-2">2004</p>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- ========================================================= -->
+<!-- PRINCIPAL MESSAGE -->
+<!-- ========================================================= -->
+
+<section class="content-section py-24">
+
+    <div class="max-w-6xl mx-auto px-5">
+
+        <div class="grid lg:grid-cols-5 gap-10 items-center">
+
+            <div class="lg:col-span-2">
+
+                <p class="section-label text-sm font-bold uppercase">
+                    From the Principal
+                </p>
+
+                <h2 class="section-title text-4xl sm:text-5xl font-bold mt-3">
+                    Education Beyond the Classroom
+                </h2>
+
+                <div class="w-16 h-1 bg-cyan-400 mt-6 rounded-full"></div>
+
+            </div>
+
+            <div class="lg:col-span-3">
+
+                <div class="principal-card rounded-3xl p-8 sm:p-10 shadow-lg">
+
+                    <div class="text-5xl text-cyan-300 mb-3">“</div>
+
+                    <p class="text-lg text-slate-300 leading-8">
+
+                        Welcome to Udayon School. Our mission is to provide
+                        quality education that inspires students to become
+                        responsible citizens, lifelong learners, and future
+                        leaders.
+
+                    </p>
+
+                    <p class="text-lg text-slate-300 leading-8 mt-5">
+
+                        We are committed to academic excellence, discipline,
+                        creativity, and innovation while creating an environment
+                        where every student can discover their potential.
+
+                    </p>
+
+                    <div class="mt-8 pt-6 border-t border-white/10">
+
+                        <p class="font-bold text-white">Principal</p>
+                        <p class="text-sm text-slate-400">Udayon School</p>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ========================================================= -->
+<!-- NEW SCHOOL PHOTO GALLERY -->
+<!-- ========================================================= -->
+
+<section id="gallery" class="alternate-section py-24">
+
+    <div class="max-w-7xl mx-auto px-5">
+
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-5 mb-12">
+
+            <div>
+
+                <p class="section-label text-sm font-bold uppercase">
+                    Memories & Moments
+                </p>
+
+                <h2 class="section-title text-4xl sm:text-5xl font-bold mt-3">
+                    Our School Gallery
+                </h2>
+
+                <p class="section-muted mt-4 max-w-2xl leading-relaxed">
+                    Take a look at the learning, creativity, friendship,
+                    and activities that make life at Udayon School special.
+                </p>
+
+            </div>
+
+            <a href="events.html" class="btn btn-outline rounded-xl">
+                Explore School Events →
+            </a>
+
+        </div>
+
+
+        <!-- GALLERY GRID -->
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+
+            <!-- PHOTO 1 -->
+
+            <div class="gallery-card large">
+
+                <img
+                    src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=900&q=85"
+                    alt="Students studying in classroom"
+                    loading="lazy">
+
+                <div class="gallery-overlay">
+                    <div>
+                        <h3>Classroom Learning</h3>
+                        <p>Growing through knowledge</p>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- PHOTO 2 -->
+
+            <div class="gallery-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&w=900&q=85"
+                    alt="Students learning together"
+                    loading="lazy">
+
+                <div class="gallery-overlay">
+                    <div>
+                        <h3>Learning Together</h3>
+                        <p>Sharing ideas and experiences</p>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- PHOTO 3 -->
+
+            <div class="gallery-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=900&q=85"
+                    alt="Teacher helping students"
+                    loading="lazy">
+
+                <div class="gallery-overlay">
+                    <div>
+                        <h3>Teacher & Students</h3>
+                        <p>Guidance for a brighter future</p>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- PHOTO 4 -->
+
+            <div class="gallery-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1529390079861-591de354faf5?auto=format&fit=crop&w=900&q=85"
+                    alt="Students participating in activities"
+                    loading="lazy">
+
+                <div class="gallery-overlay">
+                    <div>
+                        <h3>Student Activities</h3>
+                        <p>Learning beyond textbooks</p>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- PHOTO 5 -->
+
+            <div class="gallery-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=85"
+                    alt="Students working together"
+                    loading="lazy">
+
+                <div class="gallery-overlay">
+                    <div>
+                        <h3>Friendship & Teamwork</h3>
+                        <p>Building memories together</p>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- PHOTO 6 -->
+
+            <div class="gallery-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=900&q=85"
+                    alt="Student reading a book"
+                    loading="lazy">
+
+                <div class="gallery-overlay">
+                    <div>
+                        <h3>Reading & Creativity</h3>
+                        <p>Discovering new possibilities</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="text-center mt-10">
+            <p class="text-sm text-slate-400">
+                Photo gallery · Udayon School
+            </p>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- ========================================================= -->
+<!-- NOTICES -->
+<!-- ========================================================= -->
+
+<section class="content-section py-24">
+
+    <div class="max-w-7xl mx-auto px-5">
+
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-5 mb-10">
+
+            <div>
+                <p class="section-label text-sm font-bold uppercase">Stay Updated</p>
+                <h2 class="section-title text-4xl sm:text-5xl font-bold mt-2">
+                    Latest Notices
+                </h2>
+            </div>
+
+            <a href="notice.html" class="btn btn-outline rounded-xl">
+                View All Notices →
+            </a>
+
+        </div>
+
+        <div id="latestNotices" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <div class="content-card hover-lift p-7">
+                <div class="text-3xl">📢</div>
+                <h3 class="font-bold text-xl mt-4">No Notices Yet</h3>
+                <p class="section-muted mt-2">Admin will publish notices here.</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ========================================================= -->
+<!-- ANNOUNCEMENTS -->
+<!-- ========================================================= -->
+
+<section class="alternate-section py-24">
+
+    <div class="max-w-7xl mx-auto px-5">
+
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-5 mb-10">
+
+            <div>
+                <p class="section-label text-sm font-bold uppercase">School Updates</p>
+                <h2 class="section-title text-4xl sm:text-5xl font-bold mt-2">
+                    Announcements
+                </h2>
+            </div>
+
+            <a href="announcement.html" class="btn btn-outline rounded-xl">
+                View All →
+            </a>
+
+        </div>
+
+        <div id="latestAnnouncements" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <div class="content-card hover-lift p-7">
+                <div class="text-3xl">🔔</div>
+                <h3 class="font-bold text-xl mt-4">No Announcements</h3>
+                <p class="section-muted mt-2">
+                    Important school announcements will appear here.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ========================================================= -->
+<!-- EVENTS -->
+<!-- ========================================================= -->
+
+<section class="content-section py-24">
+
+    <div class="max-w-7xl mx-auto px-5">
+
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-5 mb-10">
+
+            <div>
+                <p class="section-label text-sm font-bold uppercase">School Life</p>
+                <h2 class="section-title text-4xl sm:text-5xl font-bold mt-2">
+                    Upcoming Events
+                </h2>
+            </div>
+
+            <a href="events.html" class="btn btn-outline rounded-xl">
+                View All Events →
+            </a>
+
+        </div>
+
+        <div id="latestEvents" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <div class="content-card hover-lift p-7">
+                <div class="text-3xl">📅</div>
+                <h3 class="font-bold text-xl mt-4">No Events</h3>
+                <p class="section-muted mt-2">
+                    Upcoming school events will appear here.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ========================================================= -->
+<!-- ADMISSION CTA -->
+<!-- ========================================================= -->
+
+<section class="py-24 px-5">
+
+    <div class="max-w-7xl mx-auto">
+
+        <div class="cta-box relative overflow-hidden rounded-3xl text-white">
+
+            <div class="absolute inset-0 hero-grid"></div>
+
+            <div class="relative z-10 px-7 sm:px-12 lg:px-20 py-16 text-center">
+
+                <p class="section-label text-sm font-bold uppercase">
+                    Begin Your Journey
+                </p>
+
+                <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold mt-3">
+                    Admissions Are Open
+                </h2>
+
+                <p class="max-w-2xl mx-auto mt-5 text-lg text-blue-100 leading-relaxed">
+                    Give your child an environment where curiosity is encouraged,
+                    potential is developed, and every achievement matters.
+                </p>
+
+                <div class="mt-8">
+                    <a href="admission.html" class="btn btn-lg btn-primary rounded-xl px-8">
+                        Apply Now →
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ========================================================= -->
+<!-- FOOTER -->
+<!-- ========================================================= -->
+
+<footer class="text-slate-300">
+
+    <div class="max-w-7xl mx-auto px-5 py-16">
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+
+            <div class="lg:col-span-2">
+
+                <div class="flex items-center gap-3">
+                    <div class="brand-logo">U</div>
+
+                    <div>
+                        <h2 class="text-xl font-bold text-white">Udayon School</h2>
+                        <p class="text-sm text-slate-400">Learn · Grow · Shine</p>
+                    </div>
+                </div>
+
+                <p class="mt-6 max-w-md leading-7 text-slate-400">
                     Building knowledge, character, and leadership for tomorrow.
                     We are committed to creating responsible, confident,
                     and lifelong learners.
-
                 </p>
 
             </div>
 
 
-            <!-- Quick links -->
-
             <div>
-
-                <h3 class="font-bold text-white mb-5">
-                    Quick Links
-                </h3>
+                <h3 class="font-bold text-white mb-5">Quick Links</h3>
 
                 <ul class="space-y-3">
-
-                    <li>
-                        <a href="about.html" class="hover:text-white transition">
-                            About Us
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="curriculum.html" class="hover:text-white transition">
-                            Curriculum
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="admission.html" class="hover:text-white transition">
-                            Admissions
-                        </a>
-                    </li>
-
-
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="curriculum.html">Curriculum</a></li>
+                    <li><a href="admission.html">Admissions</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="#gallery">Photo Gallery</a></li>
                 </ul>
-
             </div>
 
 
-            <!-- Information -->
-
             <div>
-
-                <h3 class="font-bold text-white mb-5">
-                    Information
-                </h3>
+                <h3 class="font-bold text-white mb-5">Information</h3>
 
                 <ul class="space-y-3">
-
-                    <li>
-                        <a href="notice.html" class="hover:text-white transition">
-                            Notices
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="announcement.html" class="hover:text-white transition">
-                            Announcements
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="events.html" class="hover:text-white transition">
-                            Events
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="admin.html" class="hover:text-white transition">
-                            Admin Portal
-                        </a>
-                    </li>
-
+                    <li><a href="notice.html">Notices</a></li>
+                    <li><a href="announcement.html">Announcements</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="admin.html">Admin Portal</a></li>
                 </ul>
-
             </div>
 
         </div>
 
 
-        <div class="border-t border-slate-800 mt-12 pt-7 flex flex-col sm:flex-row justify-between gap-4 text-sm text-slate-500">
+        <div class="border-t border-white/10 mt-12 pt-7 flex flex-col sm:flex-row justify-between gap-4 text-sm text-slate-500">
 
-            <p>
-                © 2026 Udayon School. All rights reserved.
-            </p>
+            <p>© 2026 Udayon School. All rights reserved.</p>
 
-            <p>
-                Excellence • Discipline • Success
-            </p>
+            <p>Learn · Grow · Shine</p>
 
         </div>
 
     </div>
-
 </footer>
 
 
-<!-- ========================================================= -->
-<!-- SCRIPTS -->
-<!-- ========================================================= -->
+<!-- FIREBASE -->
 
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+<script src="js/firebase-config.js"></script>
+<script src="js/announcements.js"></script>
 <script src="js/storage.js"></script>
 <script src="js/notices.js"></script>
-<script src="js/announcements.js"></script>
 <script src="js/events.js"></script>
-<script src="js/app.js"></script>
+
+<script>
+    
+/* =========================================
+   UDAYON SCHOOL - ANIMATION CONTROLLER
+========================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    // Scroll reveal animation
+    const revealElements = document.querySelectorAll(
+        "section h1, section h2, section h3, " +
+        "section p, .content-card, .principal-card, " +
+        ".gallery-card, .stat-card > div, .notice-card, " +
+        ".cta-box, .hero-section .glass"
+    );
+
+    revealElements.forEach((element, index) => {
+        if (
+            element.closest("footer") ||
+            element.classList.contains("section-label")
+        ) return;
+
+        element.classList.add("reveal");
+        element.style.transitionDelay = `${(index % 4) * 100}ms`;
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("active");
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.12,
+        rootMargin: "0px 0px -35px 0px"
+    });
+
+    document.querySelectorAll(".reveal").forEach(element => {
+        observer.observe(element);
+    });
+
+
+
+/* =========================================
+   MOBILE NAVBAR CONTROLLER
+========================================= */
+
+const menuBtn = document.getElementById("mobileMenuBtn");
+const mobileNav = document.getElementById("mobileNav");
+
+if (menuBtn && mobileNav) {
+
+    menuBtn.addEventListener("click", () => {
+
+        const isOpen = mobileNav.classList.toggle("open");
+
+        menuBtn.textContent = isOpen ? "✕" : "☰";
+        menuBtn.setAttribute("aria-expanded", isOpen);
+        menuBtn.setAttribute(
+            "aria-label",
+            isOpen ? "Close navigation menu" : "Open navigation menu"
+        );
+
+    });
+
+    // Close menu after clicking a link
+    mobileNav.querySelectorAll("a").forEach(link => {
+
+        link.addEventListener("click", () => {
+
+            mobileNav.classList.remove("open");
+            menuBtn.textContent = "☰";
+            menuBtn.setAttribute("aria-expanded", "false");
+
+        });
+
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener("click", (event) => {
+
+        if (
+            !mobileNav.contains(event.target) &&
+            !menuBtn.contains(event.target)
+        ) {
+            mobileNav.classList.remove("open");
+            menuBtn.textContent = "☰";
+            menuBtn.setAttribute("aria-expanded", "false");
+        }
+
+    });
+
+}
+
+
+    // Animated statistics counters
+    const counters = document.querySelectorAll(".stat-card p:last-child");
+
+    const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+
+            const counter = entry.target;
+            const original = counter.textContent.trim();
+            const number = parseInt(original.replace(/[^0-9]/g, ""), 10);
+
+            if (Number.isNaN(number)) return;
+
+            const suffix = original.replace(/[0-9,]/g, "");
+            const duration = 1600;
+            const startTime = performance.now();
+
+            function animateCounter(currentTime) {
+                const progress = Math.min(
+                    (currentTime - startTime) / duration,
+                    1
+                );
+
+                const eased = 1 - Math.pow(1 - progress, 4);
+                const current = Math.floor(number * eased);
+
+                counter.textContent =
+                    current.toLocaleString("en-US") + suffix;
+
+                if (progress < 1) {
+                    requestAnimationFrame(animateCounter);
+                } else {
+                    counter.textContent = original;
+                }
+            }
+
+            requestAnimationFrame(animateCounter);
+            counterObserver.unobserve(counter);
+        });
+    }, { threshold: 0.6 });
+
+    counters.forEach(counter => counterObserver.observe(counter));
+
+
+    // Animate dynamically loaded Firebase cards too
+    const dynamicContainers = [
+        "latestNotices",
+        "latestAnnouncements",
+        "latestEvents"
+    ];
+
+    dynamicContainers.forEach(id => {
+        const container = document.getElementById(id);
+        if (!container) return;
+
+        const mutationObserver = new MutationObserver(() => {
+            container.querySelectorAll(
+                ".content-card, .notice-card, article, .card"
+            ).forEach((card, index) => {
+                if (card.dataset.animated) return;
+
+                card.dataset.animated = "true";
+                card.classList.add("reveal");
+                card.style.transitionDelay = `${index * 100}ms`;
+                observer.observe(card);
+            });
+        });
+
+        mutationObserver.observe(container, {
+            childList: true,
+            subtree: true
+        });
+    });
+
+});
+
+</script>
 
 </body>
 </html>
- 
+
+
+</body>
+</html>

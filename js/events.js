@@ -1,191 +1,86 @@
-// Display Events
+// =====================================
+// FIREBASE EVENTS
+// =====================================
 
+function displayEvents() {
+    const container = document.getElementById("eventContainer");
+    const latestContainer = document.getElementById("latestEvents");
 
-function displayEvents(){
+    if (!container && !latestContainer) return;
 
+    db.collection("events").onSnapshot(snapshot => {
+        const events = snapshot.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data()
+        }));
 
-    let events = getItems("events");
+        events.sort((a, b) => {
+            const timeA = a.createdAt?.toMillis?.() || 0;
+            const timeB = b.createdAt?.toMillis?.() || 0;
+            return timeB - timeA;
+        });
 
+        if (container) {
+            container.innerHTML = "";
 
+            if (events.length === 0) {
+                container.innerHTML =
+                    '<p class="text-center py-8">No events available.</p>';
+            } else {
+                events.forEach(event => {
+                    const card = document.createElement("div");
+                    card.className =
+                        "card bg-base-100 shadow-md p-5 mb-4";
 
-    let container =
-    document.getElementById("eventContainer");
+                    const title = document.createElement("h3");
+                    title.className = "font-bold text-xl";
+                    title.textContent = event.title || "";
 
+                    const date = document.createElement("p");
+                    date.className = "mt-2 text-primary";
+                    date.textContent = "📅 " + (event.date || "");
 
+                    const description = document.createElement("p");
+                    description.className = "mt-2";
+                    description.textContent = event.description || "";
 
-    if(container){
-
-
-        container.innerHTML = "";
-
-
-
-        if(events.length === 0){
-
-
-            container.innerHTML = `
-
-
-            <div class="card bg-base-100 shadow-xl">
-
-
-            <div class="card-body">
-
-
-            <h2 class="card-title">
-
-            No Events Available
-
-            </h2>
-
-
-            <p>
-
-            Upcoming events will be added soon.
-
-            </p>
-
-
-            </div>
-
-
-            </div>
-
-
-            `;
-
-
+                    card.append(title, date, description);
+                    container.appendChild(card);
+                });
+            }
         }
 
-
-
-        events.forEach(event=>{
-
-
-            container.innerHTML += `
-
-
-            <div class="card bg-base-100 shadow-xl">
-
-
-            <div class="card-body">
-
-
-            <div class="badge badge-warning">
-
-            Event
-
-            </div>
-
-
-            <h2 class="card-title">
-
-            ${event.title}
-
-            </h2>
-
-
-
-            <p>
-
-            📅 ${event.date}
-
-            </p>
-
-
-
-            <p>
-
-            ${event.description}
-
-            </p>
-
-
-
-            </div>
-
-
-            </div>
-
-
-            `;
-
-
-        });
-
-
-
-    }
-
-
-
-
-
-    let latest =
-    document.getElementById("latestEvents");
-
-
-
-    if(latest){
-
-
-        latest.innerHTML = "";
-
-
-
-        events.slice(0,3).forEach(event=>{
-
-
-            latest.innerHTML += `
-
-
-            <div class="card bg-base-100 shadow">
-
-
-            <div class="card-body">
-
-
-            <h3 class="card-title">
-
-            ${event.title}
-
-            </h3>
-
-
-            <p>
-
-            ${event.date}
-
-            </p>
-
-
-            <p>
-
-            ${event.description}
-
-            </p>
-
-
-            </div>
-
-
-            </div>
-
-
-            `;
-
-
-        });
-
-
-
-    }
-
-
-
+        if (latestContainer) {
+            latestContainer.innerHTML = "";
+
+            events.slice(0, 3).forEach(event => {
+                const card = document.createElement("div");
+                card.className = "card bg-base-100 shadow-md p-4 mb-3";
+
+                const title = document.createElement("h3");
+                title.className = "font-bold";
+                title.textContent = event.title || "";
+
+                const date = document.createElement("p");
+                date.className = "text-primary mt-2";
+                date.textContent = "📅 " + (event.date || "");
+
+                const description = document.createElement("p");
+                description.className = "mt-2";
+                description.textContent = event.description || "";
+
+                card.append(title, date, description);
+                latestContainer.appendChild(card);
+            });
+        }
+
+    }, error => {
+        console.error("Event loading error:", error);
+
+        if (container) {
+            container.textContent = "Unable to load events.";
+        }
+    });
 }
-
-
-
 
 displayEvents();
